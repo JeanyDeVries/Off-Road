@@ -1,5 +1,3 @@
-//TODO: Use viewBox for camera movement
-
 Car car;
 Road road;
 Spawner spawner;
@@ -17,11 +15,11 @@ void update()
 {
   rectMode(CORNER);
   road.Render();
-  rectMode(CENTER);
+  imageMode(CENTER);
   car.Draw();
   
   //collision detecten tussen road en car
-  if((car.x <= road.x - 30|| car.x >= (road.x + road.w) + 30) && car.size >= 0)
+  if((car.x <= road.x - 40|| car.x >= (road.x + road.w)) && car.size >= 0)
   {
     car.Death();
   }
