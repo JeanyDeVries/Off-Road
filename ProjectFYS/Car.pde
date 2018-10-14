@@ -1,5 +1,6 @@
 class Car
 {
+  PImage carImage;
   float x;
   float y;
   float size;
@@ -13,9 +14,9 @@ class Car
   {
     x = width/2;
     y = 600;
-    size = 50;
+    size = 75;
     rotate = 90;
-    speed = 5;
+    speed = 7;
     
     milliSec = millis();
     TimerSec = milliSec / 1000;
@@ -23,11 +24,12 @@ class Car
   
   void Draw()
   {
+    carImage = loadImage("Car.png");
     fill(150, 0, 0);
     stroke(0);
     translate(x, y);
     rotate(radians(rotate));
-    rect(0, 0, size * 2, size);
+    image(carImage, 0, 0, size * 2, size);
   }
   
   void ProcessInput(boolean[] keysPressed)
@@ -62,7 +64,7 @@ class Car
   
   void Death()
   {
-    size = size - TimerSec;
-    rotate += 20;
+    size = size - (TimerSec * 2);
+    rotate += 30;
   }
 }
