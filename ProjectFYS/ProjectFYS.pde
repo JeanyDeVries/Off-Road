@@ -9,24 +9,31 @@ void setup()
   car = new Car();
   road = new Road();
   spawner = new Spawner();
+  spawner.Render();
 } 
 
 void update()
 {
+  imageMode(CENTER);
+  spawner.Draw();
   rectMode(CORNER);
-  road.Render();
+  //road.Render();
   imageMode(CENTER);
   car.Draw();
   
+  if(car.x < spawner.x || car.x > spawner.x)
+  {
+    
+  }
   //collision detecten tussen road en car
-  if((car.x <= road.x - 40|| car.x >= (road.x + road.w)) && car.size >= 0)
-  {
-    car.Death();
-  }
-  else
-  {
-    car.ProcessInput(keysPressed);
-  }
+  //if((car.x <= road.x - 10|| car.x >= ((road.x + 10) + road.w)) && car.size >= 0)
+  //{
+  //  car.Death();
+  //}
+  //else
+  //{
+    spawner.ProcessInput(keysPressed);
+  //}
 }
 
 void draw()
