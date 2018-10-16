@@ -8,7 +8,11 @@ class Car
   float speed;
   float milliSec;
   float TimerSec;
-
+  
+  boolean leftInRoad;
+  boolean rightInRoad;
+  boolean topInRoad;
+  boolean bottomInRoad;
   
   Car()
   {
@@ -38,5 +42,34 @@ class Car
   {
     size = size - (TimerSec * 2);
     rotate += 30;
+  }
+  
+  boolean collidesWithRoad(Car car) 
+  {
+    if(car.x > spawner.x - size)
+    {
+      leftInRoad = true;
+    }
+    else leftInRoad = false;
+    if(car.x < spawner.x + size)
+    {
+      rightInRoad = true;
+    }
+    else rightInRoad = false;
+    if(car.y > spawner.x - size)
+    {
+      topInRoad = true;
+    }
+    else topInRoad = false;
+    if(car.y < spawner.y + size)
+    {
+      bottomInRoad = true;
+    }
+    else bottomInRoad = false;
+    if (leftInRoad && rightInRoad && topInRoad && bottomInRoad)
+    {
+      return true;
+    }
+    return false;
   }
 }
