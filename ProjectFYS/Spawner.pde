@@ -7,6 +7,10 @@ class Spawner
   float x = car.x;
   float y = car.y;
   
+  int countRoads;
+  
+  float timermilliSec = millis();
+  
   Spawner()
   {
     roadWidth = 1000;
@@ -17,15 +21,21 @@ class Spawner
   
   void Render()
   {
+    timermilliSec = 0;
     roadImages[0] = loadImage("LangeBochtRechts.png");
     roadImages[1] = loadImage("LangeRechteWeg.png");
   }
   
   void Draw()
   {
-    for(int i = 0; i < 5; i++)
+    image(roadImages[1], x, y, roadWidth, roadHeight);
+    if(timermilliSec > 5)
     {
-      image(roadImages[1], x, y - (i * roadHeight /2), roadWidth, roadHeight);
+      for(int i = 1; i < 5; i++)
+      {
+        image(roadImages[1], x, y - (i * roadHeight /2), roadWidth, roadHeight);
+        countRoads++;
+      }
     }
   }
   

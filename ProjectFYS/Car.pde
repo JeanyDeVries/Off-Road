@@ -6,8 +6,8 @@ class Car
   float size;
   float rotate;
   float speed;
-  float milliSec;
   float TimerSec;
+  float timer;
   
   boolean alive;
   
@@ -24,9 +24,9 @@ class Car
     rotate = 90;
     speed = 7;
     
-    milliSec = millis();
-    TimerSec = milliSec / 1000;
-    
+    timer = millis();
+    TimerSec = timer/1000;
+
     alive = true;
   }
   
@@ -44,8 +44,8 @@ class Car
   
   void Death()
   {
-    size = size - (TimerSec * 4);
-    rotate += 30;
+    size = size - (TimerSec * 2);
+    rotate += 60;
     if(size <= 0)
     {
       size = 0;
