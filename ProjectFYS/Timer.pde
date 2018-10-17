@@ -8,11 +8,14 @@ class Timer{
     this.interval = interval;
 
   }
-   boolean checkTime(){
+  
+boolean checkTime()
+{
     if (millis() - huidigeTijd > interval)
     {
       huidigeTijd = millis();
       return true;
-    } return false;
+    } 
+    return false;
   }
 }

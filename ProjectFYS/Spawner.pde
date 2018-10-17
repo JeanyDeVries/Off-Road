@@ -29,7 +29,7 @@ class Spawner
   void Draw()
   {
     image(roadImages[1], x, y, roadWidth, roadHeight);
-    if(timermilliSec > 5)
+    if(timer.huidigeTijd > 5)
     {
       for(int i = 1; i < 5; i++)
       {
