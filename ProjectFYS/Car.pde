@@ -9,6 +9,8 @@ class Car
   float milliSec;
   float TimerSec;
   
+  boolean alive;
+  
   boolean leftInRoad;
   boolean rightInRoad;
   boolean topInRoad;
@@ -24,11 +26,13 @@ class Car
     
     milliSec = millis();
     TimerSec = milliSec / 1000;
+    
+    alive = true;
   }
   
   void Draw()
   {
-    carImage = loadImage("Car.png");
+      carImage = loadImage("Car.png");
     fill(150, 0, 0);
     stroke(0);
     translate(x, y);
@@ -40,28 +44,32 @@ class Car
   
   void Death()
   {
-    size = size - (TimerSec * 2);
+    size = size - (TimerSec * 4);
     rotate += 30;
+    if(size <= 0)
+    {
+      size = 0;
+    }
   }
   
   boolean collidesWithRoad(Car car) 
   {
-    if(car.x > spawner.x - size)
+    if(car.x > spawner.x - (size * 2))
     {
       leftInRoad = true;
     }
     else leftInRoad = false;
-    if(car.x < spawner.x + size)
+    if(car.x < spawner.x + (size * 2))
     {
       rightInRoad = true;
     }
     else rightInRoad = false;
-    if(car.y > spawner.x - size)
+    if(car.y > spawner.x - (size * 2))
     {
       topInRoad = true;
     }
     else topInRoad = false;
-    if(car.y < spawner.y + size)
+    if(car.y < spawner.y + (size * 2))
     {
       bottomInRoad = true;
     }

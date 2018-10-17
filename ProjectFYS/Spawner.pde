@@ -23,7 +23,10 @@ class Spawner
   
   void Draw()
   {
-    image(roadImages[1], x, y, roadWidth, roadHeight);
+    for(int i = 0; i < 5; i++)
+    {
+      image(roadImages[1], x, y - (i * roadHeight /2), roadWidth, roadHeight);
+    }
   }
   
   void ProcessInput(boolean[] keysPressed)
