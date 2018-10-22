@@ -5,7 +5,7 @@ Timer t = new Timer(5000);
 
 void setup()
 {
-  size(1280, 720);
+  size(1280, 720, P2D);
   car = new Car();
   spawner = new Spawner();
   spawner.Render();
