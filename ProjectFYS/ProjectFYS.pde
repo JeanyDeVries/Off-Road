@@ -1,7 +1,7 @@
 Car car;
 Spawner spawner;
 boolean[] keysPressed = new boolean[256];
-Timer t = new Timer(5000);
+Timer timer = new Timer(5000);
 
 void setup()
 {
@@ -13,8 +13,9 @@ void setup()
 
 void update()
 {
-  if (t.checkTime()){
-   println("Jeany is een bitch");
+  if (timer.checkTime())
+  {
+   println();
   }
   imageMode(CENTER);
   spawner.Draw();
