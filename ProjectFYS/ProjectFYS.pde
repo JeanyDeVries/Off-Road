@@ -1,7 +1,8 @@
 Car car;
 Spawner spawner;
 boolean[] keysPressed = new boolean[256];
-Timer timer = new Timer(5000);
+Timer timer = new Timer(1000);
+ArrayList<PImage>spawn;
 
 void setup()
 {
@@ -9,14 +10,11 @@ void setup()
   car = new Car();
   spawner = new Spawner();
   spawner.Render();
+  spawn = new ArrayList<PImage>();
 } 
 
 void update()
 {
-  if (timer.checkTime())
-  {
-   println();
-  }
   imageMode(CENTER);
   spawner.Draw();
   car.Draw();
