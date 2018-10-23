@@ -30,18 +30,9 @@ class Spawner
 
   void Draw()
   {
-<<<<<<< HEAD
-    image(roadImages[1], x, y, roadWidth, roadHeight);
-<<<<<<< HEAD
-    if(t.huidigeTijd> 5)
-=======
-    if(timer.huidigeTijd > 5)
->>>>>>> 1bd8cbe780432a3705a249408bb474b1c62db9d2
-=======
     spawn.add(roadImages[1]);
     image(spawn.get(0), x, y, roadWidth, roadHeight);
     if (timer.checkTime())
->>>>>>> Sam
     {
       print(i);
 
@@ -57,18 +48,40 @@ class Spawner
     //vooruit
     if (keysPressed['w'])
     {
+      if (car.speed < car.maxSpeed)
+      {
+       car.speed++; 
+      }
       float xRotate = cos(radians(car.rotate));
       float yRotate = sin(radians(car.rotate));
       x += xRotate * car.speed;
       y += yRotate * car.speed;
     }
+    else
+    {
+     if (car.speed > 0)
+     {
+      car.speed--; 
+     }
+    }
     //Achteruit
     if (keysPressed['s'])
     {
+      if (car.speed > -(car.maxSpeed/2))
+      {
+        car.speed--;
+      }
       float xRotate = cos(radians(car.rotate));
       float yRotate = sin(radians(car.rotate));
-      x -= xRotate * car.speed/2;
-      y -= yRotate * car.speed/2;
+      x += xRotate * car.speed/2;
+      y += yRotate * car.speed/2;
+    }
+    else
+    {
+     if (car.speed <= 0)
+     {
+      car.speed++; 
+     }
     }
     //links
     if (keysPressed['a'])

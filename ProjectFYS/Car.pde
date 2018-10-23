@@ -6,6 +6,7 @@ class Car
   float size;
   float rotate;
   float speed;
+  float maxSpeed;
   float TimerSec;
   float timer;
   
@@ -22,7 +23,8 @@ class Car
     y = 600;
     size = 75;
     rotate = 90;
-    speed = 7;
+    speed = 0;
+    maxSpeed = 7;
     
     timer = millis();
     TimerSec = timer/1000;
