@@ -1,16 +1,16 @@
-class Timer{
+class Timer
+{
   int huidigeTijd;
   int interval;
- 
- Timer(int interval)
+
+  Timer(int interval)
   {
     huidigeTijd = millis();
     this.interval = interval;
-
   }
-  
-boolean checkTime()
-{
+
+  boolean checkTime()
+  {
     if (millis() - huidigeTijd > interval)
     {
       huidigeTijd = millis();

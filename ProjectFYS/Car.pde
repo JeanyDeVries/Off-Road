@@ -12,10 +12,7 @@ class Car
   
   boolean alive;
   
-  boolean leftInRoad;
-  boolean rightInRoad;
-  boolean topInRoad;
-  boolean bottomInRoad;
+
   
   Car()
   {
@@ -34,7 +31,7 @@ class Car
   
   void Draw()
   {
-      carImage = loadImage("Car.png");
+    carImage = loadImage("Car.png");
     fill(150, 0, 0);
     stroke(0);
     translate(x, y);
@@ -56,29 +53,36 @@ class Car
   
   boolean collidesWithRoad(Car car) 
   {
-    if(car.x > road.x - (size * 2))
+    boolean leftInRoad = false;
+    boolean rightInRoad = false;
+    boolean topInRoad = false;
+    boolean bottomInRoad = false;
+    for(Road road : spawner.roads)
     {
-      leftInRoad = true;
-    }
-    else leftInRoad = false;
-    if(car.x < road.x + (size * 2))
-    {
-      rightInRoad = true;
-    }
-    else rightInRoad = false;
-    if(car.y > road.x - (size * 2))
-    {
-      topInRoad = true;
-    }
-    else topInRoad = false;
-    if(car.y < road.y + (size * 2))
-    {
-      bottomInRoad = true;
-    }
-    else bottomInRoad = false;
-    if (leftInRoad && rightInRoad && topInRoad && bottomInRoad)
-    {
-      return true;
+      if(car.x > road.x - (size * 2))
+      {
+        leftInRoad = true;
+      }
+      
+      if(car.x < road.x + (size * 2))
+      {
+        rightInRoad = true;
+      }
+      
+      if(car.y > road.x - (size * 2))
+      {
+        topInRoad = true;
+      }
+      
+      if(car.y < road.y + (size * 2))
+      {
+        bottomInRoad = true;
+      }
+      
+      if (leftInRoad && rightInRoad && topInRoad && bottomInRoad)
+      {
+        return true;
+      }
     }
     return false;
   }

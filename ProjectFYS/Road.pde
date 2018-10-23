@@ -1,71 +1,64 @@
 class Road
 {
-  PImage[] roadImages; 
-  float randomNumber;
+  PImage image; 
+  int randomNumber;
   float roadWidth;
   float roadHeight;
-  float x = car.x;
-  float y = car.y;
+  float x;
+  float y;
 
-  int i = 0;
-  
   float timermilliSec = millis();
-  
-  Road()
+
+  Road(float x, float y)
   {
     roadWidth = 1000;
     roadHeight = 500;
-    roadImages = new PImage[10];
-    randomNumber = (int)random(0, 1);
+    /*randomNumber = (int)random(0, 1.5);
+    switch(randomNumber)
+    {
+      case 0:
+        image = loadImage("weg0.png");        
+        break;
+      case 1:
+        image = loadImage("weg1.png");
+        break;
+    }*/
+    image = loadImage("weg0.png");   
+    this.x = x;
+    this.y = y;
   }
-  
+
   void Render()
   {
     timermilliSec = 0;
-    roadImages[0] = loadImage("weg0.png");
-    roadImages[1] = loadImage("weg1.png");
+    image(image, this.x, this.y, this.roadWidth, this.roadHeight);
   }
-  
+
   void ProcessInput(boolean[] keysPressed)
   {
+    y += car.speed;
+    car.speed *= 0.8;
+    
     //vooruit
     if (keysPressed['w'])
     {
-      if (car.speed < car.maxSpeed)
-      {
-       car.speed++; 
-      }
+      car.speed++;
       float xRotate = cos(radians(car.rotate));
       float yRotate = sin(radians(car.rotate));
-      road.x += xRotate * car.speed;
-      road.y += yRotate * car.speed;
+      this.x += xRotate * car.speed;
+      this.y += yRotate * car.speed;
     }
-    else
-    {
-     if (car.speed > 0)
-     {
-      car.speed--; 
-     }
-    }
+
     //Achteruit
     if (keysPressed['s'])
     {
-      if (car.speed > -(car.maxSpeed/2))
-      {
-        car.speed--;
-      }
+      car.speed--;
       float xRotate = cos(radians(car.rotate));
       float yRotate = sin(radians(car.rotate));
-      road.x += xRotate * car.speed/2;
-      road.y += yRotate * car.speed/2;
-    }
-    else
-    {
-     if (car.speed <= 0)
-     {
-      car.speed++; 
-     }
-    }
+      this.x += xRotate * car.speed/2;
+      this.y += yRotate * car.speed/2;
+    } 
+    
     //links
     if (keysPressed['a'])
     {
