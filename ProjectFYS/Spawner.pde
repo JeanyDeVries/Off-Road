@@ -9,8 +9,6 @@ class Spawner
 
   int i = 0;
 
-  int countRoads;
-
   float timermilliSec = millis();
 
   Spawner()
@@ -24,23 +22,23 @@ class Spawner
   void Render()
   {
     timermilliSec = 0;
-    roadImages[0] = loadImage("LangeBochtRechts.png");
-    roadImages[1] = loadImage("LangeRechteWeg.png");
+    roadImages[0] = loadImage("weg0.png");
+    roadImages[1] = loadImage("weg1.png");
   }
 
   void Draw()
   {
-    spawn.add(roadImages[1]);
+    spawn.add(roadImages[0]);
     image(spawn.get(0), x, y, roadWidth, roadHeight);
-    if (timer.checkTime())
+    spawn.add(roadImages[(int)random(1)]);
+    if(timer.checkTime())
     {
-      print(i);
-
-      image(spawn.get(i), x, y - (i * roadHeight /2), roadWidth, roadHeight);
-      countRoads++;
-      spawn.add(roadImages[(int)random(0, 1)]);
+      //image(spawn.get(0), x, y - (i * roadHeight/2), roadWidth, roadHeight);
+      //spawn.add(roadImages[(int)random(1)]);
+      image(spawn.get(i), x, y - (i * roadHeight/2), roadWidth, roadHeight);
       i++;
     }
+    image(spawn.get(i), x, y - (i * roadHeight/2), roadWidth, roadHeight);
   }
 
   void ProcessInput(boolean[] keysPressed)

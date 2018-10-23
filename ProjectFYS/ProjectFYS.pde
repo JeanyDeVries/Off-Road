@@ -1,7 +1,7 @@
 Car car;
 Spawner spawner;
 boolean[] keysPressed = new boolean[256];
-Timer timer = new Timer(1000);
+Timer timer = new Timer(3000);
 ArrayList<PImage>spawn;
 
 void setup()
