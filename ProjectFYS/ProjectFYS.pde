@@ -1,4 +1,5 @@
 Car car;
+Road road;
 Spawner spawner;
 boolean[] keysPressed = new boolean[256];
 Timer timer = new Timer(3000);
@@ -9,17 +10,19 @@ void setup()
   size(1280, 720, P2D);
   car = new Car();
   spawner = new Spawner();
-  spawner.Render();
+  road = new Road();
+  //spawner.Render();
+  road.Render();
   spawn = new ArrayList<PImage>();
 } 
 
 void update()
 {
   imageMode(CENTER);
-  spawner.Draw();
   car.Draw();
-
-  spawner.ProcessInput(keysPressed);
+  //road.Render();
+  spawner.spawn();
+  road.ProcessInput(keysPressed);
   
   if (!car.collidesWithRoad(car)) 
   {
