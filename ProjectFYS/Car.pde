@@ -1,20 +1,20 @@
 class Car
 {
+  //variabelen
   PImage carImage;
   float x;
   float y;
   float size;
   float rotate;
   float speed;
-  float maxSpeed;
+  final float MAXSPEED;
   float TimerSec;
   float timer;
   float dy;
   
   boolean alive;
   
-  float lastRotation;
-  
+  // variabelen auto declareren
   Car()
   {
     x = width/2;
@@ -22,7 +22,7 @@ class Car
     size = 75;
     rotate = 90;
     speed = 0;
-    maxSpeed = 7;
+    MAXSPEED = 7;
     
     timer = millis();
     TimerSec = timer/1000;
@@ -42,8 +42,7 @@ class Car
     dy = y + speed;
   }
   
-  
-  
+  //Dood animatie
   void Death()
   {
     size = size - (TimerSec * 2);
@@ -81,14 +80,14 @@ class Car
       this.rotate += 2.5;
     }
     
-    if(this.speed >= this.maxSpeed)
+    if(this.speed >= this.MAXSPEED)
     {
-      this.speed = this.maxSpeed;
+      this.speed = this.MAXSPEED;
     }
     
-    if(this.speed <= -(this.maxSpeed/2))
+    if(this.speed <= -(this.MAXSPEED/2))
     {
-      this.speed = -(this.maxSpeed/2);
+      this.speed = -(this.MAXSPEED/2);
     }
     
     if(this.rotate >= 360 || this.rotate <= -360)
@@ -97,6 +96,7 @@ class Car
     }
   }
   
+  //colllision
   boolean collidesWithRoad(Car car) 
   {
     boolean leftInRoad = false;
