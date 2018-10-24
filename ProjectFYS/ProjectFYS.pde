@@ -17,10 +17,6 @@ void setup()
   size(1280, 720, P2D);
   car = new Car();
   spawner = new Spawner();
-  //road = new Road();
-  //spawner.spawn();
-  //spawner.Render();
-  //road.Render();
   surface.setTitle("OFF-ROAD");
 
   spawn = new ArrayList<PImage>();
@@ -38,10 +34,10 @@ void setup()
 void update()
 {
   imageMode(CENTER);
-  //road.Render();
   spawner.spawn();
   spawner.Update();
   spawner.Render();
+  car.ProcessInput(keysPressed);
   car.Draw();
   if (!car.collidesWithRoad(car)) 
   {
@@ -94,7 +90,7 @@ void keyPressed()
   if(stage != 3){ 
     if(buttonSelectedY == 275 && key == 'a'){ //move the selectedButton to 'play', press 'a' to launch the game
       stage = 2;
-      spawner.setTimer(5000);
+      spawner.setTimer(2000);
     }
     if(buttonSelectedY == 375 && key == 'a'){ //move the selectedButton to 'controls', press 'a' to display controls
       stage = 3;

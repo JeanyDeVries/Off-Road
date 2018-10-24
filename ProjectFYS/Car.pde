@@ -9,10 +9,11 @@ class Car
   float maxSpeed;
   float TimerSec;
   float timer;
+  float dy;
   
   boolean alive;
   
-
+  float lastRotation;
   
   Car()
   {
@@ -37,6 +38,8 @@ class Car
     translate(x, y);
     rotate(radians(rotate));
     image(carImage, 0, 0, size * 2, size);
+    
+    dy = y + speed;
   }
   
   
@@ -48,6 +51,49 @@ class Car
     if(size <= 0)
     {
       size = 0;
+    }
+  }
+  
+  void ProcessInput(boolean[] keysPressed)
+  {   
+    this.speed *= 0.99;
+    
+    //vooruit
+    if (keysPressed['w'])
+    {
+      this.speed++;   
+    }
+
+    //Achteruit
+    if (keysPressed['s'])
+    {
+      this.speed--;
+    } 
+    
+    //links
+    if (keysPressed['a'])
+    {
+      this.rotate -= 2.5;
+    }
+    //rechts
+    if (keysPressed['d'])
+    {
+      this.rotate += 2.5;
+    }
+    
+    if(this.speed >= this.maxSpeed)
+    {
+      this.speed = this.maxSpeed;
+    }
+    
+    if(this.speed <= -(this.maxSpeed/2))
+    {
+      this.speed = -(this.maxSpeed/2);
+    }
+    
+    if(this.rotate >= 360 || this.rotate <= -360)
+    {
+      this.rotate = 0;
     }
   }
   

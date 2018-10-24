@@ -12,7 +12,6 @@ class Spawner
   {  
     if(spawnTimer.checkTime())
     {
-      print("Time ");
       if(roads.size() < 10)
       {
         roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y - roads.get(roads.size()-1).roadHeight/2));
@@ -25,14 +24,16 @@ class Spawner
     for(Road road : roads)
     {
       road.Render();
-      //println("render");
     }
   }
+  
   void Update()
   {
     for(Road road : roads)
     {
-      road.ProcessInput(keysPressed);
+      road.Update();
+      println("rotate: " + car.rotate);
+      println("speed: " + car.speed);
     }
   }
   
