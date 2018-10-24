@@ -1,18 +1,20 @@
 class Road
 {
+  //variabelen
   PImage image; 
   int randomNumber;
-  float roadWidth;
-  float roadHeight;
+  final float ROADWIDTH;
+  final float ROADHEIGHT;
   float x;
   float y;
 
   float timermilliSec = millis();
 
+  // variabelen road declareren
   Road(float x, float y)
   {
-    roadWidth = 1000;
-    roadHeight = 500;
+    ROADWIDTH = 1000;
+    ROADHEIGHT = 500;
     /*randomNumber = (int)random(0, 1.5);
     switch(randomNumber)
     {
@@ -31,9 +33,10 @@ class Road
   void Render()
   {
     timermilliSec = 0;
-    image(image, this.x, this.y, this.roadWidth, this.roadHeight);
+    image(image, this.x, this.y, this.ROADWIDTH, this.ROADHEIGHT);
   }
 
+  //Besturing auto
   void ProcessInput(boolean[] keysPressed)
   {
     y += car.speed;

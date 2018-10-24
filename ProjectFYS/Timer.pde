@@ -3,8 +3,10 @@ class Timer
   int huidigeTijd;
   int interval;
 
+// millis = tijd in milisec
   Timer(int interval)
   {
+   
     huidigeTijd = millis();
     this.interval = interval;
   }
