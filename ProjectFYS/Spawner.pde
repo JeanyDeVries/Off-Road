@@ -15,7 +15,7 @@ class Spawner
     {
       if(roads.size() < 10)
       {
-        roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y - roads.get(roads.size()-1).ROADHEIGHT/2));
+        roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y - roads.get(roads.size()-1).roadHeight));
       }
     }
   }
@@ -33,8 +33,6 @@ class Spawner
     for(Road road : roads)
     {
       road.Update();
-      println("rotate: " + car.rotate);
-      println("speed: " + car.speed);
     }
   }
   

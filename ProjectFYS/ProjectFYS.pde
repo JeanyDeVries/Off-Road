@@ -94,7 +94,7 @@ void keyPressed()
   if(stage != 3){ 
     if(buttonSelectedY == 275 && key == 'a'){ //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       stage = 2;
-      spawner.setTimer(2000);
+      spawner.setTimer(1000);
     }
     if(buttonSelectedY == 375 && key == 'a'){ //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       stage = 3;

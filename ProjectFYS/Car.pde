@@ -32,7 +32,7 @@ class Car
   
   void Draw()
   {
-    carImage = loadImage("Car.png");
+    carImage = loadImage("car_sprite_straight.png");
     fill(150, 0, 0);
     stroke(0);
     translate(x, y);
@@ -55,7 +55,7 @@ class Car
   
   void ProcessInput(boolean[] keysPressed)
   {   
-    this.speed *= 0.99;
+    this.speed *= 0.9;
     
     //vooruit
     if (keysPressed['w'])
