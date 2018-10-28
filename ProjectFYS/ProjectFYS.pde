@@ -1,5 +1,4 @@
 Car car;
-Road road;
 Spawner spawner;
 boolean[] keysPressed = new boolean[256];
 PFont title;
@@ -15,6 +14,7 @@ ArrayList<PImage>spawn;
 void setup()
 {
   size(1280, 720, P2D);
+  RoadPreloadImages();
   car = new Car();
   spawner = new Spawner();
   surface.setTitle("OFF-ROAD");
@@ -30,7 +30,11 @@ void setup()
   selected = loadImage("menu_buttonSelected.png");
   textAlign(CENTER);
   textSize(20);
+  frameRate(60.0);
 } 
+
+float deltaTime;
+float lastTime;
 
 void update()
 {
@@ -41,7 +45,7 @@ void update()
   car.ProcessInput(keysPressed);
   car.Draw();
   // death trigger
-  if (!car.collidesWithRoad(car)) 
+  if (car.alive && !car.collidesWithRoad(spawner)) 
   {
     car.Death();
   }
@@ -49,6 +53,7 @@ void update()
 
 void draw()
 {
+  
   if(stage == 1){ //laat het menu zien, bestuur de selectedknop
       image(startscreen, 0,0, screenSizeX, screenSizeY);
       image(button1, BUTTONXPOS, BUTTONYPOS, BUTTONWIDTH, BUTTONHEIGHT);
@@ -73,6 +78,7 @@ void draw()
   if(stage == 4){ //sluit de applicatie
     exit();
   }
+  text(frameRate, 50, 50);
 }
 
 void keyPressed()
@@ -105,13 +111,15 @@ void keyPressed()
   }
 
   if(stage == 2){
-  keysPressed[key] = true;
+    if(key < keysPressed.length)
+      keysPressed[key] = true;
   }
 }
 
 void keyReleased()
 {
   if(stage == 2){
-  keysPressed[key] = false;
+    if(key < keysPressed.length)
+      keysPressed[key] = false;
   }
 }

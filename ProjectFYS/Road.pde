@@ -1,6 +1,43 @@
+// Een enum is achter de schermen gewoon een int, dus ROAD_STRAIGHT vertaald naar 0, ROAD_SIDEWAYS naar 1, enzovoort (oplopend)
+enum RoadType {
+  STRAIGHT,
+  SIDEWAYS,
+  LEFT,
+  LEFT_SIDE,
+  RIGHT,
+  RIGHT_SIDE,
+}
+
+// Welke richting de nieuwe road moet spawnen. Bv: road left is STRAIGHT want die moet nog boven een straight weg spawnen (ook al gaat de bocht daarna na links).
+enum RoadDirection {
+   STRAIGHT,
+   LEFT,
+   RIGHT,
+}
+
+
+PImage imgRoadStraight;
+PImage imgRoadSideways;
+PImage imgRoadTurnLeft;
+PImage imgRoadLeftSide;
+PImage imgRoadRight;
+PImage imgRoadRightSide;
+// (>^^)> Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloooom! <(^^<)
+void RoadPreloadImages()
+{
+  imgRoadStraight     = loadImage("road_straight.png"); 
+  imgRoadSideways     = loadImage("road_straight_sideways.png"); 
+  imgRoadTurnLeft     = loadImage("road_turn_left.png");
+  imgRoadLeftSide     = loadImage("road_turn_left_side.png");
+  imgRoadRight        = loadImage("road_turn_right.png");
+  imgRoadRightSide    = loadImage("road_turn_right_side.png");
+}
+
 class Road
 {
   //variabelen
+  RoadType type;
+  RoadDirection direction;
   PImage image; 
   int randomNumber = 0;
   float roadWidth;
@@ -12,42 +49,49 @@ class Road
   float timermilliSec = millis();
 
   // variabelen road declareren
-  Road(float x, float y)
+  Road(float x, float y, RoadType roadType, RoadDirection direction)
   {
-    roadWidth = 400;
-    roadHeight = 600;
-    randomNumber = (int)random(0, 5.5);
-    switch(randomNumber)
+    this.type       = roadType;
+    this.direction  = direction;
+    this.roadWidth  = 500;
+    this.roadHeight = 500;
+    
+    switch(roadType)
     {
-      case 0:
-        image = loadImage("road_straight.png"); 
-        roadWidth = 400;
-        roadHeight = 600;
+      case STRAIGHT:
+        image = imgRoadStraight;
         break;
-      case 1:
-        image = loadImage("road_straight _sideways.png"); 
-        roadHeight = 400;
-        roadWidth = 600;
-        y += roadHeight;
-        x += roadWidth/5;
+      case SIDEWAYS:
+        image = imgRoadSideways;
         break;
-      case 2:
-        image = loadImage("road_turn_left.png");
-        roadHeight = 500;
+      case LEFT:
+        image = imgRoadTurnLeft;
         break;
-      case 3:
-        image = loadImage("road_turn_left_side.png");
+      case LEFT_SIDE:
+        image = imgRoadLeftSide;
         break;
-      case 4:
-        image = loadImage("road_turn_right.png");
+      case RIGHT:
+        image = imgRoadRight;
         break;
-      case 5:
-        image = loadImage("road_turn_right.png");
+      case RIGHT_SIDE:
+        image = imgRoadRightSide;
         break;
       
     } 
-    this.x = x;
-    this.y = y;
+    if(direction == RoadDirection.STRAIGHT)
+    {
+      this.x = x ;
+      // y is boven i.p.v.v beneden, dus doe -roadHeight
+      this.y = y - roadHeight;
+    }
+    else // Sideways
+    {
+      if(direction == RoadDirection.LEFT)
+        this.x = x - roadWidth;
+      else if (direction == RoadDirection.RIGHT)
+        this.x = x + roadWidth;
+      this.y = y; 
+    }
   }
 
   void Render()

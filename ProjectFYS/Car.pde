@@ -26,18 +26,22 @@ class Car
     
     timer = millis();
     TimerSec = timer/1000;
-
+    
     alive = true;
+    
+    carImage = loadImage("car_sprite_straight.png");
   }
   
   void Draw()
   {
-    carImage = loadImage("car_sprite_straight.png");
+    
     fill(150, 0, 0);
     stroke(0);
     translate(x, y);
     rotate(radians(rotate));
     image(carImage, 0, 0, size * 2, size);
+    rotate(radians(-rotate));
+    translate(-x, -y);
     
     dy = y + speed;
   }
@@ -45,39 +49,46 @@ class Car
   //Dood animatie
   void Death()
   {
-    size = size - (TimerSec * 2);
-    rotate += 60;
-    if(size <= 0)
-    {
-      size = 0;
-    }
+    alive = false;
   }
   
   void ProcessInput(boolean[] keysPressed)
   {   
     this.speed *= 0.9;
     
-    //vooruit
-    if (keysPressed['w'])
+    if(alive)
     {
-      this.speed++;   
-    }
-
-    //Achteruit
-    if (keysPressed['s'])
-    {
-      this.speed--;
+      //vooruit
+      if (keysPressed['w'])
+      {
+        this.speed++;   
+      }
+  
+      //Achteruit
+      if (keysPressed['s'])
+      {
+        this.speed--;
+      } 
+      
+      //links
+      if (keysPressed['a'])
+      {
+        this.rotate -= 2.5;
+      }
+      //rechts
+      if (keysPressed['d'])
+      {
+        this.rotate += 2.5;
+      }
     } 
-    
-    //links
-    if (keysPressed['a'])
+    else
     {
-      this.rotate -= 2.5;
-    }
-    //rechts
-    if (keysPressed['d'])
-    {
-      this.rotate += 2.5;
+      size = size - (TimerSec * 2);
+      rotate += 60;
+      if(size <= 0)
+      {
+        size = 0;
+      }
     }
     
     if(this.speed >= this.MAXSPEED)
@@ -97,7 +108,7 @@ class Car
   }
   
   //colllision
-  boolean collidesWithRoad(Car car) 
+  boolean collidesWithRoad(Spawner spawner) 
   {
     boolean leftInRoad = false;
     boolean rightInRoad = false;
@@ -105,22 +116,22 @@ class Car
     boolean bottomInRoad = false;
     for(Road road : spawner.roads)
     {
-      if(car.x > road.x - (size * 2))
+      if(car.x > road.x - road.roadWidth / 2)
       {
         leftInRoad = true;
       }
       
-      if(car.x < road.x + (size * 2))
+      if(car.x < road.x + road.roadWidth / 2)
       {
         rightInRoad = true;
       }
       
-      if(car.y > road.x - (size * 2))
+      if(car.y > road.y - road.roadHeight / 2)
       {
         topInRoad = true;
       }
       
-      if(car.y < road.y + (size * 2))
+      if(car.y < road.y + road.roadHeight / 2)
       {
         bottomInRoad = true;
       }
