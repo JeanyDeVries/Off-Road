@@ -30,7 +30,6 @@ void setup()
   selected = loadImage("menu_buttonSelected.png");
   textAlign(CENTER);
   textSize(20);
-  frameRate(60.0);
 } 
 
 float deltaTime;
@@ -42,6 +41,7 @@ void update()
   spawner.spawn();
   spawner.Update();
   spawner.Render();
+  spawner.Delete();
   car.ProcessInput(keysPressed);
   car.Draw();
   // death trigger
@@ -78,7 +78,6 @@ void draw()
   if(stage == 4){ //sluit de applicatie
     exit();
   }
-  text(frameRate, 50, 50);
 }
 
 void keyPressed()
@@ -100,7 +99,7 @@ void keyPressed()
   if(stage != 3){ 
     if(buttonSelectedY == 275 && key == 'a'){ //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       stage = 2;
-      spawner.setTimer(1000);
+      spawner.setTimer(500);
     }
     if(buttonSelectedY == 375 && key == 'a'){ //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       stage = 3;

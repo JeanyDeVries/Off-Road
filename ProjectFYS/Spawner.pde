@@ -11,10 +11,10 @@ class Spawner
 
   void spawn()
   {  
-    // na 10 wegen zullen er geen nieuwe wegen gespawned worden
+    // na 100 wegen zullen er geen nieuwe wegen gespawned worden
     if(spawnTimer.checkTime())
     {
-      if(roads.size() < 1000)
+      if(roads.size() < 100)
       {
         RoadType vorigeRoadType           = roads.get(roads.size()-1).type;
         
@@ -61,15 +61,11 @@ class Spawner
         }
         
         
-        int randomTypeIndex = (int)random(possibleRoadTypes.size());
+        int randomTypeIndex            = (int)random(possibleRoadTypes.size());
         RoadType newRoadType           = possibleRoadTypes.get(randomTypeIndex);
         RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
         
-        //newRoadType = RoadType.STRAIGHT;
-        //newRoadDirection = RoadDirection.STRAIGHT;
-        // Zet een random getal om in 1 van de 6 enum values voor RoadType: https://stackoverflow.com/questions/5878952/cast-int-to-enum-in-java
-        //RoadType roadType = RoadType.values()[randomNumber];
-        
+        //roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, RoadDirection.STRAIGHT));
         roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection));
       }
     }
@@ -91,8 +87,31 @@ class Spawner
     }
   }
   
+  void Delete()
+  {
+    ArrayList<Road> newRoads = new ArrayList<Road>();
+    for(int i = 0; i < roads.size(); i++)
+    {
+      Road road = roads.get(i);
+      if(!isOutOfBounds(road))
+      {
+        newRoads.add(roads.get(i));     
+      }
+    }
+    roads = newRoads;
+  }
+  
   void setTimer(int timeInMillis)
   {
    spawnTimer = new Timer(timeInMillis);
+  }
+  
+  boolean isOutOfBounds(Road road)
+  {
+    if(road.y > height + road.roadHeight/2 || road.x < 0 - road.roadWidth/2 || road.x > width + road.roadWidth/2)
+    {
+      return true;
+    }
+    return false;
   }
 }

@@ -22,7 +22,7 @@ class Car
     size = 75;
     rotate = 90;
     speed = 0;
-    MAXSPEED = 7;
+    MAXSPEED = 12;
     
     timer = millis();
     TimerSec = timer/1000;
