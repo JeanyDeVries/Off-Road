@@ -1,6 +1,6 @@
 class Highscore{
-  //int score;
   int finalscore;
+  int[] highscore = new int[5];
   
   void setup(){
     
