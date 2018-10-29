@@ -45,11 +45,12 @@ class Car
     
     dy = y + speed;
   }
-  
+ 
   //Dood animatie
   void Death()
   {
     alive = false;
+
   }
   
   void ProcessInput(boolean[] keysPressed)
@@ -88,6 +89,7 @@ class Car
       if(size <= 0)
       {
         size = 0;
+        stage = 4;
       }
     }
     

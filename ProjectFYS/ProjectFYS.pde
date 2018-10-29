@@ -1,4 +1,5 @@
 Car car;
+Highscore highscore;
 Spawner spawner;
 boolean[] keysPressed = new boolean[256];
 PFont title;
@@ -17,6 +18,7 @@ void setup()
   RoadPreloadImages();
   car = new Car();
   spawner = new Spawner();
+  highscore = new Highscore();
   surface.setTitle("OFF-ROAD");
  
   // menu
@@ -30,7 +32,6 @@ void setup()
   selected = loadImage("menu_buttonSelected.png");
   textAlign(CENTER);
   textSize(20);
-  frameRate(60.0);
 } 
 
 float deltaTime;
@@ -44,6 +45,8 @@ void update()
   spawner.Render();
   car.ProcessInput(keysPressed);
   car.Draw();
+  highscore.setup();
+  highscore.draw();
   // death trigger
   if (car.alive && !car.collidesWithRoad(spawner)) 
   {
@@ -75,10 +78,16 @@ void draw()
      if(key == 'b')
        stage = 1;
   }
-  if(stage == 4){ //sluit de applicatie
+  if (stage == 4){
+    textSize(50);
+    text(highscore.score, 120, 120);
+  }
+  
+  
+  if(stage == 5){ //sluit de applicatie
     exit();
   }
-  text(frameRate, 50, 50);
+
 }
 
 void keyPressed()

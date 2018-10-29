@@ -12,10 +12,8 @@ class Spawner
   void spawn()
   {  
     // na 10 wegen zullen er geen nieuwe wegen gespawned worden
-    if(spawnTimer.checkTime())
+    if(spawnTimer.checkTime() && roads.size() < 1000 && car.alive)
     {
-      if(roads.size() < 1000)
-      {
         RoadType vorigeRoadType           = roads.get(roads.size()-1).type;
         
         ArrayList<RoadType> possibleRoadTypes = new ArrayList<RoadType>();
@@ -71,7 +69,8 @@ class Spawner
         //RoadType roadType = RoadType.values()[randomNumber];
         
         roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection));
-      }
+        highscore.score++;
+      
     }
   }
 
