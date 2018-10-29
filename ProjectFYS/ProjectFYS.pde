@@ -79,8 +79,21 @@ void draw()
        stage = 1;
   }
   if (stage == 4){
+    //highscore printen
     textSize(50);
-    text(highscore.finalscore, 120, 120);
+    textAlign(CENTER);
+    text("HIGHSCORE", 640, 185);
+    textAlign(LEFT);
+    text("1....................... " + highscore.finalscore, 440, 300);  
+    text("2....................... " , 440, 375);
+    text("3....................... " , 440, 450);
+    text("4....................... " , 440, 525);
+    text("5....................... " , 440, 600);
+    
+    //box
+    stroke(153);
+    
+    
   }
   
   
