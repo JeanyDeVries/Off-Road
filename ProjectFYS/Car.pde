@@ -49,6 +49,8 @@ class Car
   //Dood animatie
   void Death()
   {
+    highscore.finalscore = spawner.score;
+    println(highscore.finalscore);
     alive = false;
 
   }

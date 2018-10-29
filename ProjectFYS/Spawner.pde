@@ -2,6 +2,7 @@ class Spawner
 {
   ArrayList<Road> roads = new ArrayList<Road>();
   Timer spawnTimer;
+  int score;
   
   Spawner()
   {
@@ -69,7 +70,7 @@ class Spawner
         //RoadType roadType = RoadType.values()[randomNumber];
         
         roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection));
-        highscore.score++;
+        score++;
       
     }
   }

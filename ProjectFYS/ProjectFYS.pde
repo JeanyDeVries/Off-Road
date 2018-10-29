@@ -80,7 +80,7 @@ void draw()
   }
   if (stage == 4){
     textSize(50);
-    text(highscore.score, 120, 120);
+    text(highscore.finalscore, 120, 120);
   }
   
   

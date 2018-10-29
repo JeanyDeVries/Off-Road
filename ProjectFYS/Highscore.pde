@@ -1,5 +1,5 @@
 class Highscore{
-  int score;
+  //int score;
   int finalscore;
   
   void setup(){
@@ -9,7 +9,7 @@ class Highscore{
 
   }
   void draw(){
-        text(score, 50, 50);
-    
+        text(spawner.score, 50, 50);
+        
   }
 }
