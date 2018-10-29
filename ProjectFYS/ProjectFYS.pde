@@ -43,6 +43,7 @@ void update()
   spawner.spawn();
   spawner.Update();
   spawner.Render();
+  spawner.Delete();
   car.ProcessInput(keysPressed);
   car.Draw();
   highscore.setup();
@@ -100,7 +101,6 @@ void draw()
   if(stage == 5){ //sluit de applicatie
     exit();
   }
-
 }
 
 void keyPressed()
@@ -122,7 +122,7 @@ void keyPressed()
   if(stage != 3){ 
     if(buttonSelectedY == 275 && key == 'a'){ //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       stage = 2;
-      spawner.setTimer(1000);
+      spawner.setTimer(500);
     }
     if(buttonSelectedY == 375 && key == 'a'){ //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       stage = 3;

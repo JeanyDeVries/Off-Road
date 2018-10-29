@@ -1,5 +1,6 @@
 // Een enum is achter de schermen gewoon een int, dus ROAD_STRAIGHT vertaald naar 0, ROAD_SIDEWAYS naar 1, enzovoort (oplopend)
-enum RoadType {
+enum RoadType 
+{
   STRAIGHT,
   SIDEWAYS,
   LEFT,
@@ -9,7 +10,8 @@ enum RoadType {
 }
 
 // Welke richting de nieuwe road moet spawnen. Bv: road left is STRAIGHT want die moet nog boven een straight weg spawnen (ook al gaat de bocht daarna na links).
-enum RoadDirection {
+enum RoadDirection 
+{
    STRAIGHT,
    LEFT,
    RIGHT,
@@ -22,7 +24,8 @@ PImage imgRoadTurnLeft;
 PImage imgRoadLeftSide;
 PImage imgRoadRight;
 PImage imgRoadRightSide;
-// (>^^)> Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloooom! <(^^<)
+
+// Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloooom!
 void RoadPreloadImages()
 {
   imgRoadStraight     = loadImage("road_straight.png"); 
@@ -76,12 +79,11 @@ class Road
       case RIGHT_SIDE:
         image = imgRoadRightSide;
         break;
-      
     } 
     if(direction == RoadDirection.STRAIGHT)
     {
       this.x = x ;
-      // y is boven i.p.v.v beneden, dus doe -roadHeight
+      // y is boven i.p.v. beneden, dus doe -roadHeight
       this.y = y - roadHeight;
     }
     else // Sideways
