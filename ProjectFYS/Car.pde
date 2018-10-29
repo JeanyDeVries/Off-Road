@@ -45,11 +45,14 @@ class Car
     
     dy = y + speed;
   }
-  
+ 
   //Dood animatie
   void Death()
   {
+    highscore.finalscore = spawner.score;
+    println(highscore.finalscore);
     alive = false;
+
   }
   
   void ProcessInput(boolean[] keysPressed)
@@ -88,6 +91,7 @@ class Car
       if(size <= 0)
       {
         size = 0;
+        stage = 4;
       }
     }
     

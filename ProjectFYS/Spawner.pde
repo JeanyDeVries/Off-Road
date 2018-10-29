@@ -2,6 +2,7 @@ class Spawner
 {
   ArrayList<Road> roads = new ArrayList<Road>();
   Timer spawnTimer;
+  int score;
   
   Spawner()
   {
@@ -12,10 +13,8 @@ class Spawner
   void spawn()
   {  
     // na 100 wegen zullen er geen nieuwe wegen gespawned worden
-    if(spawnTimer.checkTime())
+    if(spawnTimer.checkTime() && roads.size() < 100 && car.alive)
     {
-      if(roads.size() < 100)
-      {
         RoadType vorigeRoadType           = roads.get(roads.size()-1).type;
         
         ArrayList<RoadType> possibleRoadTypes = new ArrayList<RoadType>();
@@ -67,7 +66,8 @@ class Spawner
         
         //roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, RoadDirection.STRAIGHT));
         roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection));
-      }
+        score++;
+      
     }
   }
 
