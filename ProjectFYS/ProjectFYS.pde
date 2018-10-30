@@ -1,3 +1,11 @@
+/* Gemaakt door: Jeany de Vries, Kees van Heuven, Miquel Martherus, Casper Arends en Sam van Duin
+   Team: Tucan
+   Game: Off Road
+   Klas: iG103
+*/
+
+
+//initialiseer Classes, Arrays, Finals en Globale Variabelen.
 Car car;
 Highscore highscore;
 Spawner spawner;
@@ -14,15 +22,17 @@ ArrayList<PImage>spawn;
 
 void setup()
 {
+  //Geeft Classes een waarde.
   size(1280, 720, P2D);
   RoadPreloadImages();
   car = new Car();
   spawner = new Spawner();
   highscore = new Highscore();
   surface.setTitle("OFF-ROAD");
- 
-  // menu
   spawn = new ArrayList<PImage>();
+  
+  // menu
+  //Afbeeldingen worden geladen op een variabel.
   stage = 1;
   button1 = loadImage("menu_button.png");
   button2 = loadImage("menu_button.png");
@@ -34,12 +44,11 @@ void setup()
   textSize(20);
 } 
 
-float deltaTime;
-float lastTime;
-
 void update()
 {
+  //Zorgt ervoor dat alle plaatjes vanuit het midden worden geladen.
   imageMode(CENTER);
+  //Roept de verschilende de methodes aan.
   spawner.spawn();
   spawner.Update();
   spawner.Render();
@@ -48,6 +57,7 @@ void update()
   car.Draw();
   highscore.setup();
   highscore.draw();
+  
   // death trigger
   if (car.alive && !car.collidesWithRoad(spawner)) 
   {
@@ -105,8 +115,9 @@ void draw()
 
 void keyPressed()
 {
+  //Leest de input van de gebruiker wanneer een toets wordt ingedrukt.
   //knoppen selectie
-  if(stage == 1);{ //Bevries het menu wanner de besturing op het scherm staan
+  if(stage == 1);{ //Bevries het menu wanneer de besturing op het scherm staat.
       if( buttonSelectedY!= 275){
         if( keyCode == UP )  {
             buttonSelectedY = buttonSelectedY - 100;
@@ -122,7 +133,8 @@ void keyPressed()
   if(stage != 3){ 
     if(buttonSelectedY == 275 && key == 'a'){ //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       stage = 2;
-      spawner.setTimer(500);
+      //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
+      spawner.setTimer(250);
     }
     if(buttonSelectedY == 375 && key == 'a'){ //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       stage = 3;
@@ -133,13 +145,14 @@ void keyPressed()
   }
 
   if(stage == 2){
-    if(key < keysPressed.length)
+    if(key < keysPressed.length)//Dit doen we zodat als je bijvoorbeeld alt F4 drukt het spel niet afsluit.
       keysPressed[key] = true;
   }
 }
 
 void keyReleased()
 {
+  //Zorgt ervoor dat ook wordt gelezen wanneer een toets wordt losgelaten.
   if(stage == 2){
     if(key < keysPressed.length)
       keysPressed[key] = false;

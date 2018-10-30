@@ -1,6 +1,6 @@
 class Car
 {
-  //variabelen
+  //Variabelen van de class Car.
   PImage carImage;
   float x;
   float y;
@@ -14,7 +14,7 @@ class Car
   
   boolean alive;
   
-  // variabelen auto declareren
+  //Variabelen van de auto declareren.
   Car()
   {
     x = width/2;
@@ -29,12 +29,13 @@ class Car
     
     alive = true;
     
+    //Laad de image voor de update zodat het niet elk frame uit het geheugen gehaalt hoeft te worden.
     carImage = loadImage("car_sprite_straight.png");
   }
   
   void Draw()
   {
-    
+    //Tekent de auto en geeft het een positie volgens de variabelen.
     fill(150, 0, 0);
     stroke(0);
     translate(x, y);
@@ -46,19 +47,19 @@ class Car
     dy = y + speed;
   }
  
-  //Dood animatie
+ 
   void Death()
   {
     highscore.finalscore = spawner.score;
-    println(highscore.finalscore);
+    //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
     alive = false;
-
   }
   
+  //Verwerkt de ingedrukte toets in de array.
   void ProcessInput(boolean[] keysPressed)
   {   
     this.speed *= 0.9;
-    
+    //De input word alleen gelezen wanneer de speler nog 'alive' is.
     if(alive)
     {
       //vooruit
@@ -78,6 +79,7 @@ class Car
       {
         this.rotate -= 2.5;
       }
+      
       //rechts
       if (keysPressed['d'])
       {
@@ -86,6 +88,7 @@ class Car
     } 
     else
     {
+      //Death animatie.
       size = size - (TimerSec * 2);
       rotate += 60;
       if(size <= 0)
@@ -95,6 +98,7 @@ class Car
       }
     }
     
+    //Dit zorgt ervoor dat de auto niet constant versnelt maar tot een Maximum.
     if(this.speed >= this.MAXSPEED)
     {
       this.speed = this.MAXSPEED;
@@ -104,14 +108,9 @@ class Car
     {
       this.speed = -(this.MAXSPEED/2);
     }
-    
-    if(this.rotate >= 360 || this.rotate <= -360)
-    {
-      this.rotate = 0;
-    }
   }
   
-  //colllision
+  //Colllision
   boolean collidesWithRoad(Spawner spawner) 
   {
     boolean leftInRoad = false;
@@ -142,6 +141,7 @@ class Car
       
       if (leftInRoad && rightInRoad && topInRoad && bottomInRoad)
       {
+        //Returnt alleen 'true' wanneer de auto op de road staat.
         return true;
       }
     }

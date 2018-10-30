@@ -6,18 +6,19 @@ class Spawner
   
   Spawner()
   {
-    //spawns first road
+    //Laad de eerste weg.
     roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT));
   }
 
   void spawn()
   {  
-    // na 100 wegen zullen er geen nieuwe wegen gespawned worden
+    //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
     if(spawnTimer.checkTime() && roads.size() < 100 && car.alive)
     {
         RoadType vorigeRoadType           = roads.get(roads.size()-1).type;
-        
+        //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
         ArrayList<RoadType> possibleRoadTypes = new ArrayList<RoadType>();
+        //Hier wordt rekening gehouden met welke richting de volgende road geladen moet worden.
         ArrayList<RoadDirection> possibleRoadDirections = new ArrayList<RoadDirection>();
         if (vorigeRoadType == RoadType.STRAIGHT)
         {
@@ -59,15 +60,13 @@ class Spawner
           possibleRoadTypes.add(RoadType.LEFT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
         }
         
-        
+        //Hier wordt een random getal gemaakt, met dit getal wordt een 'random' weg geladen.
         int randomTypeIndex            = (int)random(possibleRoadTypes.size());
         RoadType newRoadType           = possibleRoadTypes.get(randomTypeIndex);
         RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
         
-        //roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, RoadDirection.STRAIGHT));
         roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection));
         score++;
-      
     }
   }
 
@@ -89,6 +88,7 @@ class Spawner
   
   void Delete()
   {
+    //Hier wordt een kopie van de arraylist gemaakt, met alleen de wegen die niet 'outofbounds' zijn.
     ArrayList<Road> newRoads = new ArrayList<Road>();
     for(int i = 0; i < roads.size(); i++)
     {
@@ -108,6 +108,7 @@ class Spawner
   
   boolean isOutOfBounds(Road road)
   {
+    //Checkt of dde roads uit het beeld zijn.
     if(road.y > height + road.roadHeight/2 || road.x < 0 - road.roadWidth/2 || road.x > width + road.roadWidth/2)
     {
       return true;

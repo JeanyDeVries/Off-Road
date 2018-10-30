@@ -1,5 +1,6 @@
 // Een enum is achter de schermen gewoon een int, dus ROAD_STRAIGHT vertaald naar 0, ROAD_SIDEWAYS naar 1, enzovoort (oplopend)
-enum RoadType 
+//Enums zorgen voor duidelijkheid.
+enum RoadType
 {
   STRAIGHT,
   SIDEWAYS,
@@ -25,7 +26,7 @@ PImage imgRoadLeftSide;
 PImage imgRoadRight;
 PImage imgRoadRightSide;
 
-// Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloooom!
+// Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloom!
 void RoadPreloadImages()
 {
   imgRoadStraight     = loadImage("road_straight.png"); 
@@ -59,6 +60,7 @@ class Road
     this.roadWidth  = 500;
     this.roadHeight = 500;
     
+    //Voor elke enum waarde word er een image geladen.
     switch(roadType)
     {
       case STRAIGHT:
@@ -80,6 +82,8 @@ class Road
         image = imgRoadRightSide;
         break;
     } 
+    
+    //Hier word rekening gehouden met de richting van de Road en hierbij word dan een nieuwe positie gegeven.
     if(direction == RoadDirection.STRAIGHT)
     {
       this.x = x ;
