@@ -11,7 +11,6 @@ Highscore highscore;
 Spawner spawner;
 boolean[] keysPressed = new boolean[256];
 PFont title;
-PFont fonthighscore;
 PImage startscreen, selected, menu_control, j4, button1, button2, button3;
 int screenSizeX = 1280, screenSizeY = 720, stage;
 final int BUTTONXPOS = 175;
@@ -92,7 +91,7 @@ void draw()
   }
   if (stage == 4){
     //highscore printen
-    
+    PFont font;
     font = createFont("Fipps-Regular",50);
     textFont(font);
     textAlign(CENTER);
@@ -137,7 +136,7 @@ void keyPressed()
     if(buttonSelectedY == 275 && key == 'a'){ //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       stage = 2;
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
-      spawner.setTimer(250);
+      spawner.setTimer(500);
     }
     if(buttonSelectedY == 375 && key == 'a'){ //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       stage = 3;
