@@ -11,6 +11,7 @@ Highscore highscore;
 Spawner spawner;
 boolean[] keysPressed = new boolean[256];
 PFont title;
+PFont fonthighscore;
 PImage startscreen, selected, menu_control, j4, button1, button2, button3;
 int screenSizeX = 1280, screenSizeY = 720, stage;
 final int BUTTONXPOS = 175;
@@ -91,7 +92,9 @@ void draw()
   }
   if (stage == 4){
     //highscore printen
-    textSize(50);
+    
+    font = createFont("Fipps-Regular",50);
+    textFont(font);
     textAlign(CENTER);
     text("HIGHSCORE", 640, 185);
     textAlign(LEFT);

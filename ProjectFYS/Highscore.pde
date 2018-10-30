@@ -9,7 +9,7 @@ class Highscore{
 
   }
   void draw(){
-        text(spawner.score, 50, 50);
+        text("Score: " + spawner.score, 150, 60);
         
   }
 }
