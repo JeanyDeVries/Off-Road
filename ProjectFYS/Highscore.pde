@@ -8,8 +8,8 @@ class Highscore{
     textSize(50);
 
   }
-  void draw(){
-        text("Score: " + spawner.score, 150, 60);
-        
+  void draw()
+  {
+    text("Score: " + spawner.score, 150, 60);    
   }
 }

@@ -94,7 +94,7 @@ class Car
       if(size <= 0)
       {
         size = 0;
-        stage = 4;
+        menu.stage = 4;
       }
     }
     
