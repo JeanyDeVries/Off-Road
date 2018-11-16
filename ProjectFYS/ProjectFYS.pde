@@ -57,20 +57,42 @@ void keyPressed()
 {
   //Leest de input van de gebruiker wanneer een toets wordt ingedrukt.
   //knoppen selectie
-  if(menu.stage == 1);{ //Bevries het menu wanneer de besturing op het scherm staat.
-      if(menu.buttonSelectedY!= 275){
-        if( keyCode == UP )  {
+  if(menu.stage == 0){ //Bevries het menu wanneer de besturing op het scherm staat.
+      if(menu.buttonSelectedY!= 275)
+      {
+        if( keyCode == UP )  
+        {
             menu.buttonSelectedY = menu.buttonSelectedY - 100;
         }
       }
-      if(menu.buttonSelectedY != 475){
-        if( keyCode == DOWN )  {
+      if(menu.buttonSelectedY != 475)
+      {
+        if( keyCode == DOWN )  
+        {
           menu.buttonSelectedY = menu.buttonSelectedY + 100;
         }
       }
   }
   
-  if(menu.stage != 3){ 
+  if(menu.stage == 3)
+  {
+    if( menu.buttonSelectedYRestart!= menu.BUTTONYRESTART)
+    {
+        if( keyCode == UP )  
+        {
+            menu.buttonSelectedYRestart = menu.buttonSelectedYRestart - 100;
+        }
+      }
+      if(menu.buttonSelectedYRestart != menu.BUTTONYRESTART + 100)
+      {
+        if( keyCode == DOWN )  
+        {
+          menu.buttonSelectedYRestart = menu.buttonSelectedYRestart + 100;
+        }
+      }
+  }
+  
+  if(menu.stage == 0){ 
     if(menu.buttonSelectedY == 275 && key == 'a'){ //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       menu.stage = 2;
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
@@ -81,6 +103,15 @@ void keyPressed()
     }
     if(menu.buttonSelectedY == 475 && key == 'a'){ //verplaats de selectedButton naar 'exit', druk op 'a' om het spel af te sluiten
       menu.stage = 4;
+    }
+  }
+  
+  if(menu.stage == 3){ 
+    if(menu.buttonSelectedYRestart == menu.BUTTONYRESTART && key == 'a'){ 
+      menu.stage = 2;
+    }
+    if(menu.buttonSelectedYRestart == menu.BUTTONYRESTART - 100 && key == 'a'){
+      menu.stage = 0;
     }
   }
 

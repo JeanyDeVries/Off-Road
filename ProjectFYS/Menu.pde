@@ -8,13 +8,17 @@ class Menu
   int stage = menu;
   
   PFont title;
-  PImage startscreen, selected, menu_control, j4, button1, button2, button3;
+  PImage startscreen, selected, menu_control, j4, button1, button2, button3, button4, button5;
   int screenSizeX = 1280, screenSizeY = 720;
   final int BUTTONXPOS = 175;
   final int BUTTONYPOS = 275;
   final int BUTTONHEIGHT = 89;
   final int BUTTONWIDTH = 231;
+  
+  final int BUTTONXRESTART = width/5;
+  final int BUTTONYRESTART = height/2;
   int buttonSelectedY = 275;
+  int buttonSelectedYRestart = BUTTONYRESTART;
   
   Menu()
   {
@@ -23,6 +27,10 @@ class Menu
     button1 = loadImage("menu_button.png");
     button2 = loadImage("menu_button.png");
     button3 = loadImage("menu_button.png");
+    button4 = loadImage("menu_button.png");
+    button5 = loadImage("menu_button.png");
+
+    
     startscreen = loadImage("menu_main.png");
     menu_control = loadImage("menu_controlUI.png");
     selected = loadImage("menu_buttonSelected.png");
@@ -81,7 +89,7 @@ class Menu
   }
   
   void showHigh_Score()
-  {
+  { 
     //highscore printen
     PFont font;
     font = createFont("Fipps-Regular",50);
@@ -95,8 +103,11 @@ class Menu
     text("4....................... " , 440, 525);
     text("5....................... " , 440, 600);
     
-    //box
-    stroke(153);
+    image(button4, BUTTONXRESTART, BUTTONYRESTART, BUTTONWIDTH, BUTTONHEIGHT);
+    image(selected, BUTTONXRESTART, buttonSelectedYRestart, BUTTONWIDTH, BUTTONHEIGHT);
+    image(button5, BUTTONXRESTART, BUTTONYRESTART + 100, BUTTONWIDTH, BUTTONHEIGHT);
+    text("Retry", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 120);
+    text("Menu", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 20);
   }
   
   void quitGame()

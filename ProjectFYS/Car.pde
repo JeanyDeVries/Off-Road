@@ -53,6 +53,7 @@ class Car
     highscore.finalscore = spawner.score;
     //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
     alive = false;
+    menu.stage = 3;
   }
   
   //Verwerkt de ingedrukte toets in de array.
