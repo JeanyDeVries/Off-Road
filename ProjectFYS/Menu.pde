@@ -7,7 +7,7 @@ class Menu
   final int quit = 4;
   int stage = menu;
   
-  PFont title;
+  PFont title, fontMenu;
   PImage startscreen, selected, menu_control, j4, button1, button2, button3, button4, button5;
   int screenSizeX = 1280, screenSizeY = 720;
   final int BUTTONXPOS = 175;
@@ -34,6 +34,7 @@ class Menu
     startscreen = loadImage("menu_main.png");
     menu_control = loadImage("menu_controlUI.png");
     selected = loadImage("menu_buttonSelected.png");
+    fontMenu = loadFont("MalgunGothicBold20.vlw");
     textAlign(CENTER);
     textSize(20);
   }
@@ -68,6 +69,7 @@ class Menu
     image(button3, BUTTONXPOS, BUTTONYPOS + 200, BUTTONWIDTH, BUTTONHEIGHT);
     image(selected, BUTTONXPOS, buttonSelectedY, 233, 91);
     fill(0);
+    textFont(fontMenu);
     text("Play",290,327);
     text("Controls",290,427);
     text("Exit",290,527);
@@ -104,8 +106,8 @@ class Menu
     text("5....................... " , 440, 600);
     
     image(button4, BUTTONXRESTART, BUTTONYRESTART, BUTTONWIDTH, BUTTONHEIGHT);
-    image(selected, BUTTONXRESTART, buttonSelectedYRestart, BUTTONWIDTH, BUTTONHEIGHT);
     image(button5, BUTTONXRESTART, BUTTONYRESTART + 100, BUTTONWIDTH, BUTTONHEIGHT);
+    image(selected, BUTTONXRESTART, buttonSelectedYRestart, BUTTONWIDTH, BUTTONHEIGHT);
     text("Retry", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 120);
     text("Menu", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 20);
   }

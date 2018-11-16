@@ -54,20 +54,19 @@ void draw()
 }
 
 void keyPressed()
-{
-  //Leest de input van de gebruiker wanneer een toets wordt ingedrukt.
-  //knoppen selectie
+{ 
   if(menu.stage == 0){ //Bevries het menu wanneer de besturing op het scherm staat.
+  //Deze if-statements zorgen ervoor dat de image van button-selected in de grenzen blijft
       if(menu.buttonSelectedY!= 275)
       {
-        if( keyCode == UP )  
+        if( keyCode == UP )
         {
             menu.buttonSelectedY = menu.buttonSelectedY - 100;
         }
       }
       if(menu.buttonSelectedY != 475)
       {
-        if( keyCode == DOWN )  
+        if( keyCode == DOWN )
         {
           menu.buttonSelectedY = menu.buttonSelectedY + 100;
         }
@@ -108,10 +107,13 @@ void keyPressed()
   
   if(menu.stage == 3){ 
     if(menu.buttonSelectedYRestart == menu.BUTTONYRESTART && key == 'a'){ 
-      menu.stage = 2;
-    }
-    if(menu.buttonSelectedYRestart == menu.BUTTONYRESTART - 100 && key == 'a'){
       menu.stage = 0;
+      imageMode(CORNER);
+      textAlign(CENTER);
+      textSize(20);
+    }
+    if(menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && key == 'a'){
+      menu.stage = 2;
     }
   }
 
