@@ -1,5 +1,8 @@
 class Menu
 {
+  int timer;
+  int i = 0;
+  
   final int menu = 0;
   final int controls = 1;
   final int game = 2;
@@ -8,7 +11,8 @@ class Menu
   int stage = menu;
   
   PFont title, fontMenu;
-  PImage startscreen, selected, menu_control, j4, button1, button2, button3, button4, button5;
+  PImage screen, selected, menu_control, j4, button1, button2, button3, button4, button5;
+  PImage [] menuSprites;
   int screenSizeX = 1280, screenSizeY = 720;
   final int BUTTONXPOS = 175;
   final int BUTTONYPOS = 275;
@@ -19,24 +23,32 @@ class Menu
   final int BUTTONYRESTART = height/2;
   int buttonSelectedY = 275;
   int buttonSelectedYRestart = BUTTONYRESTART;
-  
+
   Menu()
   {
-    // menu
     //Afbeeldingen worden geladen op een variabel.
     button1 = loadImage("menu_button.png");
     button2 = loadImage("menu_button.png");
     button3 = loadImage("menu_button.png");
     button4 = loadImage("menu_button.png");
     button5 = loadImage("menu_button.png");
-
+  
+    //Afbeelding laden voor de animatie bij het menu
+    menuSprites = new PImage[22];
+    for(int i = 0; i < menuSprites.length; i++)
+    {
+      menuSprites[i] = loadImage("menu_main (1)" + (i + 1) + ".png");
+    }
+    //screen is het scherm wat er nu op dat moment staat.
+    screen = menuSprites[0];
     
-    startscreen = loadImage("menu_main.png");
     menu_control = loadImage("menu_controlUI.png");
     selected = loadImage("menu_buttonSelected.png");
     fontMenu = loadFont("MalgunGothicBold20.vlw");
     textAlign(CENTER);
     textSize(20);
+    
+    timer = millis() + 2000;
   }
   
   void draw()
@@ -63,7 +75,19 @@ class Menu
   
   void showMenu()
   {
-    image(startscreen, 0,0, screenSizeX, screenSizeY);
+    int huidigeTijd = 0;
+    while(timer > 800)
+    {
+      i++;
+      huidigeTijd = timer;
+      timer = 0;
+      screen = menuSprites[i];
+      if(i == menuSprites.length - 1)
+        i = 0;
+    }
+    timer = millis() - huidigeTijd;
+    screen = menuSprites[i];
+    image(screen, 0,0, screenSizeX, screenSizeY);
     image(button1, BUTTONXPOS, BUTTONYPOS, BUTTONWIDTH, BUTTONHEIGHT);
     image(button2, BUTTONXPOS, BUTTONYPOS + 100, BUTTONWIDTH, BUTTONHEIGHT);
     image(button3, BUTTONXPOS, BUTTONYPOS + 200, BUTTONWIDTH, BUTTONHEIGHT);
@@ -79,7 +103,6 @@ class Menu
   {
     //laat de controls zien, druk 'b' om het spel te verlaten
     image(menu_control, 400, 180, 480, 360); 
-    loadImage("menu_controlUI.png");
     if(key == 'b')
       stage = 0;
   }

@@ -50,11 +50,29 @@ void update()
 
 void draw()
 {
+  println(frameRate);
   menu.draw();
 }
 
+void Restart()
+{
+  //Restart alles opnieuw door waardes uit de setup te resetten en de array met roads te legen.
+  spawner.restart();
+  keysPressed[119] = false;
+  keysPressed[115] = false;
+  keysPressed[97] = false;
+  keysPressed[100] = false;
+  spawner.score = 0;
+  car.x = width/2;
+  car.y = 600;
+  car.size = 75;
+  car.rotate = 90;
+  car.speed = 0;
+  car.alive = true;
+}
+
 void keyPressed()
-{ 
+{  
   if(menu.stage == 0){ //Bevries het menu wanneer de besturing op het scherm staat.
   //Deze if-statements zorgen ervoor dat de image van button-selected in de grenzen blijft
       if(menu.buttonSelectedY!= 275)
@@ -111,9 +129,11 @@ void keyPressed()
       imageMode(CORNER);
       textAlign(CENTER);
       textSize(20);
+      Restart();
     }
     if(menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && key == 'a'){
       menu.stage = 2;
+      Restart();
     }
   }
 
@@ -124,7 +144,7 @@ void keyPressed()
 }
 
 void keyReleased()
-{
+{ 
   //Zorgt ervoor dat ook wordt gelezen wanneer een toets wordt losgelaten.
   if(menu.stage == 2){
     if(key < keysPressed.length)

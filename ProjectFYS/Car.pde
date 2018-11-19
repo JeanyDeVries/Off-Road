@@ -8,9 +8,8 @@ class Car
   float rotate;
   float speed;
   final float MAXSPEED;
-  float TimerSec;
-  float timer;
   float dy;
+  float timer;
   
   boolean alive;
   
@@ -23,9 +22,6 @@ class Car
     rotate = 90;
     speed = 0;
     MAXSPEED = 12;
-    
-    timer = millis();
-    TimerSec = timer/1000;
     
     alive = true;
     
@@ -50,10 +46,14 @@ class Car
  
   void Death()
   {
+    float tijd = millis();
     highscore.finalscore = spawner.score;
     //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
     alive = false;
-    menu.stage = 3;
+    if(tijd - millis() > 200)
+    {
+      menu.stage = 3;
+    }
   }
   
   //Verwerkt de ingedrukte toets in de array.
@@ -66,7 +66,7 @@ class Car
       //vooruit
       if (keysPressed['w'])
       {
-        this.speed++;   
+        this.speed++;
       }
   
       //Achteruit
@@ -90,12 +90,14 @@ class Car
     else
     {
       //Death animatie.
-      size = size - (TimerSec * 2);
-      rotate += 60;
+      timer = 0;
+      timer = millis();
+      size -= timer/1000 * 1.1;
+      rotate += 20;
       if(size <= 0)
       {
         size = 0;
-        menu.stage = 4;
+        menu.stage = 3;
       }
     }
     

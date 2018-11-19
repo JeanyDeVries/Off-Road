@@ -2,6 +2,7 @@ class Timer
 {
   int huidigeTijd;
   int interval;
+  int timer = 2000;
 
 // millis = tijd in milisec
   Timer(int interval)

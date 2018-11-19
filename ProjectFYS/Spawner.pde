@@ -2,12 +2,15 @@ class Spawner
 {
   ArrayList<Road> roads = new ArrayList<Road>();
   Timer spawnTimer;
+  Timer deleteRoad;
   int score;
+  float huidigeTijd;
   
   Spawner()
   {
     //Laad de eerste weg.
     roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT));
+    huidigeTijd = millis();
   }
 
   void spawn()
@@ -103,7 +106,7 @@ class Spawner
   
   void setTimer(int timeInMillis)
   {
-   spawnTimer = new Timer(timeInMillis);
+    spawnTimer = new Timer(timeInMillis);
   }
   
   boolean isOutOfBounds(Road road)
@@ -114,5 +117,11 @@ class Spawner
       return true;
     }
     return false;
+  }
+  
+  void restart()
+  {
+    roads.clear();
+    roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT));
   }
 }
