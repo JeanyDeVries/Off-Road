@@ -1,5 +1,7 @@
 class Spawner
 {
+  final int lifeSpanRoad = 2000;
+  
   ArrayList<Road> roads = new ArrayList<Road>();
   Timer spawnTimer;
   Timer deleteRoad;
@@ -9,7 +11,7 @@ class Spawner
   Spawner()
   {
     //Laad de eerste weg.
-    roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT));
+    roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
     huidigeTijd = millis();
   }
 
@@ -68,7 +70,7 @@ class Spawner
         RoadType newRoadType           = possibleRoadTypes.get(randomTypeIndex);
         RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
         
-        roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection));
+        roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
         score++;
     }
   }
@@ -95,8 +97,7 @@ class Spawner
     ArrayList<Road> newRoads = new ArrayList<Road>();
     for(int i = 0; i < roads.size(); i++)
     {
-      Road road = roads.get(i);
-      if(!isOutOfBounds(road))
+      if(!timerDelete(roads.get(i)))
       {
         newRoads.add(roads.get(i));     
       }
@@ -104,15 +105,10 @@ class Spawner
     roads = newRoads;
   }
   
-  void setTimer(int timeInMillis)
+  boolean timerDelete(Road road)
   {
-    spawnTimer = new Timer(timeInMillis);
-  }
-  
-  boolean isOutOfBounds(Road road)
-  {
-    //Checkt of dde roads uit het beeld zijn.
-    if(road.y > height + road.roadHeight/2 || road.x < 0 - road.roadWidth/2 || road.x > width + road.roadWidth/2)
+    //Na verloop van tijd delete je de roads.
+    if(millis() > road.destroyTime)
     {
       return true;
     }
@@ -122,6 +118,11 @@ class Spawner
   void restart()
   {
     roads.clear();
-    roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT));
+    roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+  }
+  
+  void setTimer(int timeInMillis)
+  {
+    spawnTimer = new Timer(timeInMillis);
   }
 }

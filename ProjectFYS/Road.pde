@@ -18,7 +18,6 @@ enum RoadDirection
    RIGHT,
 }
 
-
 PImage imgRoadStraight;
 PImage imgRoadSideways;
 PImage imgRoadTurnLeft;
@@ -49,11 +48,13 @@ class Road
   float x;
   float y;
   float rotationSpeed;
+  
+  int destroyTime;
 
   float timermilliSec = millis();
 
   // variabelen road declareren
-  Road(float x, float y, RoadType roadType, RoadDirection direction)
+  Road(float x, float y, RoadType roadType, RoadDirection direction, int destroyTime)
   {
     this.type       = roadType;
     this.direction  = direction;
@@ -98,6 +99,8 @@ class Road
         this.x = x + roadWidth;
       this.y = y; 
     }
+    
+    this.destroyTime = destroyTime;
   }
 
   void Render()

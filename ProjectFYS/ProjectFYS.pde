@@ -64,7 +64,7 @@ void Restart()
   keysPressed[100] = false;
   spawner.score = 0;
   car.x = width/2;
-  car.y = 600;
+  car.y = 500;
   car.size = 75;
   car.rotate = 90;
   car.speed = 0;
@@ -113,7 +113,7 @@ void keyPressed()
     if(menu.buttonSelectedY == 275 && key == 'a'){ //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       menu.stage = 2;
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
-      spawner.setTimer(500);
+      spawner.setTimer(2000);
     }
     if(menu.buttonSelectedY == 375 && key == 'a'){ //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       menu.stage = 1;
