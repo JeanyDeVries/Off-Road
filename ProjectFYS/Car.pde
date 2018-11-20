@@ -17,7 +17,7 @@ class Car
   Car()
   {
     x = width/2;
-    y = 500;
+    y = 360;
     size = 75;
     rotate = 90;
     speed = 0;

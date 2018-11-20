@@ -15,6 +15,10 @@ boolean[] keysPressed = new boolean[256];
 ArrayList<PImage>spawn;
 int nieuweTijd;
 
+boolean startGame = false;
+
+int i = 0;
+
 void setup()
 {
   //Geeft Classes een waarde.
@@ -48,11 +52,17 @@ void update()
   {
     car.Death();
   }
+
+  if(key == 'w' && i == 0)
+  {
+    i++;
+     startGame = true;
+     nieuweTijd = millis();
+  }
 }
 
 void draw()
 {
-  println(frameRate);
   menu.draw();
 }
 
@@ -60,17 +70,26 @@ void Restart()
 {
   //Restart alles opnieuw door waardes uit de setup te resetten en de array met roads te legen.
   spawner.restart();
+  
+  //w
   keysPressed[119] = false;
+  //s
   keysPressed[115] = false;
+  //a
   keysPressed[97] = false;
+  //d
   keysPressed[100] = false;
+  
   spawner.score = 0;
   car.x = width/2;
-  car.y = 500;
+  car.y = 360;
   car.size = 75;
   car.rotate = 90;
   car.speed = 0;
   car.alive = true;
+  
+  startGame = false;
+  i = 0;
 }
 
 void keyPressed()

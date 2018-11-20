@@ -1,6 +1,6 @@
 class Spawner
 {
-  final int lifeSpanRoad = 2000;
+  final int lifeSpanRoad = 800;
   
   
   ArrayList<Road> roads = new ArrayList<Road>();
@@ -21,7 +21,7 @@ class Spawner
   void spawn()
   {  
     //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
-    if(spawnTimer.checkTime() && roads.size() < 100 && car.alive)
+    if(spawnTimer.checkTime() && roads.size() < 10 && car.alive)
     {
         RoadType vorigeRoadType           = roads.get(roads.size()-1).type;
         //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
@@ -74,7 +74,6 @@ class Spawner
         RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
         
         roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
-        score++;
     }
   }
 
@@ -113,9 +112,9 @@ class Spawner
   boolean timerDelete()
   {
     //Na verloop van tijd delete je de roads.
-    if(millis() > nieuweTijd+ lifeSpanRoad)
-    {
-      
+    if((millis() > nieuweTijd+ lifeSpanRoad) && startGame)
+    {    
+      score++;
       nieuweTijd = millis();
       return true;
       
