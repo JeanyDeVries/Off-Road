@@ -2,11 +2,14 @@ class Spawner
 {
   final int lifeSpanRoad = 2000;
   
+  
   ArrayList<Road> roads = new ArrayList<Road>();
   Timer spawnTimer;
   Timer deleteRoad;
   int score;
   float huidigeTijd;
+  
+  
   
   Spawner()
   {
@@ -88,6 +91,7 @@ class Spawner
     for(Road road : roads)
     {
       road.Update();
+      
     }
   }
   
@@ -97,26 +101,31 @@ class Spawner
     ArrayList<Road> newRoads = new ArrayList<Road>();
     for(int i = 0; i < roads.size(); i++)
     {
-      if(!timerDelete(roads.get(i)))
+      if(!timerDelete())
       {
+   
         newRoads.add(roads.get(i));     
       }
     }
     roads = newRoads;
   }
   
-  boolean timerDelete(Road road)
+  boolean timerDelete()
   {
     //Na verloop van tijd delete je de roads.
-    if(millis() > road.destroyTime)
+    if(millis() > nieuweTijd+ lifeSpanRoad)
     {
+      
+      nieuweTijd = millis();
       return true;
+      
     }
     return false;
   }
   
   void restart()
   {
+    
     roads.clear();
     roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
   }

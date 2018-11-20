@@ -13,6 +13,7 @@ Menu menu;
 boolean[] keysPressed = new boolean[256];
   
 ArrayList<PImage>spawn;
+int nieuweTijd;
 
 void setup()
 {
@@ -25,6 +26,7 @@ void setup()
   menu = new Menu();
   surface.setTitle("OFF-ROAD");
   spawn = new ArrayList<PImage>();
+  
 } 
 
 void update()
@@ -73,6 +75,7 @@ void Restart()
 
 void keyPressed()
 {  
+  
   if(menu.stage == 0){ //Bevries het menu wanneer de besturing op het scherm staat.
   //Deze if-statements zorgen ervoor dat de image van button-selected in de grenzen blijft
       if(menu.buttonSelectedY!= 275)
@@ -113,7 +116,8 @@ void keyPressed()
     if(menu.buttonSelectedY == 275 && key == 'a'){ //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       menu.stage = 2;
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
-      spawner.setTimer(2000);
+      spawner.setTimer(500);
+      nieuweTijd = millis();
     }
     if(menu.buttonSelectedY == 375 && key == 'a'){ //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       menu.stage = 1;
