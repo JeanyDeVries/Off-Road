@@ -1,6 +1,7 @@
 class Menu
 {
   int timer;
+  int frame = 0;
   int i = 0;
   
   final int menu = 0;
@@ -34,7 +35,7 @@ class Menu
     button5 = loadImage("menu_button.png");
   
     //Afbeelding laden voor de animatie bij het menu
-    menuSprites = new PImage[22];
+    menuSprites = new PImage[20];
     for(int i = 0; i < menuSprites.length; i++)
     {
       menuSprites[i] = loadImage("menu_main (1)" + (i + 1) + ".png");
@@ -47,8 +48,6 @@ class Menu
     fontMenu = loadFont("MalgunGothicBold20.vlw");
     textAlign(CENTER);
     textSize(20);
-    
-    timer = millis() + 2000;
   }
   
   void draw()
@@ -71,21 +70,20 @@ class Menu
         quitGame();
         break;
     }
+    
+    frame++;
   }
   
   void showMenu()
   {
-    int huidigeTijd = 0;
-    while(timer > 800)
+    if(frame > 5)
     {
       i++;
-      huidigeTijd = timer;
-      timer = 0;
+      frame = 0;
       screen = menuSprites[i];
       if(i == menuSprites.length - 1)
         i = 0;
     }
-    timer = millis() - huidigeTijd;
     screen = menuSprites[i];
     image(screen, 0,0, screenSizeX, screenSizeY);
     image(button1, BUTTONXPOS, BUTTONYPOS, BUTTONWIDTH, BUTTONHEIGHT);

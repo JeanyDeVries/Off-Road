@@ -21,7 +21,7 @@ class Car
     size = 75;
     rotate = 90;
     speed = 0;
-    MAXSPEED = 12;
+    MAXSPEED = 15;
     
     alive = true;
     
@@ -59,7 +59,7 @@ class Car
   //Verwerkt de ingedrukte toets in de array.
   void ProcessInput(boolean[] keysPressed)
   {   
-    this.speed *= 0.9;
+    this.speed *= 0.98;
     //De input word alleen gelezen wanneer de speler nog 'alive' is.
     if(alive)
     {

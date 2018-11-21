@@ -1,6 +1,6 @@
 class Spawner
 {
-  final int lifeSpanRoad = 800;
+  final int lifeSpanRoad = 600;
   
   
   ArrayList<Road> roads = new ArrayList<Road>();
@@ -8,8 +8,6 @@ class Spawner
   Timer deleteRoad;
   int score;
   float huidigeTijd;
-  
-  
   
   Spawner()
   {
@@ -30,9 +28,9 @@ class Spawner
         ArrayList<RoadDirection> possibleRoadDirections = new ArrayList<RoadDirection>();
         if (vorigeRoadType == RoadType.STRAIGHT)
         {
-          possibleRoadTypes.add(RoadType.STRAIGHT);     possibleRoadDirections.add(RoadDirection.STRAIGHT);
-          possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
-          possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.STRAIGHT);     possibleRoadDirections.add(RoadDirection.STRAIGHT);    
+            possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
         }
         if (vorigeRoadType == RoadType.SIDEWAYS)
         {
@@ -50,12 +48,10 @@ class Spawner
         if (vorigeRoadType == RoadType.LEFT)
         {
           possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(RoadDirection.LEFT);
-          possibleRoadTypes.add(RoadType.LEFT_SIDE);   possibleRoadDirections.add(RoadDirection.LEFT);
         }
         if (vorigeRoadType == RoadType.RIGHT)
         {
           possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(RoadDirection.RIGHT);
-          possibleRoadTypes.add(RoadType.RIGHT_SIDE);  possibleRoadDirections.add(RoadDirection.RIGHT);
         }
         if (vorigeRoadType == RoadType.LEFT_SIDE)
         {
@@ -102,7 +98,6 @@ class Spawner
     {
       if(!timerDelete())
       {
-   
         newRoads.add(roads.get(i));     
       }
     }
@@ -123,8 +118,7 @@ class Spawner
   }
   
   void restart()
-  {
-    
+  { 
     roads.clear();
     roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
   }

@@ -55,7 +55,7 @@ void update()
 
   if(key == 'w' && i == 0)
   {
-    i++;
+     i++;
      startGame = true;
      nieuweTijd = millis();
   }
@@ -135,7 +135,7 @@ void keyPressed()
     if(menu.buttonSelectedY == 275 && key == 'a'){ //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       menu.stage = 2;
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
-      spawner.setTimer(500);
+      spawner.setTimer(300);
       nieuweTijd = millis();
     }
     if(menu.buttonSelectedY == 375 && key == 'a'){ //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
