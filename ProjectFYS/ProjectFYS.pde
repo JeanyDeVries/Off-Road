@@ -53,6 +53,7 @@ void update()
     car.Death();
   }
 
+  //Begin pas de game als de speler naar voren of achteruit heeft gereden.
   if(key == 'w' || key == 's' && i == 0)
   {
      i++;
@@ -136,7 +137,7 @@ void keyPressed()
     if(menu.buttonSelectedY == 275 && key == 'a'){ //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       menu.stage = 2;
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
-      spawner.setTimer(300);
+      spawner.setTimer(spawner.spawnRoad);
       nieuweTijd = millis();
     }
     if(menu.buttonSelectedY == 375 && key == 'a'){ //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
