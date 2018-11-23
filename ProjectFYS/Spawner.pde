@@ -1,6 +1,6 @@
 class Spawner
 {
-  final int lifeSpanRoad = 600;
+  int lifeSpanRoad = 500;
   
   
   ArrayList<Road> roads = new ArrayList<Road>();
@@ -18,58 +18,63 @@ class Spawner
 
   void spawn()
   {  
-    //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
-    if(spawnTimer.checkTime() && roads.size() < 10 && car.alive)
-    {
-        RoadType vorigeRoadType           = roads.get(roads.size()-1).type;
-        //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
-        ArrayList<RoadType> possibleRoadTypes = new ArrayList<RoadType>();
-        //Hier wordt rekening gehouden met welke richting de volgende road geladen moet worden.
-        ArrayList<RoadDirection> possibleRoadDirections = new ArrayList<RoadDirection>();
-        if (vorigeRoadType == RoadType.STRAIGHT)
-        {
-            possibleRoadTypes.add(RoadType.STRAIGHT);     possibleRoadDirections.add(RoadDirection.STRAIGHT);    
-            possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
-        }
-        if (vorigeRoadType == RoadType.SIDEWAYS)
-        {
-          RoadDirection vorigeRoadDirection = roads.get(roads.size()-1).direction;
-          possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(vorigeRoadDirection);
-          if(vorigeRoadDirection == RoadDirection.LEFT)
+      //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
+      if(startGame && spawnTimer.checkTime() && roads.size() < 15 && car.alive)
+      {
+          RoadType vorigeRoadType           = roads.get(roads.size()-1).type;
+          //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
+          ArrayList<RoadType> possibleRoadTypes = new ArrayList<RoadType>();
+          //Hier wordt rekening gehouden met welke richting de volgende road geladen moet worden.
+          ArrayList<RoadDirection> possibleRoadDirections = new ArrayList<RoadDirection>();
+          if (vorigeRoadType == RoadType.STRAIGHT)
           {
-            possibleRoadTypes.add(RoadType.LEFT_SIDE);   possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.STRAIGHT);     possibleRoadDirections.add(RoadDirection.STRAIGHT);    
+              possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
-          else if (vorigeRoadDirection == RoadDirection.RIGHT)
+          if (vorigeRoadType == RoadType.SIDEWAYS)
           {
-            possibleRoadTypes.add(RoadType.RIGHT_SIDE);  possibleRoadDirections.add(vorigeRoadDirection);
+            RoadDirection vorigeRoadDirection = roads.get(roads.size()-1).direction;
+            possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(vorigeRoadDirection);
+            if(vorigeRoadDirection == RoadDirection.LEFT)
+            {
+              possibleRoadTypes.add(RoadType.LEFT_SIDE);   possibleRoadDirections.add(vorigeRoadDirection);
+            }
+            else if (vorigeRoadDirection == RoadDirection.RIGHT)
+            {
+              possibleRoadTypes.add(RoadType.RIGHT_SIDE);  possibleRoadDirections.add(vorigeRoadDirection);
+            }
           }
-        }
-        if (vorigeRoadType == RoadType.LEFT)
-        {
-          possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(RoadDirection.LEFT);
-        }
-        if (vorigeRoadType == RoadType.RIGHT)
-        {
-          possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(RoadDirection.RIGHT);
-        }
-        if (vorigeRoadType == RoadType.LEFT_SIDE)
-        {
-          possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
-          possibleRoadTypes.add(RoadType.RIGHT);       possibleRoadDirections.add(RoadDirection.STRAIGHT);
-        }
-        if (vorigeRoadType == RoadType.RIGHT_SIDE)
-        {
-          possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
-          possibleRoadTypes.add(RoadType.LEFT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
-        }
-        
-        //Hier wordt een random getal gemaakt, met dit getal wordt een 'random' weg geladen.
-        int randomTypeIndex            = (int)random(possibleRoadTypes.size());
-        RoadType newRoadType           = possibleRoadTypes.get(randomTypeIndex);
-        RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
-        
-        roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
+          if (vorigeRoadType == RoadType.LEFT)
+          {
+            possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(RoadDirection.LEFT);
+          }
+          if (vorigeRoadType == RoadType.RIGHT)
+          {
+            possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(RoadDirection.RIGHT);
+          }
+          if (vorigeRoadType == RoadType.LEFT_SIDE)
+          {
+            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT);       possibleRoadDirections.add(RoadDirection.STRAIGHT);
+          }
+          if (vorigeRoadType == RoadType.RIGHT_SIDE)
+          {
+            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.LEFT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
+          }
+          
+          //Hier wordt een random getal gemaakt, met dit getal wordt een 'random' weg geladen.
+          int randomTypeIndex            = (int)random(possibleRoadTypes.size());
+          RoadType newRoadType           = possibleRoadTypes.get(randomTypeIndex);
+          RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
+          
+          roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
+          
+          if(score > 15)
+          {
+            lifeSpanRoad = 450;
+          }
     }
   }
 

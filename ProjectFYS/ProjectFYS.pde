@@ -53,7 +53,7 @@ void update()
     car.Death();
   }
 
-  if(key == 'w' && i == 0)
+  if(key == 'w' || key == 's' && i == 0)
   {
      i++;
      startGame = true;
@@ -70,6 +70,7 @@ void Restart()
 {
   //Restart alles opnieuw door waardes uit de setup te resetten en de array met roads te legen.
   spawner.restart();
+  spawner.lifeSpanRoad = 600;
   
   //w
   keysPressed[119] = false;
