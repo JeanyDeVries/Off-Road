@@ -115,7 +115,6 @@ class Car
   //Colllision
   boolean collidesWithRoad(Spawner spawner) 
   {
-
     for (Road road : spawner.roads)
     {
       boolean leftInRoad = false;
@@ -123,24 +122,39 @@ class Car
       boolean topInRoad = false;
       boolean bottomInRoad = false;
 
-      if (car.x > road.x - road.roadWidth / 2)
+      if(car.x - car.size + rotate > road.x - road.roadWidth / 2)
       {
         leftInRoad = true;
       }
 
-      if (car.x < road.x + road.roadWidth / 2)
+      if(car.x - car.size + rotate < road.x + road.roadWidth / 2)
       {
         rightInRoad = true;
       }
 
-      if (car.y > road.y - road.roadHeight / 2)
+      if(road.type == RoadType.SIDEWAYS)
       {
-        topInRoad = true;
+        if (car.y > road.y - road.roadHeight / 2 + road.barrierWidth)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2 - road.barrierWidth)
+        {
+          bottomInRoad = true;
+        }
       }
-
-      if (car.y < road.y + road.roadHeight / 2)
+      else
       {
-        bottomInRoad = true;
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
       }
 
       if (leftInRoad && rightInRoad && topInRoad && bottomInRoad)

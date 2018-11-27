@@ -1,6 +1,7 @@
 class Spawner
 {
-  int lifeSpanRoad = 600;
+  //int lifeSpanRoad = 600;
+  int lifeSpanRoad = 5000;
   int spawnRoad = 500;
   
   ArrayList<Road> roads = new ArrayList<Road>();
@@ -76,12 +77,17 @@ class Spawner
           
           if(score > 15)
           {
-            lifeSpanRoad = 450;
+            lifeSpanRoad = 400;
             spawnRoad = 350;
           }
           if(score > 75)
           {
-            lifeSpanRoad = 400;
+            lifeSpanRoad = 375;
+            spawnRoad = 350;
+          }
+          if(score > 100)
+          {
+            lifeSpanRoad = 350;
             spawnRoad = 350;
           }
     }

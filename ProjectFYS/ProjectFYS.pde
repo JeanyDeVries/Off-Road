@@ -101,14 +101,14 @@ void keyPressed()
     //Deze if-statements zorgen ervoor dat de image van button-selected in de grenzen blijft
     if (menu.buttonSelectedY!= 275)
     {
-      if ( keyCode == UP )
+      if (key == 'w')
       {
         menu.buttonSelectedY = menu.buttonSelectedY - 100;
       }
     }
     if (menu.buttonSelectedY != 475)
     {
-      if ( keyCode == DOWN )
+      if (key == 's')
       {
         menu.buttonSelectedY = menu.buttonSelectedY + 100;
       }
@@ -119,14 +119,14 @@ void keyPressed()
   {
     if ( menu.buttonSelectedYRestart!= menu.BUTTONYRESTART)
     {
-      if ( keyCode == UP )  
+      if (key == 'w')  
       {
         menu.buttonSelectedYRestart = menu.buttonSelectedYRestart - 100;
       }
     }
     if (menu.buttonSelectedYRestart != menu.BUTTONYRESTART + 100)
     {
-      if ( keyCode == DOWN )  
+      if (key == 's')  
       {
         menu.buttonSelectedYRestart = menu.buttonSelectedYRestart + 100;
       }
@@ -134,29 +134,29 @@ void keyPressed()
   }
 
   if (menu.stage == 0) { 
-    if (menu.buttonSelectedY == 275 && key == 'a') { //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
+    if (menu.buttonSelectedY == 275 && key == 'z') { //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       menu.stage = 2;
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
       spawner.setTimer(spawner.spawnRoad);
       nieuweTijd = millis();
     }
-    if (menu.buttonSelectedY == 375 && key == 'a') { //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
+    if (menu.buttonSelectedY == 375 && key == 'z') { //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       menu.stage = 1;
     }
-    if (menu.buttonSelectedY == 475 && key == 'a') { //verplaats de selectedButton naar 'exit', druk op 'a' om het spel af te sluiten
+    if (menu.buttonSelectedY == 475 && key == 'z') { //verplaats de selectedButton naar 'exit', druk op 'a' om het spel af te sluiten
       menu.stage = 4;
     }
   }
 
   if (menu.stage == 3) { 
-    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART && key == 'a') { 
+    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART && key == 'z') { 
       menu.stage = 0;
       imageMode(CORNER);
       textAlign(CENTER);
       textSize(20);
       Restart();
     }
-    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && key == 'a') {
+    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && key == 'z') {
       menu.stage = 2;
       Restart();
     }

@@ -43,6 +43,7 @@ class Road
   RoadDirection direction;
   PImage image; 
   int randomNumber = 0;
+  float barrierWidth = 50;
   float roadWidth;
   float roadHeight;
   float x;
@@ -58,7 +59,7 @@ class Road
   {
     this.type       = roadType;
     this.direction  = direction;
-    this.roadWidth  = 500;
+    this.roadWidth  = 500 - barrierWidth;
     this.roadHeight = 500;
     
     //Voor elke enum waarde word er een image geladen.
@@ -87,7 +88,7 @@ class Road
     //Hier word rekening gehouden met de richting van de Road en hierbij word dan een nieuwe positie gegeven.
     if(direction == RoadDirection.STRAIGHT)
     {
-      this.x = x ;
+      this.x = x;
       // y is boven i.p.v. beneden, dus doe -roadHeight
       this.y = y - roadHeight;
     }
@@ -97,7 +98,7 @@ class Road
         this.x = x - roadWidth;
       else if (direction == RoadDirection.RIGHT)
         this.x = x + roadWidth;
-      this.y = y; 
+      this.y = y;  
     }
     
     this.destroyTime = destroyTime;
