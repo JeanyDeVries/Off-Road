@@ -50,7 +50,11 @@ void update()
   if (car.alive && !car.collidesWithRoad(spawner)) 
   {
     car.speed *= -0.8;
-    //car.Death();
+  }
+  
+  if(!car.alive)
+  {
+    car.Death();
   }
 
   //Begin pas de game als de speler naar voren of achteruit heeft gereden.

@@ -252,11 +252,63 @@ class Car
         }
       }
       
-      println("leftInRoad: " + leftInRoad);
-      println("rightInRoad: " + rightInRoad);
-      println("bottomInRoad: " + bottomInRoad);
-      println("topInRoad: " + topInRoad);
-
+      if(road.type == RoadType.OBSTACLE_HOLE_SIDEWAYS)
+      {
+        if(car.x - car.size + rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+    
+        if(car.x - car.size + rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        if (car.y > road.y - road.roadHeight / 2 + road.barrierWidth)
+        {
+          topInRoad = true;
+        }
+    
+        if (car.y < road.y + road.roadHeight / 2 - road.barrierWidth)
+        {
+          bottomInRoad = true;
+        }
+        
+        if(car.y > road.y - road.holeWidth/2 && car.y < road.y + road.holeWidth/2
+            && car.x < road.x + road.holeHeight/2 && car.x > road.x - road.holeHeight/2)
+        {
+          car.alive = false;
+        }
+      }
+      
+      if(road.type == RoadType.OBSTACLE_HOLE)
+      {
+        if(car.x - car.size + rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+        
+        if(car.x - car.size + rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+        
+        if(car.x > road.x - road.holeWidth/2 && car.x < road.x + road.holeWidth/2
+            && car.y < road.y + road.holeHeight/2 && car.y > road.y - road.holeHeight/2)
+        {
+          car.alive = false;
+        }
+      }
+      
+      
       if (leftInRoad && rightInRoad && topInRoad && bottomInRoad)
       {
         //Returnt alleen 'true' wanneer de auto op de road staat.
