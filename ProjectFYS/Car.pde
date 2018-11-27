@@ -122,30 +122,17 @@ class Car
       boolean topInRoad = false;
       boolean bottomInRoad = false;
 
-      if(car.x - car.size + rotate > road.x - road.roadWidth / 2)
+      if(road.type == RoadType.STRAIGHT)
       {
-        leftInRoad = true;
-      }
-
-      if(car.x - car.size + rotate < road.x + road.roadWidth / 2)
-      {
-        rightInRoad = true;
-      }
-
-      if(road.type == RoadType.SIDEWAYS)
-      {
-        if (car.y > road.y - road.roadHeight / 2 + road.barrierWidth)
+        if(car.x - car.size + rotate > road.x - road.roadWidth / 2)
         {
-          topInRoad = true;
+          leftInRoad = true;
         }
-  
-        if (car.y < road.y + road.roadHeight / 2 - road.barrierWidth)
+        
+        if(car.x - car.size + rotate < road.x + road.roadWidth / 2)
         {
-          bottomInRoad = true;
+          rightInRoad = true;
         }
-      }
-      else
-      {
         if (car.y > road.y - road.roadHeight / 2)
         {
           topInRoad = true;
@@ -156,6 +143,119 @@ class Car
           bottomInRoad = true;
         }
       }
+
+      if(road.type == RoadType.SIDEWAYS)
+      {
+        if(car.x - car.size + rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+    
+        if(car.x - car.size + rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        if (car.y > road.y - road.roadHeight / 2 + road.barrierWidth)
+        {
+          topInRoad = true;
+        }
+    
+        if (car.y < road.y + road.roadHeight / 2 - road.barrierWidth)
+        {
+          bottomInRoad = true;
+        }
+      }
+      
+      if(road.type == RoadType.LEFT_SIDE)
+      {
+        if(car.x - car.size + rotate > road.x - road.roadWidth / 2 + road.barrierWidth)
+        {
+          leftInRoad = true;
+        }
+    
+        if(car.x - car.size + rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+    
+        if (car.y < road.y + road.roadHeight / 2 - road.barrierWidth)
+        {
+          bottomInRoad = true;
+        }
+      }
+      if(road.type == RoadType.RIGHT_SIDE)
+      {
+        if(car.x - car.size + rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+    
+        if(car.x - car.size + rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
+        {
+          rightInRoad = true;
+        }
+        if (car.y > road.y - road.roadHeight / 2 - road.barrierWidth)
+        {
+          topInRoad = true;
+        }
+    
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+      }
+      if(road.type == RoadType.RIGHT)
+      {
+        if(car.x - car.size + rotate > road.x - road.roadWidth / 2 + road.barrierWidth)
+        {
+          leftInRoad = true;
+        }
+    
+        if(car.x - car.size + rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        if (car.y > road.y - road.roadHeight / 2 + road.barrierWidth)
+        {
+          topInRoad = true;
+        }
+    
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+      }
+      
+      if(road.type == RoadType.LEFT)
+      {
+        if(car.x - car.size + rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+    
+        if(car.x - car.size + rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
+        {
+          rightInRoad = true;
+        }
+        if (car.y > road.y - road.roadHeight / 2 + road.barrierWidth)
+        {
+          topInRoad = true;
+        }
+    
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+      }
+      
+      println("leftInRoad: " + leftInRoad);
+      println("rightInRoad: " + rightInRoad);
+      println("bottomInRoad: " + bottomInRoad);
+      println("topInRoad: " + topInRoad);
 
       if (leftInRoad && rightInRoad && topInRoad && bottomInRoad)
       {
