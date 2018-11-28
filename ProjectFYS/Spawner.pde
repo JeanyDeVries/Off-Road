@@ -129,7 +129,6 @@ class Spawner
     for(Road road : roads)
     {
       road.Update();
-      
     }
   }
   

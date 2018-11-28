@@ -10,6 +10,7 @@ Car car;
 Highscore highscore;
 Spawner spawner;
 Menu menu;
+Collision collision;
 boolean[] keysPressed = new boolean[256];
 
 ArrayList<PImage>spawn;
@@ -24,10 +25,11 @@ void setup()
   //Geeft Classes een waarde.
   size(1280, 720, P2D);
   RoadPreloadImages();
+  menu = new Menu();
   car = new Car();
+  collision = new Collision();
   spawner = new Spawner();
   highscore = new Highscore();
-  menu = new Menu();
   surface.setTitle("OFF-ROAD");
   spawn = new ArrayList<PImage>();
 } 
@@ -46,9 +48,10 @@ void update()
   highscore.setup();
   highscore.draw();
 
-  // death trigger
-  if (car.alive && !car.collidesWithRoad(spawner)) 
+  // barrier trigger
+  if (car.alive && !collision.collidesWithRoad())  
   {
+    //teleporteer de car uit de barrier
     car.speed *= -0.8;
   }
   
@@ -58,11 +61,18 @@ void update()
   }
 
   //Begin pas de game als de speler naar voren of achteruit heeft gereden.
-  if (key == 'w' || key == 's' && i == 0)
+  if ((key == 'w' || key == 's') && i == 0)
   {
     i++;
     startGame = true;
     nieuweTijd = millis();
+  }
+  
+  if(!collision.leftBarrier)
+  {
+    collision.leftBarrier = false;
+    car.x += 20;
+    car.speed *= -0.8;
   }
 }
 
