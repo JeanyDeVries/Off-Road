@@ -2,7 +2,10 @@ class Collision
 {
   boolean isTrue;
   
-  boolean leftBarrier = false;
+  boolean touchLeftBarrier;
+  boolean touchRightBarrier;
+  boolean touchTopBarrier;
+  boolean touchDownBarrier;
   
   Collision()
   {
@@ -18,6 +21,7 @@ class Collision
     boolean topInRoad = false;
     boolean bottomInRoad = false;
     
+    //check of de auto op de auto staat
     switch(road.type)
     {
       case STRAIGHT:
@@ -25,13 +29,13 @@ class Collision
         if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
-          leftBarrier = true;
         }
         
         if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
+        
         if (car.y > road.y - road.roadHeight / 2)
         {
           topInRoad = true;
@@ -42,7 +46,6 @@ class Collision
           bottomInRoad = true;
         }
         break;
-        
         
       case SIDEWAYS:
       
@@ -214,22 +217,200 @@ class Collision
             car.alive = false;
           }
           break;
-      }
-      
-      if (leftInRoad && rightInRoad && topInRoad && bottomInRoad)
+          
+    }
+    
+      //check voor collision met de barriers van de road
+      switch(road.type)
       {
-        //Returnt alleen 'true' wanneer de auto op de road staat.
-        isTrue = true;
-        return true;
-      }
-   }
-   
-   if(isTrue)
-   {
-      isTrue = false;
-      return true;
-   }
+        case STRAIGHT:
+
+          if(!(car.x - car.size + car.rotate > road.x - road.roadWidth / 2))
+          {
+            road.touchLeftBarrier = true;
+          }
+          else
+          {
+            road.touchLeftBarrier = false;
+          }
+          
+          if(!(car.x - car.size + car.rotate < road.x + road.roadWidth / 2))
+          {
+            road.touchRightBarrier = true;
+          }
+          else
+          {
+            road.touchRightBarrier = false;
+          }
+          break;
+          
+        case SIDEWAYS:
+        
+          if (!(car.y > road.y - road.roadHeight / 2 + road.barrierWidth))
+          {
+            road.touchTopBarrier = true;
+          }
+          else
+          {
+            road.touchTopBarrier = false;
+          }
       
-     return false;
-   }
+          if (!(car.y < road.y + road.roadHeight / 2 - road.barrierWidth))
+          {
+            road.touchDownBarrier = true;
+          }
+          else
+          {
+            road.touchDownBarrier = false;
+          }
+          break;
+          
+          
+        case LEFT:
+        
+          if (!(car.y > road.y - road.roadHeight / 2 + road.barrierWidth))
+          {
+            road.touchTopBarrier = true;
+          }
+          else
+          {
+            road.touchTopBarrier = false;
+          }
+          
+          if(!(car.x - car.size + car.rotate < road.x + road.roadWidth / 2))
+          {
+            road.touchRightBarrier = true;
+          }
+          else
+          {
+            road.touchRightBarrier = false;
+          }
+          break;
+        
+        
+        case LEFT_SIDE:
+        
+          if(!(car.x - car.size + car.rotate > road.x - road.roadWidth / 2))
+          {
+            road.touchLeftBarrier = true;
+          }
+          else
+          {
+            road.touchLeftBarrier = false;
+          }
+          
+          if (!(car.y < road.y + road.roadHeight / 2 - road.barrierWidth))
+          {
+            road.touchDownBarrier = true;
+          }
+          else
+          {
+            road.touchDownBarrier = false;
+          }
+          break;
+        
+        case RIGHT:
+        
+          if(!(car.x - car.size + car.rotate > road.x - road.roadWidth / 2))
+          {
+            road.touchLeftBarrier = true;
+          }
+          else
+          {
+            road.touchLeftBarrier = false;
+          }
+          
+          if (!(car.y > road.y - road.roadHeight / 2 + road.barrierWidth))
+          {
+            road.touchTopBarrier = true;
+          }
+          else
+          {
+            road.touchTopBarrier = false;
+          }
+          break;
+          
+          
+       case RIGHT_SIDE:
+          
+          if(!(car.x - car.size + car.rotate < road.x + road.roadWidth / 2))
+          {
+            road.touchRightBarrier = true;
+          }
+          else
+          {
+            road.touchRightBarrier = false;
+          }
+          
+          if (!(car.y < road.y + road.roadHeight / 2 - road.barrierWidth))
+          {
+            road.touchDownBarrier = true;
+          }
+          else
+          {
+            road.touchDownBarrier = false;
+          }
+          break;
+          
+          
+       case OBSTACLE_HOLE:
+          
+          if(!(car.x - car.size + car.rotate > road.x - road.roadWidth / 2))
+          {
+            road.touchLeftBarrier = true;
+          }
+          else
+          {
+            road.touchLeftBarrier = false;
+          }
+          
+          if(!(car.x - car.size + car.rotate < road.x + road.roadWidth / 2))
+          {
+            road.touchRightBarrier = true;
+          }
+          else
+          {
+            road.touchRightBarrier = false;
+          }
+          break;
+            
+          
+       case OBSTACLE_HOLE_SIDEWAYS:
+          
+          if (!(car.y > road.y - road.roadHeight / 2 + road.barrierWidth))
+          {
+            road.touchTopBarrier = true;
+          }
+          else
+          {
+            road.touchTopBarrier = false;
+          }
+      
+          if (!(car.y < road.y + road.roadHeight / 2 - road.barrierWidth))
+          {
+            road.touchDownBarrier = true;
+          }
+          else
+          {
+            road.touchDownBarrier = false;
+          }
+          break;
+            
+    }
+     
+     if (leftInRoad && rightInRoad && topInRoad && bottomInRoad)
+     {
+       //Returnt alleen 'true' wanneer de auto op de road staat.
+       isTrue = true;
+       return true;
+     }
+      
+       if(isTrue)
+       {
+          isTrue = false;
+          return true;
+       }
+    }
+    return false;
+  }
 }

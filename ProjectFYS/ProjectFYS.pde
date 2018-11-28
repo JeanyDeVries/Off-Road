@@ -52,7 +52,7 @@ void update()
   if (car.alive && !collision.collidesWithRoad())  
   {
     //teleporteer de car uit de barrier
-    car.speed *= -0.8;
+    //car.speed *= -0.8;
   }
   
   if(!car.alive)
@@ -66,13 +66,6 @@ void update()
     i++;
     startGame = true;
     nieuweTijd = millis();
-  }
-  
-  if(!collision.leftBarrier)
-  {
-    collision.leftBarrier = false;
-    car.x += 20;
-    car.speed *= -0.8;
   }
 }
 

@@ -8,6 +8,7 @@ class Spawner
   Timer deleteRoad;
   int score;
   float huidigeTijd;
+  boolean moveRoads = false;
   
   Spawner()
   {
@@ -128,8 +129,35 @@ class Spawner
   {
     for(Road road : roads)
     {
+      if(road.touchLeftBarrier)
+      {
+        moveRoads = true;
+      }
       road.Update();
+      //if(collision.touchLeftBarrier)
+      //{
+      //  road.x -= 20;
+      //}
+      //if(collision.touchRightBarrier)
+      //{
+      //  road.x += 20;
+      //}
+      //if(collision.touchTopBarrier)
+      //{
+      //  road.y += 20;
+      //}
+      //if(collision.touchDownBarrier)
+      //{
+      //  road.y -= 20;
+      //}
+      
+      if(moveRoads)
+      {
+        road.x -= 30;
+      }
     }
+    
+    moveRoads = false;
   }
   
   void Delete()
