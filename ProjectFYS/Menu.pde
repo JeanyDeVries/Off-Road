@@ -1,6 +1,7 @@
 class Menu
 {
   int timer;
+  int frame = 0;
   int i = 0;
   
   final int menu = 0;
@@ -23,7 +24,7 @@ class Menu
   final int BUTTONYRESTART = height/2;
   int buttonSelectedY = 275;
   int buttonSelectedYRestart = BUTTONYRESTART;
-
+  
   Menu()
   {
     //Afbeeldingen worden geladen op een variabel.
@@ -34,7 +35,7 @@ class Menu
     button5 = loadImage("menu_button.png");
   
     //Afbeelding laden voor de animatie bij het menu
-    menuSprites = new PImage[22];
+    menuSprites = new PImage[20];
     for(int i = 0; i < menuSprites.length; i++)
     {
       menuSprites[i] = loadImage("menu_main (1)" + (i + 1) + ".png");
@@ -47,8 +48,6 @@ class Menu
     fontMenu = loadFont("MalgunGothicBold20.vlw");
     textAlign(CENTER);
     textSize(20);
-    
-    timer = millis() + 2000;
   }
   
   void draw()
@@ -71,21 +70,20 @@ class Menu
         quitGame();
         break;
     }
+    
+    frame++;
   }
   
   void showMenu()
   {
-    int huidigeTijd = 0;
-    while(timer > 800)
+    if(frame > 5)
     {
       i++;
-      huidigeTijd = timer;
-      timer = 0;
+      frame = 0;
       screen = menuSprites[i];
       if(i == menuSprites.length - 1)
         i = 0;
     }
-    timer = millis() - huidigeTijd;
     screen = menuSprites[i];
     image(screen, 0,0, screenSizeX, screenSizeY);
     image(button1, BUTTONXPOS, BUTTONYPOS, BUTTONWIDTH, BUTTONHEIGHT);
@@ -115,24 +113,26 @@ class Menu
   
   void showHigh_Score()
   { 
-    //highscore printen
+    //highscore printen    
     PFont font;
     font = createFont("Fipps-Regular",50);
     textFont(font);
     textAlign(CENTER);
     text("HIGHSCORE", 640, 185);
     textAlign(LEFT);
-    text("1....................... " + highscore.finalscore, 440, 300);  
-    text("2....................... " , 440, 375);
-    text("3....................... " , 440, 450);
-    text("4....................... " , 440, 525);
-    text("5....................... " , 440, 600);
+    text("1....................... " + highscore.highScore[0], 440, 300);  
+    text("2....................... " + highscore.highScore[1], 440, 375);
+    text("3....................... " + highscore.highScore[2], 440, 450);
+    text("4....................... " + highscore.highScore[3], 440, 525);
+    text("5....................... " + highscore.highScore[4], 440, 600);
+    gameTheme.stop();
     
     image(button4, BUTTONXRESTART, BUTTONYRESTART, BUTTONWIDTH, BUTTONHEIGHT);
     image(button5, BUTTONXRESTART, BUTTONYRESTART + 100, BUTTONWIDTH, BUTTONHEIGHT);
     image(selected, BUTTONXRESTART, buttonSelectedYRestart, BUTTONWIDTH, BUTTONHEIGHT);
     text("Retry", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 120);
     text("Menu", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 20);
+    
   }
   
   void quitGame()
