@@ -67,24 +67,28 @@ class Car
       if (keysPressed['w'])
       {
         this.speed++;
+        carImage = loadImage("car_sprite_straight.png");
       }
 
       //Achteruit
       if (keysPressed['s'])
       {
         this.speed--;
+        carImage = loadImage("car_sprite_straight.png");
       } 
 
       //links
       if (keysPressed['a'])
       {
         this.rotate -= 2.5;
+        carImage = loadImage("car_sprite_turnL.png");
       }
 
       //rechts
       if (keysPressed['d'])
       {
         this.rotate += 2.5;
+        carImage = loadImage("car_sprite_turnR.png");
       }
     } else
     {
