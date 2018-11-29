@@ -21,7 +21,8 @@ class Car
     size = 75;
     rotate = 90;
     speed = 0;
-    MAXSPEED = 15;
+    //MAXSPEED = 15;
+    MAXSPEED = 25;
 
     alive = true;
 
@@ -48,6 +49,7 @@ class Car
   {
     float tijd = millis();
     highscore.finalscore = spawner.score;
+    highscore.savescore();
     //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
     alive = false;
     if (tijd - millis() > 200)

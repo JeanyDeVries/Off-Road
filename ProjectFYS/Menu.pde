@@ -120,11 +120,11 @@ class Menu
     textAlign(CENTER);
     text("HIGHSCORE", 640, 185);
     textAlign(LEFT);
-    text("1....................... " + highscore.finalscore, 440, 300);  
-    text("2....................... " , 440, 375);
-    text("3....................... " , 440, 450);
-    text("4....................... " , 440, 525);
-    text("5....................... " , 440, 600);
+    text("1....................... " + highscore.highScore[0], 440, 300);  
+    text("2....................... " + highscore.highScore[1], 440, 375);
+    text("3....................... " + highscore.highScore[2], 440, 450);
+    text("4....................... " + highscore.highScore[3], 440, 525);
+    text("5....................... " + highscore.highScore[4], 440, 600);
     
     image(button4, BUTTONXRESTART, BUTTONYRESTART, BUTTONWIDTH, BUTTONHEIGHT);
     image(button5, BUTTONXRESTART, BUTTONYRESTART + 100, BUTTONWIDTH, BUTTONHEIGHT);

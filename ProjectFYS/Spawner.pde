@@ -1,6 +1,6 @@
 class Spawner
 {
-  int lifeSpanRoad = 6000;
+  int lifeSpanRoad = 8000;
   int spawnRoad = 500;
   
   ArrayList<Road> roads = new ArrayList<Road>();
@@ -8,6 +8,10 @@ class Spawner
   Timer deleteRoad;
   int score;
   float huidigeTijd;
+  boolean moveRoadsLeft = false;
+  boolean moveRoadsRight = false;
+  boolean moveRoadsTop = false;
+  boolean moveRoadsDown = false;      
   
   Spawner()
   {
@@ -24,7 +28,7 @@ class Spawner
       //if(startGame && spawnTimer.checkTime() && roads.size() < 20 && car.alive)
       if(startGame && spawnTimer.checkTime() && car.alive)
       {
-          RoadType vorigeRoadType           = roads.get(roads.size()-1).type;
+          RoadType vorigeRoadType = roads.get(roads.size()-1).type;
           //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
           ArrayList<RoadType> possibleRoadTypes = new ArrayList<RoadType>();
           //Hier wordt rekening gehouden met welke richting de volgende road geladen moet worden.
@@ -128,8 +132,65 @@ class Spawner
   {
     for(Road road : roads)
     {
+      if(road.touchLeftBarrier)
+      {
+        moveRoadsLeft = true;
+      }
+      if(road.touchRightBarrier)
+      {
+        moveRoadsRight = true;
+      }
+      if(road.touchTopBarrier)
+      {
+        moveRoadsTop = true;
+      }
+      if(road.touchDownBarrier)
+      {
+        moveRoadsDown = true;
+      }                  
       road.Update();
+      //if(collision.touchLeftBarrier)
+      //{
+      //  road.x -= 20;
+      //}
+      //if(collision.touchRightBarrier)
+      //{
+      //  road.x += 20;
+      //}
+      //if(collision.touchTopBarrier)
+      //{
+      //  road.y += 20;
+      //}
+      //if(collision.touchDownBarrier)
+      //{
+      //  road.y -= 20;
+      //}
+      
+
     }
+    for(Road road : roads)
+    {  
+      if(moveRoadsLeft)
+      {
+        road.x -= 20;
+      }   
+      if(moveRoadsRight)
+      {
+        road.x += 20;
+      }   
+      if(moveRoadsTop)
+      {
+        road.y -= 20;
+      }   
+      if(moveRoadsDown)
+      {
+        road.y += 20;
+      }                     
+    } 
+    moveRoadsLeft = false;
+    moveRoadsRight = false;
+    moveRoadsTop = false;
+    moveRoadsDown = false;
   }
   
   void Delete()

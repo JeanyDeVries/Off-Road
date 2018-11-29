@@ -49,7 +49,7 @@ class Road
   RoadDirection direction;
   PImage image; 
   int randomNumber = 0;
-  float barrierWidth = 50;
+  float barrierWidth = 5;
   float roadWidth;
   float roadHeight;
   float x;
@@ -57,6 +57,11 @@ class Road
   float rotationSpeed;
   float holeWidth = 170;
   float holeHeight = 300;
+  
+  boolean touchLeftBarrier = false;
+  boolean touchRightBarrier = false;
+  boolean touchTopBarrier = false;
+  boolean touchDownBarrier = false;
   
   int destroyTime;
 

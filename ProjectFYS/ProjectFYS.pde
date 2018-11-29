@@ -52,7 +52,8 @@ void update()
   if (car.alive && !collision.collidesWithRoad())  
   {
     //teleporteer de car uit de barrier
-    car.speed *= -0.8;
+    car.speed *= -0.4;
+    car.Death();
   }
   
   if(!car.alive)
@@ -67,13 +68,6 @@ void update()
     startGame = true;
     nieuweTijd = millis();
   }
-  
-  if(!collision.leftBarrier)
-  {
-    collision.leftBarrier = false;
-    car.x += 20;
-    car.speed *= -0.8;
-  }
 }
 
 void draw()
@@ -85,7 +79,7 @@ void Restart()
 {
   //Restart alles opnieuw door waardes uit de setup te resetten en de array met roads te legen.
   spawner.restart();
-  spawner.lifeSpanRoad = 600;
+  spawner.lifeSpanRoad = 800;
 
   //w
   keysPressed[119] = false;
