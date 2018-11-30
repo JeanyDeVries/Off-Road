@@ -51,8 +51,6 @@ void update()
   // barrier trigger
   if (car.alive && !collision.collidesWithRoad())  
   {
-    //teleporteer de car uit de barrier
-    car.speed *= -0.4;
     car.Death();
   }
   
@@ -68,6 +66,11 @@ void update()
     startGame = true;
     nieuweTijd = millis();
   }
+  
+  if(spawner.isOffRoad)
+  {
+    car.alive = false;
+  }
 }
 
 void draw()
@@ -80,7 +83,8 @@ void Restart()
   //Restart alles opnieuw door waardes uit de setup te resetten en de array met roads te legen.
   spawner.restart();
   spawner.lifeSpanRoad = 800;
-
+  
+  //zet de keys op false zodat de auto niet blijft rijden na het restarten.
   //w
   keysPressed[119] = false;
   //s
@@ -92,7 +96,7 @@ void Restart()
 
   spawner.score = 0;
   car.x = width/2;
-  car.y = 360;
+  car.y = 400;
   car.size = 75;
   car.rotate = 90;
   car.speed = 0;
@@ -100,6 +104,8 @@ void Restart()
 
   startGame = false;
   i = 0;
+  
+  car.j = 1;
 }
 
 void keyPressed()
@@ -157,6 +163,7 @@ void keyPressed()
   }
 
   if (menu.stage == 3) { 
+    //check of de speler de menu button klikt.
     if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART && key == 'z') { 
       menu.stage = 0;
       imageMode(CORNER);
@@ -164,6 +171,7 @@ void keyPressed()
       textSize(20);
       Restart();
     }
+    //check of de speler de restart button klikt.
     if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && key == 'z') {
       menu.stage = 2;
       Restart();

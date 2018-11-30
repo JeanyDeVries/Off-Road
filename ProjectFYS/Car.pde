@@ -10,6 +10,8 @@ class Car
   final float MAXSPEED;
   float dy;
   float timer;
+  
+  int j = 1;
 
   boolean alive;
 
@@ -17,12 +19,11 @@ class Car
   Car()
   {
     x = width/2;
-    y = 360;
+    y = 400;
     size = 75;
     rotate = 90;
     speed = 0;
-    //MAXSPEED = 15;
-    MAXSPEED = 25;
+    MAXSPEED = 15;
 
     alive = true;
 
@@ -49,12 +50,18 @@ class Car
   {
     float tijd = millis();
     highscore.finalscore = spawner.score;
-    highscore.savescore();
     //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
     alive = false;
+    
     if (tijd - millis() > 200)
     {
       menu.stage = 3;
+    }
+    
+    if(j == 1)
+    {
+      highscore.savescore();
+      j++;
     }
   }
 

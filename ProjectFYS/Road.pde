@@ -32,13 +32,13 @@ PImage imgObstacleHoleSideways;
 // Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloom!
 void RoadPreloadImages()
 {
-  imgRoadStraight     = loadImage("road_straight.png"); 
-  imgRoadSideways     = loadImage("road_straight_sideways.png"); 
-  imgRoadTurnLeft     = loadImage("road_turn_left.png");
-  imgRoadLeftSide     = loadImage("road_turn_left_side.png");
-  imgRoadRight        = loadImage("road_turn_right.png");
-  imgRoadRightSide    = loadImage("road_turn_right_side.png");
-  imgObstacleHole     = loadImage("obstacle_hole.png");
+  imgRoadStraight         = loadImage("road_straight.png"); 
+  imgRoadSideways         = loadImage("road_straight_sideways.png"); 
+  imgRoadTurnLeft         = loadImage("road_turn_left.png");
+  imgRoadLeftSide         = loadImage("road_turn_left_side.png");
+  imgRoadRight            = loadImage("road_turn_right.png");
+  imgRoadRightSide        = loadImage("road_turn_right_side.png");
+  imgObstacleHole         = loadImage("obstacle_hole.png");
   imgObstacleHoleSideways = loadImage("obstacle_hole_sideways.png");
 }
 
@@ -49,7 +49,7 @@ class Road
   RoadDirection direction;
   PImage image; 
   int randomNumber = 0;
-  float barrierWidth = 5;
+  float barrierWidth = 20;
   float roadWidth;
   float roadHeight;
   float x;

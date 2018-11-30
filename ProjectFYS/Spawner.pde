@@ -1,7 +1,7 @@
 class Spawner
 {
-  int lifeSpanRoad = 8000;
-  int spawnRoad = 500;
+  int lifeSpanRoad = 700;
+  int spawnRoad = 400;
   
   ArrayList<Road> roads = new ArrayList<Road>();
   Timer spawnTimer;
@@ -13,20 +13,19 @@ class Spawner
   boolean moveRoadsTop = false;
   boolean moveRoadsDown = false;      
   
+  boolean isOffRoad = false;
+  
   Spawner()
   {
     //Laad de eerste weg.
     roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
-    roads.add(new Road(car.x, car.y, RoadType.STRAIGHT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
-    roads.add(new Road(car.x, car.y - 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
     huidigeTijd = millis();
   }
 
   void spawn()
   {  
       //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
-      //if(startGame && spawnTimer.checkTime() && roads.size() < 20 && car.alive)
-      if(startGame && spawnTimer.checkTime() && car.alive)
+      if(startGame && spawnTimer.checkTime() && roads.size() < 5 && car.alive)
       {
           RoadType vorigeRoadType = roads.get(roads.size()-1).type;
           //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
@@ -101,21 +100,11 @@ class Spawner
           RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
           
           roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
+          //roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, RoadType.STRAIGHT, newRoadDirection, millis() + lifeSpanRoad));
           
-          if(score > 15)
+          if(score > 2)
           {
-            lifeSpanRoad = 400;
-            spawnRoad = 350;
-          }
-          if(score > 75)
-          {
-            lifeSpanRoad = 375;
-            spawnRoad = 350;
-          }
-          if(score > 100)
-          {
-            lifeSpanRoad = 350;
-            spawnRoad = 350;
+            lifeSpanRoad = 550;
           }
       }
   }
@@ -149,24 +138,6 @@ class Spawner
         moveRoadsDown = true;
       }                  
       road.Update();
-      //if(collision.touchLeftBarrier)
-      //{
-      //  road.x -= 20;
-      //}
-      //if(collision.touchRightBarrier)
-      //{
-      //  road.x += 20;
-      //}
-      //if(collision.touchTopBarrier)
-      //{
-      //  road.y += 20;
-      //}
-      //if(collision.touchDownBarrier)
-      //{
-      //  road.y -= 20;
-      //}
-      
-
     }
     for(Road road : roads)
     {  
@@ -191,6 +162,8 @@ class Spawner
     moveRoadsRight = false;
     moveRoadsTop = false;
     moveRoadsDown = false;
+    
+    //isOffRoad = collision.isOffRoad(roads.get(0));
   }
   
   void Delete()

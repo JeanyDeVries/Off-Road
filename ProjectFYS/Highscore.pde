@@ -1,54 +1,54 @@
-class Highscore{
+class Highscore
+{
   int finalscore;
   String[] highScore = new String[5];
 
-
- void setup()
- {
+  void setup()
+  {
     highScore = loadStrings("highScore.txt");
     textAlign(CENTER);
     textSize(50);
-    
-      for(int i=0;highScore.length<5;i++)
-  {
-     highScore=append(highScore,str(0));
+    for(int i = 0;highScore.length<5;i++)
+    {
+      //append = 1 toevoegen
+      highScore = append(highScore,str(0));
+    }
+    saveStrings("highScore.txt",highScore);
   }
 
- }
- 
-  void savescore()
+void savescore()
   {
+    highScore=append(highScore,str(finalscore));
 
-  
+    //je maakt het int zodat die em numeriek kan sorten.
+    int[] highScoreNummer = new int[highScore.length];
 
-  highScore=append(highScore,str(finalscore));
+    for (int i = 0; i < highScore.length; i++) 
+    {
+      //hier maak je van de string een int.
+      highScoreNummer[i] = Integer.parseInt(highScore[i]);
+    }
 
-  int[] highScoreNummer = new int[highScore.length];
+    //sort zorgt ervoor dat het van klein naar groot gaat.
+    highScoreNummer = sort(highScoreNummer);
 
-  for (int i = 0; i < highScore.length; i++) 
-  {
-    highScoreNummer[i] = Integer.parseInt(highScore[i]);
-  }
-  
-  highScoreNummer = sort(highScoreNummer);
-
-  for (int i = 0; i < highScoreNummer.length; i++) 
-  {
-    highScore[i] = "" + highScoreNummer[i];
-  }
+     for (int i = 0; i < highScoreNummer.length; i++) 
+     {
+     highScore[i] = "" + highScoreNummer[i];
+     }
      
-  highScore = reverse(highScore);
-  highScore = shorten(highScore);
+     //de reverse is zodat het hoog naar laag gaat.
+     highScore = reverse(highScore);
+     
+     //Hij haalt de laatste weg. dus er zijn weer 5.
+     highScore = shorten(highScore);
 
 
-  saveStrings("highScore.txt",highScore);
+    saveStrings("highScore.txt",highScore);
   }
-
-
- void draw()
- {
+  
+  void draw()
+  {
     text("Score: " + spawner.score, 150, 60);
   }
 }
-
-//if spawner.score > highscore[4], highscore[4] = spawner.score
