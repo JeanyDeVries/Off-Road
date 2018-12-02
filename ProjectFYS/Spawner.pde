@@ -7,13 +7,7 @@ class Spawner
   Timer spawnTimer;
   Timer deleteRoad;
   int score;
-  float huidigeTijd;
-  boolean moveRoadsLeft = false;
-  boolean moveRoadsRight = false;
-  boolean moveRoadsTop = false;
-  boolean moveRoadsDown = false;      
-  
-  boolean isOffRoad = false;
+  float huidigeTijd; 
   
   Spawner()
   {
@@ -25,6 +19,7 @@ class Spawner
   void spawn()
   {  
       //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
+      //Er zijn ook altijd maar 5 wegen in de game.
       if(startGame && spawnTimer.checkTime() && roads.size() < 5 && car.alive)
       {
           RoadType vorigeRoadType = roads.get(roads.size()-1).type;
@@ -102,6 +97,7 @@ class Spawner
           roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
           //roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, RoadType.STRAIGHT, newRoadDirection, millis() + lifeSpanRoad));
           
+          //We doen bij de eerste 2 wegen een langere lifeSpanRoad zodat de speler nog reserve kan opbouwen
           if(score > 2)
           {
             lifeSpanRoad = 550;
@@ -121,49 +117,8 @@ class Spawner
   {
     for(Road road : roads)
     {
-      if(road.touchLeftBarrier)
-      {
-        moveRoadsLeft = true;
-      }
-      if(road.touchRightBarrier)
-      {
-        moveRoadsRight = true;
-      }
-      if(road.touchTopBarrier)
-      {
-        moveRoadsTop = true;
-      }
-      if(road.touchDownBarrier)
-      {
-        moveRoadsDown = true;
-      }                  
       road.Update();
     }
-    for(Road road : roads)
-    {  
-      if(moveRoadsLeft)
-      {
-        road.x -= 20;
-      }   
-      if(moveRoadsRight)
-      {
-        road.x += 20;
-      }   
-      if(moveRoadsTop)
-      {
-        road.y -= 20;
-      }   
-      if(moveRoadsDown)
-      {
-        road.y += 20;
-      }                     
-    } 
-    moveRoadsLeft = false;
-    moveRoadsRight = false;
-    moveRoadsTop = false;
-    moveRoadsDown = false;
-    
-    //isOffRoad = collision.isOffRoad(roads.get(0));
   }
   
   void Delete()

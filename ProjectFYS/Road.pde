@@ -58,11 +58,6 @@ class Road
   float holeWidth = 170;
   float holeHeight = 300;
   
-  boolean touchLeftBarrier = false;
-  boolean touchRightBarrier = false;
-  boolean touchTopBarrier = false;
-  boolean touchDownBarrier = false;
-  
   int destroyTime;
 
   float timermilliSec = millis();

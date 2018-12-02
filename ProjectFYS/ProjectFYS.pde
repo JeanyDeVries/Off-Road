@@ -1,4 +1,5 @@
-/* Gemaakt door: Jeany de Vries, Kees van Heuven, Miquel Martherus, Casper Arends en Sam van Duin
+ /* 
+ Gemaakt door: Jeany de Vries, Kees van Heuven, Miquel Martherus, Casper Arends en Sam van Duin
  Team: Tucan
  Game: Off Road
  Klas: iG103
@@ -48,7 +49,7 @@ void update()
   highscore.setup();
   highscore.draw();
 
-  // barrier trigger
+  //de auto gaat dood wanneer die levend is en NIET collision heeft met de weg.
   if (car.alive && !collision.collidesWithRoad())  
   {
     car.Death();
@@ -65,11 +66,6 @@ void update()
     i++;
     startGame = true;
     nieuweTijd = millis();
-  }
-  
-  if(spawner.isOffRoad)
-  {
-    car.alive = false;
   }
 }
 

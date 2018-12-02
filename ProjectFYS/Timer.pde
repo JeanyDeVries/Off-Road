@@ -4,10 +4,9 @@ class Timer
   int interval;
   int timer = 2000;
 
-// millis = tijd in milisec
+  // millis = tijd in milisec sinds de game speelt
   Timer(int interval)
   {
-   
     huidigeTijd = millis();
     this.interval = interval;
   }

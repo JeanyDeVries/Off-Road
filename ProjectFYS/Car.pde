@@ -76,6 +76,7 @@ class Car
       if (keysPressed['w'])
       {
         this.speed++;
+        //laadt bij elke toets een andere image in voor een animatie.
         carImage = loadImage("car_sprite_straight.png");
       }
 
@@ -99,7 +100,8 @@ class Car
         this.rotate += 2.5;
         carImage = loadImage("car_sprite_turnR.png");
       }
-    } else
+    } 
+    else
     {
       //Death animatie.
       timer = 0;

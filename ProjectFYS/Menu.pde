@@ -52,6 +52,7 @@ class Menu
   
   void draw()
   {
+    //Voor elke fase van de game is een case gemaakt.
     switch(stage)
     {
       case menu:
@@ -76,11 +77,13 @@ class Menu
   
   void showMenu()
   {
+    //Om de 5 frames wordt de volgende sprite geladen voor het menu, wat zorgt voor een animatie.
     if(frame > 5)
     {
       i++;
       frame = 0;
       screen = menuSprites[i];
+      //Als de i tot de max van de array gaat reset die het weer zodat het een loop wordt.
       if(i == menuSprites.length - 1)
         i = 0;
     }
