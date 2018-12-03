@@ -7,6 +7,12 @@
 
 
 //initialiseer Classes, Arrays, Finals en Globale Variabelen.
+import processing.sound.*;
+SoundFile buttonPress;
+SoundFile file1;
+SoundFile menuTheme;
+SoundFile gameTheme;
+SoundFile youLose;
 Car car;
 Highscore highscore;
 Spawner spawner;
@@ -33,6 +39,13 @@ void setup()
   highscore = new Highscore();
   surface.setTitle("OFF-ROAD");
   spawn = new ArrayList<PImage>();
+   buttonPress = new SoundFile(this, "menu_button.wav");
+  file1 = new SoundFile(this, "sound_start.wav");
+  menuTheme = new SoundFile(this, "Come and Find Me - B mix.mp3");
+  gameTheme = new SoundFile(this, "koopabeach.mp3");
+  youLose = new SoundFile(this, "youLose2.mp3");
+  menuTheme.play();
+  menuTheme.amp(0.1);
 } 
 
 void update()
@@ -114,6 +127,7 @@ void keyPressed()
       if (key == 'w')
       {
         menu.buttonSelectedY = menu.buttonSelectedY - 100;
+        buttonPress.play();
       }
     }
     if (menu.buttonSelectedY != 475)
@@ -121,6 +135,7 @@ void keyPressed()
       if (key == 's')
       {
         menu.buttonSelectedY = menu.buttonSelectedY + 100;
+        buttonPress.play();
       }
     }
   }
@@ -132,6 +147,7 @@ void keyPressed()
       if (key == 'w')  
       {
         menu.buttonSelectedYRestart = menu.buttonSelectedYRestart - 100;
+        buttonPress.play();
       }
     }
     if (menu.buttonSelectedYRestart != menu.BUTTONYRESTART + 100)
@@ -139,6 +155,7 @@ void keyPressed()
       if (key == 's')  
       {
         menu.buttonSelectedYRestart = menu.buttonSelectedYRestart + 100;
+        buttonPress.play();
       }
     }
   }
@@ -149,6 +166,9 @@ void keyPressed()
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
       spawner.setTimer(spawner.spawnRoad);
       nieuweTijd = millis();
+      menuTheme.stop();
+      gameTheme.play();
+      gameTheme.amp(0.1);
     }
     if (menu.buttonSelectedY == 375 && key == 'z') { //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       menu.stage = 1;
@@ -166,11 +186,15 @@ void keyPressed()
       textAlign(CENTER);
       textSize(20);
       Restart();
+      menuTheme.play();
+      menuTheme.amp(0.1);
     }
     //check of de speler de restart button klikt.
     if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && key == 'z') {
       menu.stage = 2;
       Restart();
+      gameTheme.play();
+      gameTheme.amp(0.1);
     }
   }
 

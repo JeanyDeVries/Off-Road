@@ -128,6 +128,7 @@ class Menu
     text("3....................... " + highscore.highScore[2], 440, 450);
     text("4....................... " + highscore.highScore[3], 440, 525);
     text("5....................... " + highscore.highScore[4], 440, 600);
+    gameTheme.stop();
     
     image(button4, BUTTONXRESTART, BUTTONYRESTART, BUTTONWIDTH, BUTTONHEIGHT);
     image(button5, BUTTONXRESTART, BUTTONYRESTART + 100, BUTTONWIDTH, BUTTONHEIGHT);
