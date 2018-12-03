@@ -66,6 +66,8 @@ void update()
   if (car.alive && !collision.collidesWithRoad())  
   {
     car.Death();
+    youLose.play();
+    youLose.amp(0.1);
   }
   
   if(!car.alive)
