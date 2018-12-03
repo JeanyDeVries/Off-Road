@@ -14,6 +14,8 @@ class Car
   int j = 1;
 
   boolean alive;
+  
+  PImage turnLeftCar, turnRightCar, forwardCar;
 
   //Variabelen van de auto declareren.
   Car()
@@ -29,6 +31,9 @@ class Car
 
     //Laad de image voor de update zodat het niet elk frame uit het geheugen gehaalt hoeft te worden.
     carImage = loadImage("car_sprite_straight.png");
+    forwardCar = loadImage("car_sprite_straight.png");
+    turnRightCar = loadImage("car_sprite_turnR.png");
+    turnLeftCar = loadImage("car_sprite_turnL.png");
   }
 
   void Draw()
@@ -77,28 +82,28 @@ class Car
       {
         this.speed++;
         //laadt bij elke toets een andere image in voor een animatie.
-        carImage = loadImage("car_sprite_straight.png");
+        carImage = forwardCar;
       }
 
       //Achteruit
       if (keysPressed['s'])
       {
         this.speed--;
-        carImage = loadImage("car_sprite_straight.png");
+        carImage = forwardCar;
       } 
 
       //links
       if (keysPressed['a'])
       {
         this.rotate -= 2.5;
-        carImage = loadImage("car_sprite_turnL.png");
+        carImage = turnLeftCar;
       }
 
       //rechts
       if (keysPressed['d'])
       {
         this.rotate += 2.5;
-        carImage = loadImage("car_sprite_turnR.png");
+        carImage = turnRightCar;
       }
     } 
     else
