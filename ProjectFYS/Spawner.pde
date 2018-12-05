@@ -1,6 +1,6 @@
 class Spawner
 {
-  int lifeSpanRoad = 700;
+  int lifeSpanRoad = 900;
   int spawnRoad = 400;
   
   ArrayList<Road> roads = new ArrayList<Road>();
@@ -9,18 +9,34 @@ class Spawner
   int score;
   float huidigeTijd; 
   
+  boolean tutorial = true;
+  
   Spawner()
   {
     //Laad de eerste weg.
-    roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+    roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT_TUTORIAL_START, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+    
     huidigeTijd = millis();
   }
 
   void spawn()
   {  
+      //spawn elke keer een aantal wegen zodat de speler leert hoe de game werkt.
+      if(tutorial)
+      {
+        roads.add(new Road(car.x, car.y, RoadType.STRAIGHT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+        roads.add(new Road(car.x, car.y - 500, RoadType.STRAIGHT_TUTORIAL_ROTATE, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+        roads.add(new Road(car.x, car.y - 1000, RoadType.LEFT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+        roads.add(new Road(car.x, car.y - 1500, RoadType.LEFT_SIDE, RoadDirection.LEFT, millis() + lifeSpanRoad));
+        roads.add(new Road(car.x - 490, car.y - 1500, RoadType.STRAIGHT_TUTORIAL_WARNING, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+        roads.add(new Road(car.x - 490, car.y - 2000, RoadType.OBSTACLE_HOLE, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+        
+        tutorial = false;
+      }
+      
       //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
       //Er zijn ook altijd maar 5 wegen in de game.
-      if(startGame && spawnTimer.checkTime() && roads.size() < 5 && car.alive)
+      if(startGame && spawnTimer.checkTime() && roads.size() < 5 && car.alive && !tutorial)
       {
           RoadType vorigeRoadType = roads.get(roads.size()-1).type;
           //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
@@ -98,7 +114,7 @@ class Spawner
           //roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, RoadType.STRAIGHT, newRoadDirection, millis() + lifeSpanRoad));
           
           //We doen bij de eerste 2 wegen een langere lifeSpanRoad zodat de speler nog reserve kan opbouwen
-          if(score > 2)
+          if(score > 10)
           {
             lifeSpanRoad = 550;
           }
@@ -138,7 +154,7 @@ class Spawner
   boolean timerDelete()
   {
     //Na verloop van tijd delete je de roads.
-    if((millis() > nieuweTijd+ lifeSpanRoad) && startGame)
+    if((millis() > nieuweTijd+ lifeSpanRoad) && startGame && collision.tutorialFinished)
     {    
       score++;
       nieuweTijd = millis();
@@ -151,7 +167,8 @@ class Spawner
   void restart()
   { 
     roads.clear();
-    roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+    roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT_TUTORIAL_START, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+    tutorial = true;
   }
   
   void setTimer(int timeInMillis)

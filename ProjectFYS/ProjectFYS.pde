@@ -39,7 +39,7 @@ void setup()
   highscore = new Highscore();
   surface.setTitle("OFF-ROAD");
   spawn = new ArrayList<PImage>();
-   buttonPress = new SoundFile(this, "menu_button.wav");
+  buttonPress = new SoundFile(this, "menu_button.wav");
   file1 = new SoundFile(this, "sound_start.wav");
   menuTheme = new SoundFile(this, "Come and Find Me - B mix.mp3");
   gameTheme = new SoundFile(this, "koopabeach.mp3");
@@ -73,6 +73,13 @@ void update()
   if(!car.alive)
   {
     car.Death();
+    youLose.play();
+    youLose.amp(0.1);
+  }
+  
+  if(car.alive)
+  {
+    youLose.stop();
   }
 
   //Begin pas de game als de speler naar voren of achteruit heeft gereden.
@@ -117,6 +124,8 @@ void Restart()
   i = 0;
   
   car.j = 1;
+  
+  collision.tutorialFinished = false;
 }
 
 void keyPressed()
@@ -197,6 +206,7 @@ void keyPressed()
       Restart();
       gameTheme.play();
       gameTheme.amp(0.1);
+      gameTheme.loop();
     }
   }
 
