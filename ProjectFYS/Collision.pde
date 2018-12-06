@@ -1,6 +1,7 @@
 class Collision
 {
   boolean isTrue;
+  boolean tutorialFinished = false;
   
   Collision()
   {
@@ -19,6 +20,77 @@ class Collision
     //check of de auto op de auto staat
     switch(road.type)
     {
+      case STRAIGHT_TUTORIAL_START:
+      
+        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+        
+        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+        break;
+       
+     case STRAIGHT_TUTORIAL_ROTATE:
+      
+        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+        
+        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+        break;
+     
+     case STRAIGHT_TUTORIAL_WARNING:
+      
+        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+        
+        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+        
+        tutorialFinished = true;
+        break;
+        
       case STRAIGHT:
       
         if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)

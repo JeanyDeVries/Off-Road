@@ -2,6 +2,9 @@
 //Enums zorgen voor duidelijkheid.
 enum RoadType
 {
+  STRAIGHT_TUTORIAL_START,
+  STRAIGHT_TUTORIAL_ROTATE,
+  STRAIGHT_TUTORIAL_WARNING,
   STRAIGHT,
   SIDEWAYS,
   LEFT,
@@ -20,6 +23,9 @@ enum RoadDirection
    RIGHT,
 }
 
+PImage imgRoadStraightStart;
+PImage imgRoadStraightRotate;
+PImage imgRoadStraightWarning;
 PImage imgRoadStraight;
 PImage imgRoadSideways;
 PImage imgRoadTurnLeft;
@@ -32,6 +38,9 @@ PImage imgObstacleHoleSideways;
 // Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloom!
 void RoadPreloadImages()
 {
+  imgRoadStraightStart    = loadImage("road_straight.start.png"); 
+  imgRoadStraightRotate   = loadImage("road_straight.Rotate.png");
+  imgRoadStraightWarning  = loadImage("road_straight.tutorial.warning.png");
   imgRoadStraight         = loadImage("road_straight.png"); 
   imgRoadSideways         = loadImage("road_straight_sideways.png"); 
   imgRoadTurnLeft         = loadImage("road_turn_left.png");
@@ -73,6 +82,15 @@ class Road
     //Voor elke enum waarde word er een image geladen.
     switch(roadType)
     {
+      case STRAIGHT_TUTORIAL_START:
+        image = imgRoadStraightStart;
+        break;
+      case STRAIGHT_TUTORIAL_ROTATE:
+        image = imgRoadStraightRotate;
+        break;
+      case STRAIGHT_TUTORIAL_WARNING:
+        image = imgRoadStraightWarning;
+        break;
       case STRAIGHT:
         image = imgRoadStraight;
         break;
