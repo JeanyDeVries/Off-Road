@@ -76,7 +76,7 @@ void update()
   }
 
   //Begin pas de game als de speler naar voren of achteruit heeft gereden.
-  if ((key == 'w' || key == 's') && i == 0)
+  if ((key == 'w' || key == 's' || key == 'W' || key == 'S') && i == 0)
   {
     i++;
     startGame = true;
@@ -98,12 +98,16 @@ void Restart()
   //zet de keys op false zodat de auto niet blijft rijden na het restarten.
   //w
   keysPressed[119] = false;
+  keysPressed[87] = false;
   //s
   keysPressed[115] = false;
+  keysPressed[83] = false;
   //a
   keysPressed[97] = false;
+  keysPressed[65] = false;
   //d
   keysPressed[100] = false;
+  keysPressed[68] = false;
 
   spawner.score = 0;
   car.x = width/2;
@@ -126,7 +130,7 @@ void keyPressed()
     //Deze if-statements zorgen ervoor dat de image van button-selected in de grenzen blijft
     if (menu.buttonSelectedY!= 275)
     {
-      if (key == 'w')
+      if (key == 'w'|| key ==  'W')
       {
         menu.buttonSelectedY = menu.buttonSelectedY - 100;
         buttonPress.play();
@@ -134,7 +138,7 @@ void keyPressed()
     }
     if (menu.buttonSelectedY != 475)
     {
-      if (key == 's')
+      if (key == 's'|| key ==  'S')
       {
         menu.buttonSelectedY = menu.buttonSelectedY + 100;
         buttonPress.play();
@@ -146,7 +150,7 @@ void keyPressed()
   {
     if ( menu.buttonSelectedYRestart!= menu.BUTTONYRESTART)
     {
-      if (key == 'w')  
+      if (key == 'w'|| key ==  'W')  
       {
         menu.buttonSelectedYRestart = menu.buttonSelectedYRestart - 100;
         buttonPress.play();
@@ -154,7 +158,7 @@ void keyPressed()
     }
     if (menu.buttonSelectedYRestart != menu.BUTTONYRESTART + 100)
     {
-      if (key == 's')  
+      if (key == 's'|| key ==  'S')  
       {
         menu.buttonSelectedYRestart = menu.buttonSelectedYRestart + 100;
         buttonPress.play();
@@ -163,7 +167,7 @@ void keyPressed()
   }
 
   if (menu.stage == 0) { 
-    if (menu.buttonSelectedY == 275 && key == 'z') { //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
+    if (menu.buttonSelectedY == 275 && (key == 'z' || key == 'Z')) { //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       menu.stage = 2;
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
       spawner.setTimer(spawner.spawnRoad);
@@ -172,17 +176,17 @@ void keyPressed()
       gameTheme.play();
       gameTheme.amp(0.1);
     }
-    if (menu.buttonSelectedY == 375 && key == 'z') { //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
+    if (menu.buttonSelectedY == 375 && (key == 'z' || key == 'Z')) { //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       menu.stage = 1;
     }
-    if (menu.buttonSelectedY == 475 && key == 'z') { //verplaats de selectedButton naar 'exit', druk op 'a' om het spel af te sluiten
+    if (menu.buttonSelectedY == 475 && (key == 'z' || key == 'Z')) { //verplaats de selectedButton naar 'exit', druk op 'a' om het spel af te sluiten
       menu.stage = 4;
     }
   }
 
   if (menu.stage == 3) { 
     //check of de speler de menu button klikt.
-    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART && key == 'z') { 
+    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART && (key == 'z' || key == 'Z')) { 
       menu.stage = 0;
       imageMode(CORNER);
       textAlign(CENTER);
@@ -192,7 +196,7 @@ void keyPressed()
       menuTheme.amp(0.1);
     }
     //check of de speler de restart button klikt.
-    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && key == 'z') {
+    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && (key == 'z' || key == 'Z')) {
       menu.stage = 2;
       Restart();
       gameTheme.play();
@@ -209,7 +213,7 @@ void keyPressed()
 void keyReleased()
 { 
   //Zorgt ervoor dat ook wordt gelezen wanneer een toets wordt losgelaten.
-  if (menu.stage == 2) {
+  if (menu.stage == 2 || menu.stage == 4) {
     if (key < keysPressed.length)
       keysPressed[key] = false;
   }

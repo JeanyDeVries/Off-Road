@@ -78,7 +78,7 @@ class Car
     if (alive)
     {
       //vooruit
-      if (keysPressed['w'])
+      if (keysPressed ['w']  || keysPressed ['W'])
       {
         this.speed++;
         //laadt bij elke toets een andere image in voor een animatie.
@@ -86,21 +86,21 @@ class Car
       }
 
       //Achteruit
-      if (keysPressed['s'])
+      if (keysPressed ['s']  || keysPressed ['S'])
       {
         this.speed--;
         carImage = forwardCar;
       } 
 
       //links
-      if (keysPressed['a'])
+      if (keysPressed ['a']  || keysPressed ['A'])
       {
         this.rotate -= 2.5;
         carImage = turnLeftCar;
       }
 
       //rechts
-      if (keysPressed['d'])
+      if (keysPressed ['d']  || keysPressed ['D'])
       {
         this.rotate += 2.5;
         carImage = turnRightCar;
@@ -116,6 +116,8 @@ class Car
       if (size <= 0)
       {
         size = 0;
+        youLose.play();
+        youLose.amp(0.1);
         menu.stage = 3;
       }
     }

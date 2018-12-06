@@ -1,6 +1,6 @@
 class Spawner
 {
-  int lifeSpanRoad = 700;
+  int lifeSpanRoad = 800;
   int spawnRoad = 400;
   
   ArrayList<Road> roads = new ArrayList<Road>();
@@ -18,6 +18,12 @@ class Spawner
 
   void spawn()
   {  
+    //We doen bij de eerste 2 wegen een langere lifeSpanRoad zodat de speler nog reserve kan opbouwen
+    if(score > 10)
+    {
+      lifeSpanRoad = 550;
+    }
+          
       //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
       //Er zijn ook altijd maar 5 wegen in de game.
       if(startGame && spawnTimer.checkTime() && roads.size() < 5 && car.alive)
@@ -97,11 +103,6 @@ class Spawner
           roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
           //roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, RoadType.STRAIGHT, newRoadDirection, millis() + lifeSpanRoad));
           
-          //We doen bij de eerste 2 wegen een langere lifeSpanRoad zodat de speler nog reserve kan opbouwen
-          if(score > 2)
-          {
-            lifeSpanRoad = 550;
-          }
       }
   }
 
