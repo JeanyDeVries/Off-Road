@@ -204,7 +204,7 @@ void keyPressed()
 
   if (menu.stage == 3) { 
     //check of de speler de menu button klikt.
-    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART && (key == 'z' || key == 'Z')) { 
+    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && (key == 'z' || key == 'Z')) { 
       menu.stage = 0;
       imageMode(CORNER);
       textAlign(CENTER);
@@ -215,7 +215,7 @@ void keyPressed()
     }
 
     //check of de speler de restart button klikt.
-    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && (key == 'z' || key == 'Z')) {
+    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART && (key == 'z' || key == 'Z')) {
       menu.stage = 2;
       Restart();
       gameTheme.play();

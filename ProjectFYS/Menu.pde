@@ -4,12 +4,12 @@ class Menu
   int frame = 0;
   int i = 0;
   
-  final int menu = 0;
-  final int controls = 1;
-  final int game = 2;
-  final int high_score = 3;
-  final int quit = 4;
-  int stage = menu;
+  final int MENU = 0;
+  final int CONTROLS = 1;
+  final int GAME = 2;
+  final int HIGH_SCORE = 3;
+  final int QUIT = 4;
+  int stage = MENU;
   
   PFont title, fontMenu;
   PImage screen, selected, menu_control, j4, button1, button2, button3, button4, button5;
@@ -55,19 +55,19 @@ class Menu
     //Voor elke fase van de game is een case gemaakt.
     switch(stage)
     {
-      case menu:
+      case MENU:
         showMenu();
         break;
-      case controls:
+      case CONTROLS:
         showControls();
         break;
-      case game:
+      case GAME:
         playGame();
         break;
-     case high_score:
+     case HIGH_SCORE:
         showHigh_Score();
         break;
-     case quit:
+     case QUIT:
         quitGame();
         break;
     }
@@ -133,8 +133,8 @@ class Menu
     image(button4, BUTTONXRESTART, BUTTONYRESTART, BUTTONWIDTH, BUTTONHEIGHT);
     image(button5, BUTTONXRESTART, BUTTONYRESTART + 100, BUTTONWIDTH, BUTTONHEIGHT);
     image(selected, BUTTONXRESTART, buttonSelectedYRestart, BUTTONWIDTH, BUTTONHEIGHT);
-    text("Retry", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 120);
-    text("Menu", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 20);
+    text("Retry", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 20);
+    text("Menu", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 120);
     
   }
   
