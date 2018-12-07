@@ -123,7 +123,7 @@ class Road
       case OBSTACLE_HOLE_SIDEWAYS:
         image = imgObstacleHoleSideways;
         break;
-        case OIL_STRAIGHT1:
+      case OIL_STRAIGHT1:
         image = imgOilStraight1;
         break;
       case OIL_STRAIGHT2:

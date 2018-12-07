@@ -10,10 +10,11 @@ class Car
   final float MAXSPEED;
   float dy;
   float timer;
+
+  boolean alive;
   
   int j = 1;
 
-  boolean alive;
   
   PImage turnLeftCar, turnRightCar, forwardCar;
 
@@ -54,10 +55,11 @@ class Car
   void Death()
   {
     float tijd = millis();
-    highscore.finalscore = spawner.score;
     //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
+    highscore.finalscore = spawner.score;
+      highscore.savescore();
+
     alive = false;
-    
     if (tijd - millis() > 200)
     {
       menu.stage = 3;
@@ -105,8 +107,7 @@ class Car
         this.rotate += 2.5;
         carImage = turnRightCar;
       }
-    } 
-    else
+    } else
     {
       //Death animatie.
       timer = 0;

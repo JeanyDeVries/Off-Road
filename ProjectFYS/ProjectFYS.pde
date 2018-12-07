@@ -1,5 +1,6 @@
- /* 
+/* 
  Gemaakt door: Jeany de Vries, Kees van Heuven, Miquel Martherus, Casper Arends en Sam van Duin
+>>>>>>> c71cd6807f373f5906043fc3941f32fe75daa588
  Team: Tucan
  Game: Off Road
  Klas: iG103
@@ -39,11 +40,14 @@ void setup()
   highscore = new Highscore();
   surface.setTitle("OFF-ROAD");
   spawn = new ArrayList<PImage>();
+  
+  //Audio bestanden initialiseren
   buttonPress = new SoundFile(this, "menu_button.wav");
   file1 = new SoundFile(this, "sound_start.wav");
   menuTheme = new SoundFile(this, "Come and Find Me - B mix.mp3");
   gameTheme = new SoundFile(this, "koopabeach.mp3");
   youLose = new SoundFile(this, "youLose2.mp3");
+
   menuTheme.play();
   menuTheme.amp(0.1);
 } 
@@ -53,6 +57,7 @@ void update()
   //Zorgt ervoor dat alle plaatjes vanuit het midden worden geladen.
   imageMode(CENTER);
   //Roept de verschilende de methodes aan.
+  
   spawner.spawn();
   spawner.Update();
   spawner.Render();
@@ -72,11 +77,12 @@ void update()
   
   if(!car.alive)
   {
+    car.speed *= -0.8;
     car.Death();
     youLose.play();
     youLose.amp(0.1);
   }
-  
+
   if(car.alive)
   {
     youLose.stop();
@@ -181,10 +187,13 @@ void keyPressed()
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
       spawner.setTimer(spawner.spawnRoad);
       nieuweTijd = millis();
+      
+      //Overgang van menu audio naar ingame audio
       menuTheme.stop();
       gameTheme.play();
       gameTheme.amp(0.1);
     }
+
     if (menu.buttonSelectedY == 375 && (key == 'z' || key == 'Z')) { //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
       menu.stage = 1;
     }
@@ -204,6 +213,7 @@ void keyPressed()
       menuTheme.play();
       menuTheme.amp(0.1);
     }
+
     //check of de speler de restart button klikt.
     if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && (key == 'z' || key == 'Z')) {
       menu.stage = 2;

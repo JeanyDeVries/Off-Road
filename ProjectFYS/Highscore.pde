@@ -2,7 +2,7 @@ class Highscore
 {
   int finalscore;
   String[] highScore = new String[5];
-
+   
   void setup()
   {
     highScore = loadStrings("highScore.txt");
@@ -42,9 +42,7 @@ void savescore()
      
      //Hij haalt de laatste weg. dus er zijn weer 5.
      highScore = shorten(highScore);
-
-
-    saveStrings("highScore.txt",highScore);
+     saveStrings("highScore.txt",highScore);
   }
   
   void draw()

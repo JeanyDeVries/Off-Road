@@ -24,7 +24,7 @@ class Menu
   final int BUTTONYRESTART = height/2;
   int buttonSelectedY = 275;
   int buttonSelectedYRestart = BUTTONYRESTART;
-
+  
   Menu()
   {
     //Afbeeldingen worden geladen op een variabel.
@@ -116,7 +116,7 @@ class Menu
   
   void showHigh_Score()
   { 
-    //highscore printen
+    //highscore printen    
     PFont font;
     font = createFont("Fipps-Regular",50);
     textFont(font);
@@ -135,6 +135,7 @@ class Menu
     image(selected, BUTTONXRESTART, buttonSelectedYRestart, BUTTONWIDTH, BUTTONHEIGHT);
     text("Retry", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 120);
     text("Menu", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 20);
+    
   }
   
   void quitGame()

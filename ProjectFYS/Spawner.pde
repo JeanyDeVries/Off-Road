@@ -1,7 +1,7 @@
 class Spawner
 {
-  int lifeSpanRoad = 500;
-  int spawnRoad = 0;
+  int lifeSpanRoad = 900;
+  int spawnRoad = 400;
   
   ArrayList<Road> roads = new ArrayList<Road>();
   Timer spawnTimer;
@@ -46,7 +46,7 @@ class Spawner
           ArrayList<RoadDirection> possibleRoadDirections = new ArrayList<RoadDirection>();
           if (vorigeRoadType == RoadType.STRAIGHT)
           {
-              possibleRoadTypes.add(RoadType.STRAIGHT);     possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.STRAIGHT);     possibleRoadDirections.add(RoadDirection.STRAIGHT);    
               possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
               possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
               possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
@@ -85,6 +85,7 @@ class Spawner
           if (vorigeRoadType == RoadType.RIGHT_SIDE)
           {
             possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.LEFT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
@@ -129,7 +130,7 @@ class Spawner
           RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
           
           roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
-      }
+    }
   }
 
   void Render()
@@ -169,9 +170,8 @@ class Spawner
     {    
       score++;
       nieuweTijd = millis();
-      return true;
-      
-    }
+      return true; 
+     }
     return false;
   }
   
