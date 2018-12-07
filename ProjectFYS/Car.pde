@@ -10,15 +10,28 @@ class Car
   final float MAXSPEED;
   float dy;
   float timer;
+<<<<<<< HEAD
 
 
   boolean alive;
+=======
+  
+  int j = 1;
+
+  boolean alive;
+  
+  PImage turnLeftCar, turnRightCar, forwardCar;
+>>>>>>> c71cd6807f373f5906043fc3941f32fe75daa588
 
   //Variabelen van de auto declareren.
   Car()
   {
     x = width/2;
+<<<<<<< HEAD
     y = 360;
+=======
+    y = 400;
+>>>>>>> c71cd6807f373f5906043fc3941f32fe75daa588
     size = 75;
     rotate = 90;
     speed = 0;
@@ -28,6 +41,9 @@ class Car
 
     //Laad de image voor de update zodat het niet elk frame uit het geheugen gehaalt hoeft te worden.
     carImage = loadImage("car_sprite_straight.png");
+    forwardCar = loadImage("car_sprite_straight.png");
+    turnRightCar = loadImage("car_sprite_turnR.png");
+    turnLeftCar = loadImage("car_sprite_turnL.png");
   }
 
   void Draw()
@@ -53,11 +69,21 @@ class Car
       highscore.savescore();
 
     alive = false;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> c71cd6807f373f5906043fc3941f32fe75daa588
     if (tijd - millis() > 200)
     {
         
     
       menu.stage = 3;
+    }
+    
+    if(j == 1)
+    {
+      highscore.savescore();
+      j++;
     }
   }
 
@@ -69,27 +95,32 @@ class Car
     if (alive)
     {
       //vooruit
-      if (keysPressed['w'])
+      if (keysPressed ['w']  || keysPressed ['W'])
       {
         this.speed++;
+        //laadt bij elke toets een andere image in voor een animatie.
+        carImage = forwardCar;
       }
 
       //Achteruit
-      if (keysPressed['s'])
+      if (keysPressed ['s']  || keysPressed ['S'])
       {
         this.speed--;
+        carImage = forwardCar;
       } 
 
       //links
-      if (keysPressed['a'])
+      if (keysPressed ['a']  || keysPressed ['A'])
       {
         this.rotate -= 2.5;
+        carImage = turnLeftCar;
       }
 
       //rechts
-      if (keysPressed['d'])
+      if (keysPressed ['d']  || keysPressed ['D'])
       {
         this.rotate += 2.5;
+        carImage = turnRightCar;
       }
     } else
     {
@@ -101,6 +132,8 @@ class Car
       if (size <= 0)
       {
         size = 0;
+        youLose.play();
+        youLose.amp(0.1);
         menu.stage = 3;
       }
     }
@@ -116,6 +149,7 @@ class Car
       this.speed = -(this.MAXSPEED/2);
     }
   }
+<<<<<<< HEAD
 
   //Colllision
   boolean collidesWithRoad(Spawner spawner) 
@@ -156,4 +190,6 @@ class Car
     }
     return false;
   }
+=======
+>>>>>>> c71cd6807f373f5906043fc3941f32fe75daa588
 }

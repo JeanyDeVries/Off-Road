@@ -52,6 +52,7 @@ class Menu
   
   void draw()
   {
+    //Voor elke fase van de game is een case gemaakt.
     switch(stage)
     {
       case menu:
@@ -76,11 +77,16 @@ class Menu
   
   void showMenu()
   {
+<<<<<<< HEAD
+=======
+    //Om de 5 frames wordt de volgende sprite geladen voor het menu, wat zorgt voor een animatie.
+>>>>>>> c71cd6807f373f5906043fc3941f32fe75daa588
     if(frame > 5)
     {
       i++;
       frame = 0;
       screen = menuSprites[i];
+      //Als de i tot de max van de array gaat reset die het weer zodat het een loop wordt.
       if(i == menuSprites.length - 1)
         i = 0;
     }
@@ -101,7 +107,7 @@ class Menu
   {
     //laat de controls zien, druk 'b' om het spel te verlaten
     image(menu_control, 400, 180, 480, 360); 
-    if(key == 'b')
+    if(key == 'x')
       stage = 0;
   }
   

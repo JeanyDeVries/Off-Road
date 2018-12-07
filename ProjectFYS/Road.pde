@@ -2,12 +2,17 @@
 //Enums zorgen voor duidelijkheid.
 enum RoadType
 {
+  STRAIGHT_TUTORIAL_START,
+  STRAIGHT_TUTORIAL_ROTATE,
+  STRAIGHT_TUTORIAL_WARNING,
   STRAIGHT,
   SIDEWAYS,
   LEFT,
   LEFT_SIDE,
   RIGHT,
   RIGHT_SIDE,
+  OBSTACLE_HOLE,
+  OBSTACLE_HOLE_SIDEWAYS,
 }
 
 // Welke richting de nieuwe road moet spawnen. Bv: road left is STRAIGHT want die moet nog boven een straight weg spawnen (ook al gaat de bocht daarna na links).
@@ -18,22 +23,32 @@ enum RoadDirection
    RIGHT,
 }
 
+PImage imgRoadStraightStart;
+PImage imgRoadStraightRotate;
+PImage imgRoadStraightWarning;
 PImage imgRoadStraight;
 PImage imgRoadSideways;
 PImage imgRoadTurnLeft;
 PImage imgRoadLeftSide;
 PImage imgRoadRight;
 PImage imgRoadRightSide;
+PImage imgObstacleHole;
+PImage imgObstacleHoleSideways;
 
 // Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloom!
 void RoadPreloadImages()
 {
-  imgRoadStraight     = loadImage("road_straight.png"); 
-  imgRoadSideways     = loadImage("road_straight_sideways.png"); 
-  imgRoadTurnLeft     = loadImage("road_turn_left.png");
-  imgRoadLeftSide     = loadImage("road_turn_left_side.png");
-  imgRoadRight        = loadImage("road_turn_right.png");
-  imgRoadRightSide    = loadImage("road_turn_right_side.png");
+  imgRoadStraightStart    = loadImage("road_straight.start.png"); 
+  imgRoadStraightRotate   = loadImage("road_straight.Rotate.png");
+  imgRoadStraightWarning  = loadImage("road_straight.tutorial.warning.png");
+  imgRoadStraight         = loadImage("road_straight.png"); 
+  imgRoadSideways         = loadImage("road_straight_sideways.png"); 
+  imgRoadTurnLeft         = loadImage("road_turn_left.png");
+  imgRoadLeftSide         = loadImage("road_turn_left_side.png");
+  imgRoadRight            = loadImage("road_turn_right.png");
+  imgRoadRightSide        = loadImage("road_turn_right_side.png");
+  imgObstacleHole         = loadImage("obstacle_hole.png");
+  imgObstacleHoleSideways = loadImage("obstacle_hole_sideways.png");
 }
 
 class Road
@@ -43,11 +58,14 @@ class Road
   RoadDirection direction;
   PImage image; 
   int randomNumber = 0;
+  float barrierWidth = 20;
   float roadWidth;
   float roadHeight;
   float x;
   float y;
   float rotationSpeed;
+  float holeWidth = 170;
+  float holeHeight = 300;
   
   int destroyTime;
 
@@ -58,12 +76,21 @@ class Road
   {
     this.type       = roadType;
     this.direction  = direction;
-    this.roadWidth  = 500;
+    this.roadWidth  = 500 - barrierWidth;
     this.roadHeight = 500;
     
     //Voor elke enum waarde word er een image geladen.
     switch(roadType)
     {
+      case STRAIGHT_TUTORIAL_START:
+        image = imgRoadStraightStart;
+        break;
+      case STRAIGHT_TUTORIAL_ROTATE:
+        image = imgRoadStraightRotate;
+        break;
+      case STRAIGHT_TUTORIAL_WARNING:
+        image = imgRoadStraightWarning;
+        break;
       case STRAIGHT:
         image = imgRoadStraight;
         break;
@@ -82,12 +109,18 @@ class Road
       case RIGHT_SIDE:
         image = imgRoadRightSide;
         break;
+      case OBSTACLE_HOLE:
+        image = imgObstacleHole;
+        break;
+      case OBSTACLE_HOLE_SIDEWAYS:
+        image = imgObstacleHoleSideways;
+        break;
     } 
     
     //Hier word rekening gehouden met de richting van de Road en hierbij word dan een nieuwe positie gegeven.
     if(direction == RoadDirection.STRAIGHT)
     {
-      this.x = x ;
+      this.x = x;
       // y is boven i.p.v. beneden, dus doe -roadHeight
       this.y = y - roadHeight;
     }
@@ -97,7 +130,7 @@ class Road
         this.x = x - roadWidth;
       else if (direction == RoadDirection.RIGHT)
         this.x = x + roadWidth;
-      this.y = y; 
+      this.y = y;  
     }
     
     this.destroyTime = destroyTime;
