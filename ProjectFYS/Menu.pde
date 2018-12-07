@@ -24,7 +24,7 @@ class Menu
   final int BUTTONYRESTART = height/2;
   int buttonSelectedY = 275;
   int buttonSelectedYRestart = BUTTONYRESTART;
-
+  
   Menu()
   {
     //Afbeeldingen worden geladen op een variabel.
@@ -52,6 +52,7 @@ class Menu
   
   void draw()
   {
+    //Voor elke fase van de game is een case gemaakt.
     switch(stage)
     {
       case menu:
@@ -76,11 +77,16 @@ class Menu
   
   void showMenu()
   {
+<<<<<<< HEAD
+=======
+    //Om de 5 frames wordt de volgende sprite geladen voor het menu, wat zorgt voor een animatie.
+>>>>>>> c71cd6807f373f5906043fc3941f32fe75daa588
     if(frame > 5)
     {
       i++;
       frame = 0;
       screen = menuSprites[i];
+      //Als de i tot de max van de array gaat reset die het weer zodat het een loop wordt.
       if(i == menuSprites.length - 1)
         i = 0;
     }
@@ -113,7 +119,7 @@ class Menu
   
   void showHigh_Score()
   { 
-    //highscore printen
+    //highscore printen    
     PFont font;
     font = createFont("Fipps-Regular",50);
     textFont(font);
@@ -125,12 +131,14 @@ class Menu
     text("3....................... " + highscore.highScore[2], 440, 450);
     text("4....................... " + highscore.highScore[3], 440, 525);
     text("5....................... " + highscore.highScore[4], 440, 600);
+    gameTheme.stop();
     
     image(button4, BUTTONXRESTART, BUTTONYRESTART, BUTTONWIDTH, BUTTONHEIGHT);
     image(button5, BUTTONXRESTART, BUTTONYRESTART + 100, BUTTONWIDTH, BUTTONHEIGHT);
     image(selected, BUTTONXRESTART, buttonSelectedYRestart, BUTTONWIDTH, BUTTONHEIGHT);
     text("Retry", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 120);
     text("Menu", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 20);
+    
   }
   
   void quitGame()

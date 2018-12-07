@@ -2,6 +2,9 @@
 //Enums zorgen voor duidelijkheid.
 enum RoadType
 {
+  STRAIGHT_TUTORIAL_START,
+  STRAIGHT_TUTORIAL_ROTATE,
+  STRAIGHT_TUTORIAL_WARNING,
   STRAIGHT,
   SIDEWAYS,
   LEFT,
@@ -22,6 +25,9 @@ enum RoadDirection
    RIGHT,
 }
 
+PImage imgRoadStraightStart;
+PImage imgRoadStraightRotate;
+PImage imgRoadStraightWarning;
 PImage imgRoadStraight;
 PImage imgRoadSideways;
 PImage imgRoadTurnLeft;
@@ -36,13 +42,16 @@ PImage imgOilStraight2;
 // Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloom!
 void RoadPreloadImages()
 {
-  imgRoadStraight     = loadImage("road_straight.png"); 
-  imgRoadSideways     = loadImage("road_straight_sideways.png"); 
-  imgRoadTurnLeft     = loadImage("road_turn_left.png");
-  imgRoadLeftSide     = loadImage("road_turn_left_side.png");
-  imgRoadRight        = loadImage("road_turn_right.png");
-  imgRoadRightSide    = loadImage("road_turn_right_side.png");
-  imgObstacleHole     = loadImage("obstacle_hole.png");
+  imgRoadStraightStart    = loadImage("road_straight.start.png"); 
+  imgRoadStraightRotate   = loadImage("road_straight.Rotate.png");
+  imgRoadStraightWarning  = loadImage("road_straight.tutorial.warning.png");
+  imgRoadStraight         = loadImage("road_straight.png"); 
+  imgRoadSideways         = loadImage("road_straight_sideways.png"); 
+  imgRoadTurnLeft         = loadImage("road_turn_left.png");
+  imgRoadLeftSide         = loadImage("road_turn_left_side.png");
+  imgRoadRight            = loadImage("road_turn_right.png");
+  imgRoadRightSide        = loadImage("road_turn_right_side.png");
+  imgObstacleHole         = loadImage("obstacle_hole.png");
   imgObstacleHoleSideways = loadImage("obstacle_hole_sideways.png");
   imgOilStraight1 = loadImage("oil_straight1.png");
   imgOilStraight2 = loadImage("oil_straight2.png");
@@ -55,7 +64,7 @@ class Road
   RoadDirection direction;
   PImage image; 
   int randomNumber = 0;
-  float barrierWidth = 5;
+  float barrierWidth = 20;
   float roadWidth;
   float roadHeight;
   float x;
@@ -65,11 +74,6 @@ class Road
   float holeHeight = 374;
   float oilWidth = 211;
   float oilHeight = 218;
-  
-  boolean touchLeftBarrier = false;
-  boolean touchRightBarrier = false;
-  boolean touchTopBarrier = false;
-  boolean touchDownBarrier = false;
   
   int destroyTime;
 
@@ -86,6 +90,15 @@ class Road
     //Voor elke enum waarde word er een image geladen.
     switch(roadType)
     {
+      case STRAIGHT_TUTORIAL_START:
+        image = imgRoadStraightStart;
+        break;
+      case STRAIGHT_TUTORIAL_ROTATE:
+        image = imgRoadStraightRotate;
+        break;
+      case STRAIGHT_TUTORIAL_WARNING:
+        image = imgRoadStraightWarning;
+        break;
       case STRAIGHT:
         image = imgRoadStraight;
         break;

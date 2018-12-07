@@ -1,11 +1,7 @@
 class Collision
 {
   boolean isTrue;
-  
-  boolean touchLeftBarrier;
-  boolean touchRightBarrier;
-  boolean touchTopBarrier;
-  boolean touchDownBarrier;
+  boolean tutorialFinished = false;
   
   Collision()
   {
@@ -20,23 +16,89 @@ class Collision
     boolean rightInRoad = false;
     boolean topInRoad = false;
     boolean bottomInRoad = false;
-    
-    road.touchLeftBarrier = false;
-    road.touchRightBarrier = false;
-    road.touchTopBarrier = false;
-    road.touchDownBarrier = false;
 
     //check of de auto op de auto staat
     switch(road.type)
     {
-      case STRAIGHT:
+      case STRAIGHT_TUTORIAL_START:
       
-        if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
         }
         
-        if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+        break;
+       
+     case STRAIGHT_TUTORIAL_ROTATE:
+      
+        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+        
+        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+        break;
+     
+     case STRAIGHT_TUTORIAL_WARNING:
+      
+        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+        
+        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+        
+        tutorialFinished = true;
+        break;
+        
+      case STRAIGHT:
+      
+        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+        
+        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -168,7 +230,7 @@ class Collision
         
         case OBSTACLE_HOLE:
         
-          if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+          if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
           {
             leftInRoad = true;
           }
@@ -222,6 +284,7 @@ class Collision
             car.alive = false;
           }
           break;
+<<<<<<< HEAD
           
         case OIL_STRAIGHT1:
         
@@ -354,10 +417,17 @@ class Collision
           }
 
           if (car.y - car.size <= road.y - road.roadHeight / 2)
+=======
+     
+        }
+    
+          if(leftInRoad && rightInRoad && topInRoad && bottomInRoad)
+>>>>>>> 1a3dcb345bdadae33c6b8bed76c8ebb4b1d7b092
           {
-            road.touchTopBarrier = true;
+            return true;
           }
 
+<<<<<<< HEAD
           break;
           
           
@@ -442,5 +512,9 @@ class Collision
       
     }
     return true;
+=======
+   }
+    return false;
+>>>>>>> 1a3dcb345bdadae33c6b8bed76c8ebb4b1d7b092
   }
 }
