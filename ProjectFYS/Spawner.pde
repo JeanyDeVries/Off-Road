@@ -35,10 +35,12 @@ class Spawner
           ArrayList<RoadDirection> possibleRoadDirections = new ArrayList<RoadDirection>();
           if (vorigeRoadType == RoadType.STRAIGHT)
           {
-              possibleRoadTypes.add(RoadType.STRAIGHT);     possibleRoadDirections.add(RoadDirection.STRAIGHT);
-              possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
-              possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
-              possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              //possibleRoadTypes.add(RoadType.STRAIGHT);     possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              //possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              //possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              //possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              //possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_STRAIGHT2); possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if (vorigeRoadType == RoadType.SIDEWAYS)
           {
@@ -72,6 +74,7 @@ class Spawner
           if (vorigeRoadType == RoadType.RIGHT_SIDE)
           {
             possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.LEFT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if(vorigeRoadType == RoadType.OBSTACLE_HOLE)
@@ -79,6 +82,8 @@ class Spawner
             possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT2); possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if (vorigeRoadType == RoadType.OBSTACLE_HOLE_SIDEWAYS)
           {
@@ -93,6 +98,18 @@ class Spawner
             {
               possibleRoadTypes.add(RoadType.RIGHT_SIDE);  possibleRoadDirections.add(vorigeRoadDirection);
             }
+          }
+          if (vorigeRoadType == RoadType.OIL_STRAIGHT1){
+            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+          }
+          if (vorigeRoadType == RoadType.OIL_STRAIGHT2){
+            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           
           //Hier wordt een random getal gemaakt, met dit getal wordt een 'random' weg geladen.

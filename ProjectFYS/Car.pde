@@ -21,8 +21,8 @@ class Car
     size = 75;
     rotate = 90;
     speed = 0;
-    //MAXSPEED = 15;
-    MAXSPEED = 25;
+    MAXSPEED = 15;
+    //MAXSPEED = 25;
 
     alive = true;
 
@@ -69,28 +69,28 @@ class Car
       if (keysPressed['w'])
       {
         this.speed++;
-        carImage = loadImage("car_sprite_straight.png");
+        //carImage = loadImage("car_sprite_straight.png");
       }
 
       //Achteruit
       if (keysPressed['s'])
       {
         this.speed--;
-        carImage = loadImage("car_sprite_straight.png");
+        //carImage = loadImage("car_sprite_straight.png");
       } 
 
       //links
       if (keysPressed['a'])
       {
         this.rotate -= 2.5;
-        carImage = loadImage("car_sprite_turnL.png");
+        //carImage = loadImage("car_sprite_turnL.png");
       }
 
       //rechts
       if (keysPressed['d'])
       {
         this.rotate += 2.5;
-        carImage = loadImage("car_sprite_turnR.png");
+        //carImage = loadImage("car_sprite_turnR.png");
       }
     } else
     {
