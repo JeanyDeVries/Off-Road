@@ -13,6 +13,8 @@ enum RoadType
   RIGHT_SIDE,
   OBSTACLE_HOLE,
   OBSTACLE_HOLE_SIDEWAYS,
+  OIL_STRAIGHT1,
+  OIL_STRAIGHT2,
 }
 
 // Welke richting de nieuwe road moet spawnen. Bv: road left is STRAIGHT want die moet nog boven een straight weg spawnen (ook al gaat de bocht daarna na links).
@@ -34,6 +36,8 @@ PImage imgRoadRight;
 PImage imgRoadRightSide;
 PImage imgObstacleHole;
 PImage imgObstacleHoleSideways;
+PImage imgOilStraight1;
+PImage imgOilStraight2;
 
 // Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloom!
 void RoadPreloadImages()
@@ -49,6 +53,8 @@ void RoadPreloadImages()
   imgRoadRightSide        = loadImage("road_turn_right_side.png");
   imgObstacleHole         = loadImage("obstacle_hole.png");
   imgObstacleHoleSideways = loadImage("obstacle_hole_sideways.png");
+  imgOilStraight1         = loadImage("oil_straight1.png");
+  imgOilStraight2         = loadImage("oil_straight2.png");
 }
 
 class Road
@@ -64,8 +70,10 @@ class Road
   float x;
   float y;
   float rotationSpeed;
-  float holeWidth = 170;
-  float holeHeight = 300;
+  float holeWidth = 150;
+  float holeHeight = 374;
+  float oilWidth = 211;
+  float oilHeight = 218;
   
   int destroyTime;
 
@@ -114,6 +122,12 @@ class Road
         break;
       case OBSTACLE_HOLE_SIDEWAYS:
         image = imgObstacleHoleSideways;
+        break;
+        case OIL_STRAIGHT1:
+        image = imgOilStraight1;
+        break;
+      case OIL_STRAIGHT2:
+        image = imgOilStraight2;
         break;
     } 
     

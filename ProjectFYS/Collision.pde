@@ -284,13 +284,73 @@ class Collision
             car.alive = false;
           }
           break;
-     
+          
+        case OIL_STRAIGHT1:
+
+
+        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
         }
-    
-          if(leftInRoad && rightInRoad && topInRoad && bottomInRoad)
-          {
-            return true;
-          }
+        
+        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+
+        if (car.x >= road.x - road.oilWidth  && car.x <= road.x && car.y >= road.y - road.oilHeight/2 && car.y <= road.y + road.oilHeight/2)
+        {
+          print(":)");
+        }  
+
+        break;
+
+      case OIL_STRAIGHT2:
+
+        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+        
+        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        
+        if (car.y > road.y - road.roadHeight / 2)
+        {
+          topInRoad = true;
+        }
+  
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+        if (car.x <= road.x + road.oilWidth  &&
+          car.x >= road.x &&
+          car.y >= road.y - road.oilHeight/2 && 
+          car.y <= road.y + road.oilHeight/2)
+        {
+          print("oil");
+        }
+        break;
+     
+   }
+
+       if(leftInRoad && rightInRoad && topInRoad && bottomInRoad)
+       {
+         return true;
+       }
 
    }
     return false;

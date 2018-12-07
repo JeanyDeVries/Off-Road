@@ -1,7 +1,7 @@
 class Spawner
 {
-  int lifeSpanRoad = 900;
-  int spawnRoad = 400;
+  int lifeSpanRoad = 500;
+  int spawnRoad = 0;
   
   ArrayList<Road> roads = new ArrayList<Road>();
   Timer spawnTimer;
@@ -10,6 +10,8 @@ class Spawner
   float huidigeTijd; 
   
   boolean tutorial = true;
+  
+  int maxSize = 10;
   
   Spawner()
   {
@@ -35,8 +37,7 @@ class Spawner
       }
       
       //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
-      //Er zijn ook altijd maar 5 wegen in de game.
-      if(startGame && spawnTimer.checkTime() && roads.size() < 5 && car.alive && !tutorial)
+      if(startGame && spawnTimer.checkTime() && roads.size() < 7 && car.alive && !tutorial)
       {
           RoadType vorigeRoadType = roads.get(roads.size()-1).type;
           //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
@@ -49,6 +50,8 @@ class Spawner
               possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
               possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
               possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_STRAIGHT2); possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if (vorigeRoadType == RoadType.SIDEWAYS)
           {
@@ -83,12 +86,15 @@ class Spawner
           {
             possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.LEFT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if(vorigeRoadType == RoadType.OBSTACLE_HOLE)
           {
             possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT2); possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if (vorigeRoadType == RoadType.OBSTACLE_HOLE_SIDEWAYS)
           {
@@ -104,6 +110,18 @@ class Spawner
               possibleRoadTypes.add(RoadType.RIGHT_SIDE);  possibleRoadDirections.add(vorigeRoadDirection);
             }
           }
+          if (vorigeRoadType == RoadType.OIL_STRAIGHT1){
+            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+          }
+          if (vorigeRoadType == RoadType.OIL_STRAIGHT2){
+            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+          }
           
           //Hier wordt een random getal gemaakt, met dit getal wordt een 'random' weg geladen.
           int randomTypeIndex            = (int)random(possibleRoadTypes.size());
@@ -111,13 +129,6 @@ class Spawner
           RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
           
           roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
-          //roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, RoadType.STRAIGHT, newRoadDirection, millis() + lifeSpanRoad));
-          
-          //We doen bij de eerste 2 wegen een langere lifeSpanRoad zodat de speler nog reserve kan opbouwen
-          if(score > 10)
-          {
-            lifeSpanRoad = 550;
-          }
       }
   }
 
@@ -168,6 +179,7 @@ class Spawner
   { 
     roads.clear();
     roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT_TUTORIAL_START, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+    lifeSpanRoad = 500;
     tutorial = true;
   }
   
