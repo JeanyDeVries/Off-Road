@@ -1,6 +1,5 @@
 /* 
  Gemaakt door: Jeany de Vries, Kees van Heuven, Miquel Martherus, Casper Arends en Sam van Duin
->>>>>>> c71cd6807f373f5906043fc3941f32fe75daa588
  Team: Tucan
  Game: Off Road
  Klas: iG103
@@ -8,12 +7,13 @@
 
 
 //initialiseer Classes, Arrays, Finals en Globale Variabelen.
-import processing.sound.*;
-SoundFile buttonPress;
-SoundFile file1;
-SoundFile menuTheme;
-SoundFile gameTheme;
-SoundFile youLose;
+import ddf.minim.*;
+Minim minim;
+AudioSnippet buttonPress;
+AudioSnippet file1;
+AudioSnippet menuTheme;
+AudioSnippet gameTheme;
+AudioSnippet youLose;
 Car car;
 Highscore highscore;
 Spawner spawner;
@@ -38,18 +38,20 @@ void setup()
   collision = new Collision();
   spawner = new Spawner();
   highscore = new Highscore();
+  minim = new Minim(this);
   surface.setTitle("OFF-ROAD");
   spawn = new ArrayList<PImage>();
   
   //Audio bestanden initialiseren
-  buttonPress = new SoundFile(this, "menu_button.wav");
-  file1 = new SoundFile(this, "sound_start.wav");
-  menuTheme = new SoundFile(this, "Come and Find Me - B mix.mp3");
-  gameTheme = new SoundFile(this, "koopabeach.mp3");
-  youLose = new SoundFile(this, "youLose2.mp3");
+  menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3");
+  file1 = minim.loadSnippet("sound_start.wav");
+  buttonPress = minim.loadSnippet("menu_button.wav");
+  menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3");
+  youLose = minim.loadSnippet("youLose2.mp3");
+  gameTheme = minim.loadSnippet("koopabeach.mp3");
+  car.carNoise = minim.loadSnippet("carNoise.mp3");
 
   menuTheme.play();
-  menuTheme.amp(0.1);
 } 
 
 void update()
@@ -71,21 +73,15 @@ void update()
   if (car.alive && !collision.collidesWithRoad())  
   {
     car.Death();
+    youLose.rewind();
     youLose.play();
-    youLose.amp(0.1);
   }
   
   if(!car.alive)
   {
-    car.speed *= -0.8;
+    youLose.rewind();
     car.Death();
     youLose.play();
-    youLose.amp(0.1);
-  }
-
-  if(car.alive)
-  {
-    youLose.stop();
   }
 
   //Begin pas de game als de speler naar voren of achteruit heeft gereden.
@@ -148,6 +144,7 @@ void keyPressed()
       if (key == 'w'|| key ==  'W')
       {
         menu.buttonSelectedY = menu.buttonSelectedY - 100;
+        buttonPress.rewind();
         buttonPress.play();
       }
     }
@@ -156,6 +153,7 @@ void keyPressed()
       if (key == 's'|| key ==  'S')
       {
         menu.buttonSelectedY = menu.buttonSelectedY + 100;
+        buttonPress.rewind();
         buttonPress.play();
       }
     }
@@ -168,6 +166,7 @@ void keyPressed()
       if (key == 'w'|| key ==  'W')  
       {
         menu.buttonSelectedYRestart = menu.buttonSelectedYRestart - 100;
+        buttonPress.rewind();
         buttonPress.play();
       }
     }
@@ -176,6 +175,7 @@ void keyPressed()
       if (key == 's'|| key ==  'S')  
       {
         menu.buttonSelectedYRestart = menu.buttonSelectedYRestart + 100;
+        buttonPress.rewind();
         buttonPress.play();
       }
     }
@@ -189,9 +189,9 @@ void keyPressed()
       nieuweTijd = millis();
       
       //Overgang van menu audio naar ingame audio
-      menuTheme.stop();
       gameTheme.play();
-      gameTheme.amp(0.1);
+      menuTheme.pause();
+      menuTheme.rewind();
     }
 
     if (menu.buttonSelectedY == 375 && (key == 'z' || key == 'Z')) { //verplaats de selected knop naar 'controls', druk op 'a' om de controls te laten zien
@@ -211,7 +211,7 @@ void keyPressed()
       textSize(20);
       Restart();
       menuTheme.play();
-      menuTheme.amp(0.1);
+      menuTheme.rewind();
     }
 
     //check of de speler de restart button klikt.
@@ -219,7 +219,6 @@ void keyPressed()
       menu.stage = 2;
       Restart();
       gameTheme.play();
-      gameTheme.amp(0.1);
       gameTheme.loop();
     }
   }

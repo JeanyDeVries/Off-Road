@@ -64,6 +64,8 @@ class Collision
         {
           bottomInRoad = true;
         }
+        
+        spawner.spawnRoads = true;
         break;
      
      case STRAIGHT_TUTORIAL_WARNING:

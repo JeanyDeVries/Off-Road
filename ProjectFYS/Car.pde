@@ -14,8 +14,8 @@ class Car
   boolean alive;
   
   int j = 1;
-
   
+  AudioSnippet carNoise;
   PImage turnLeftCar, turnRightCar, forwardCar;
 
   //Variabelen van de auto declareren.
@@ -118,7 +118,6 @@ class Car
       {
         size = 0;
         youLose.play();
-        youLose.amp(0.1);
         menu.stage = 3;
       }
     }

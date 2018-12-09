@@ -98,6 +98,10 @@ class Menu
     text("Play",290,327);
     text("Controls",290,427);
     text("Exit",290,527);
+    
+    //zorgt ervoor dat het geluid niet door blijft spelen
+    youLose.pause();
+    youLose.rewind();
   }
   
   void showControls()
@@ -111,6 +115,11 @@ class Menu
   void playGame()
   {
     background(160, 200, 230);
+    
+    //zorgt ervoor dat het geluid niet door blijft spelen
+    youLose.pause();
+    youLose.rewind();
+    
     update();
   }
   
@@ -128,7 +137,8 @@ class Menu
     text("3....................... " + highscore.highScore[2], 440, 450);
     text("4....................... " + highscore.highScore[3], 440, 525);
     text("5....................... " + highscore.highScore[4], 440, 600);
-    gameTheme.stop();
+    gameTheme.pause();
+    gameTheme.rewind();
     
     image(button4, BUTTONXRESTART, BUTTONYRESTART, BUTTONWIDTH, BUTTONHEIGHT);
     image(button5, BUTTONXRESTART, BUTTONYRESTART + 100, BUTTONWIDTH, BUTTONHEIGHT);
