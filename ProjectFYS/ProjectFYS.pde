@@ -19,7 +19,8 @@ Highscore highscore;
 Spawner spawner;
 Menu menu;
 Collision collision;
-boolean[] keysPressed = new boolean[256];
+//boolean[] keysPressed = new boolean[256];
+boolean [] keys = new boolean[1024];
 
 ArrayList<PImage>spawn;
 int nieuweTijd;
@@ -64,7 +65,7 @@ void update()
   spawner.Update();
   spawner.Render();
   spawner.Delete();
-  car.ProcessInput(keysPressed);
+  car.ProcessInput(keys);
   car.Draw();
   highscore.setup();
   highscore.draw();
@@ -85,7 +86,7 @@ void update()
   }
 
   //Begin pas de game als de speler naar voren of achteruit heeft gereden.
-  if ((key == 'w' || key == 's' || key == 'W' || key == 'S') && i == 0)
+  if ((key == 'w' || key == 's' || key == 'W' || key == 'S' ||keys[UP] || keys[DOWN]) && i == 0)
   {
     i++;
     startGame = true;
@@ -104,19 +105,25 @@ void Restart()
   spawner.restart();
   spawner.lifeSpanRoad = 800;
   
+  car.carImage = loadImage("car_sprite_straight.png");
+  
   //zet de keys op false zodat de auto niet blijft rijden na het restarten.
-  //w
-  keysPressed[119] = false;
-  keysPressed[87] = false;
-  //s
-  keysPressed[115] = false;
-  keysPressed[83] = false;
-  //a
-  keysPressed[97] = false;
-  keysPressed[65] = false;
-  //d
-  keysPressed[100] = false;
-  keysPressed[68] = false;
+  //Up
+  keys[119] = false;
+  keys[87] = false;
+  keys[UP] = false;
+  //Down
+  keys[115] = false;
+  keys[83] = false;
+  keys[DOWN] = false;
+  //Left
+  keys[97] = false;
+  keys[65] = false;
+  keys[LEFT] = false;
+  //Right
+  keys[100] = false;
+  keys[68] = false;
+  keys[RIGHT] = false;
 
   spawner.score = 0;
   car.x = width/2;
@@ -136,12 +143,14 @@ void Restart()
 
 void keyPressed()
 {  
+  
+  keys[keyCode] = true;
 
   if (menu.stage == 0) { //Bevries het menu wanneer de besturing op het scherm staat.
     //Deze if-statements zorgen ervoor dat de image van button-selected in de grenzen blijft
     if (menu.buttonSelectedY!= 275)
     {
-      if (key == 'w'|| key ==  'W')
+      if (key == 'w'|| key ==  'W' || keys[UP])
       {
         menu.buttonSelectedY = menu.buttonSelectedY - 100;
         buttonPress.rewind();
@@ -150,7 +159,7 @@ void keyPressed()
     }
     if (menu.buttonSelectedY != 475)
     {
-      if (key == 's'|| key ==  'S')
+      if (key == 's'|| key ==  'S' || keys[DOWN])
       {
         menu.buttonSelectedY = menu.buttonSelectedY + 100;
         buttonPress.rewind();
@@ -163,7 +172,7 @@ void keyPressed()
   {
     if ( menu.buttonSelectedYRestart!= menu.BUTTONYRESTART)
     {
-      if (key == 'w'|| key ==  'W')  
+      if (key == 'w'|| key ==  'W' || keys[UP])  
       {
         menu.buttonSelectedYRestart = menu.buttonSelectedYRestart - 100;
         buttonPress.rewind();
@@ -172,7 +181,7 @@ void keyPressed()
     }
     if (menu.buttonSelectedYRestart != menu.BUTTONYRESTART + 100)
     {
-      if (key == 's'|| key ==  'S')  
+      if (key == 's'|| key ==  'S' || keys[DOWN])  
       {
         menu.buttonSelectedYRestart = menu.buttonSelectedYRestart + 100;
         buttonPress.rewind();
@@ -224,16 +233,19 @@ void keyPressed()
   }
 
   if (menu.stage == 2) {
-    if (key < keysPressed.length)//Dit doen we zodat als je bijvoorbeeld alt F4 drukt het spel niet afsluit.
-      keysPressed[key] = true;
+    if (key < keys.length)//Dit doen we zodat als je bijvoorbeeld alt F4 drukt het spel niet afsluit.
+      keys[key] = true;
   }
 }
 
 void keyReleased()
 { 
+  
+    keys[keyCode] = false;
+  
   //Zorgt ervoor dat ook wordt gelezen wanneer een toets wordt losgelaten.
   if (menu.stage == 2 || menu.stage == 4) {
-    if (key < keysPressed.length)
-      keysPressed[key] = false;
+    if (key < keys.length)
+      keys[key] = false;
   }
 }

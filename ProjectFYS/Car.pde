@@ -10,6 +10,8 @@ class Car
   final float MAXSPEED;
   float dy;
   float timer;
+  
+  //boolean [] keys = new boolean[1024];
 
   boolean alive;
   
@@ -73,14 +75,14 @@ class Car
   }
 
   //Verwerkt de ingedrukte toets in de array.
-  void ProcessInput(boolean[] keysPressed)
+  void ProcessInput(boolean[] keys)
   {   
     this.speed *= 0.98;
     //De input word alleen gelezen wanneer de speler nog 'alive' is.
     if (alive)
     {
       //vooruit
-      if (keysPressed ['w']  || keysPressed ['W'])
+      if (keys['w']  || keys['W'] || keys[UP])
       {
         this.speed++;
         //laadt bij elke toets een andere image in voor een animatie.
@@ -88,21 +90,21 @@ class Car
       }
 
       //Achteruit
-      if (keysPressed ['s']  || keysPressed ['S'])
+      if (keys['s']  || keys['S'] || keys[DOWN])
       {
         this.speed--;
         carImage = forwardCar;
       } 
 
       //links
-      if (keysPressed ['a']  || keysPressed ['A'])
+      if (keys['a']  || keys['A'] || keys[LEFT])
       {
         this.rotate -= 2.5;
         carImage = turnLeftCar;
       }
 
       //rechts
-      if (keysPressed ['d']  || keysPressed ['D'])
+      if (keys['d']  || keys['D'] || keys[RIGHT])
       {
         this.rotate += 2.5;
         carImage = turnRightCar;
