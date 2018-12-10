@@ -1,7 +1,7 @@
 class Spawner
 {
   int lifeSpanRoad = 550;
-  int spawnRoad = 200;
+  int spawnRoad = 0;
   
   ArrayList<Road> roads = new ArrayList<Road>();
   Timer spawnTimer;
@@ -10,7 +10,6 @@ class Spawner
   float huidigeTijd; 
   
   boolean tutorial = true;
-  boolean spawnRoads = false;
   
   int maxSize = 15;
   
@@ -37,6 +36,15 @@ class Spawner
         tutorial = false;
       }
       
+      if(score > 15)
+      {
+        maxSize = 10;
+      }
+       if(score < 70)
+      {
+        maxSize = 5;
+      }
+          
       //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
       if(startGame && spawnTimer.checkTime() && roads.size() < maxSize && car.alive)
       {
@@ -131,15 +139,6 @@ class Spawner
           RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
           
           roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
-          
-          if(score > 15)
-          {
-            maxSize = 10;
-          }
-          if(score < 70)
-          {
-            maxSize = 5;
-          }
     }
   }
 

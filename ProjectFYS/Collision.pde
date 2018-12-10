@@ -2,6 +2,7 @@ class Collision
 {
   boolean isTrue;
   boolean tutorialFinished = false;
+  boolean collisionOil = false;
   
   Collision()
   {
@@ -64,8 +65,6 @@ class Collision
         {
           bottomInRoad = true;
         }
-        
-        spawner.spawnRoads = true;
         break;
      
      case STRAIGHT_TUTORIAL_WARNING:
@@ -312,7 +311,7 @@ class Collision
 
         if (car.x >= road.x - road.oilWidth  && car.x <= road.x && car.y >= road.y - road.oilHeight/2 && car.y <= road.y + road.oilHeight/2)
         {
-          print(":)");
+          collisionOil = true;
         }  
 
         break;
@@ -343,7 +342,7 @@ class Collision
           car.y >= road.y - road.oilHeight/2 && 
           car.y <= road.y + road.oilHeight/2)
         {
-          print("oil");
+          collisionOil = true;
         }
         break;
      

@@ -92,6 +92,15 @@ void update()
     startGame = true;
     nieuweTijd = millis();
   }
+  
+  if(collision.collisionOil)
+  {
+    for(int i = 0; i < 10; i++)
+    {
+      car.speed += 3;
+    }
+    collision.collisionOil = false;
+  }
 }
 
 void draw()
