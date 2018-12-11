@@ -45,9 +45,9 @@ class Menu
     
     menu_control = loadImage("menu_controlUI.png");
     selected = loadImage("menu_buttonSelected.png");
-    fontMenu = loadFont("MalgunGothicBold20.vlw");
+    fontMenu = createFont("advanced_pixel-7.ttf",42);
     textAlign(CENTER);
-    textSize(20);
+    
   }
   
   void draw()
@@ -95,7 +95,8 @@ class Menu
     image(selected, BUTTONXPOS, buttonSelectedY, 233, 91);
     fill(0);
     textFont(fontMenu);
-    text("Play",290,327);
+    text("Play",290,327
+    );
     text("Controls",290,427);
     text("Exit",290,527);
     
@@ -125,11 +126,12 @@ class Menu
   
   void showHigh_Score()
   { 
-    //highscore printen    
-    PFont font;
-    font = createFont("Fipps-Regular",50);
-    textFont(font);
+    //highscore printen   
+    
+    textFont(fontMenu);
+    textSize(100);
     textAlign(CENTER);
+    fill(0);
     text("HIGHSCORE", 640, 185);
     textAlign(LEFT);
     text("1....................... " + highscore.highScore[0], 440, 300);  
@@ -137,14 +139,35 @@ class Menu
     text("3....................... " + highscore.highScore[2], 440, 450);
     text("4....................... " + highscore.highScore[3], 440, 525);
     text("5....................... " + highscore.highScore[4], 440, 600);
+    
+    textSize(95);
+    textAlign(CENTER);
+    fill(245, 203, 26);
+    text("HIGHSCORE", 640, 185);
+    textAlign(LEFT);
+    text("1....................... " + highscore.highScore[0], 440, 300);  
+    text("2....................... " + highscore.highScore[1], 440, 375);
+    text("3....................... " + highscore.highScore[2], 440, 450);
+    text("4....................... " + highscore.highScore[3], 440, 525);
+    text("5....................... " + highscore.highScore[4], 440, 600);
+    
+    
+    
     gameTheme.pause();
     gameTheme.rewind();
     
+   
+    textFont(fontMenu);
+    textAlign(CENTER);
+    fill(0);
+    textSize(50);
     image(button4, BUTTONXRESTART, BUTTONYRESTART, BUTTONWIDTH, BUTTONHEIGHT);
     image(button5, BUTTONXRESTART, BUTTONYRESTART + 100, BUTTONWIDTH, BUTTONHEIGHT);
     image(selected, BUTTONXRESTART, buttonSelectedYRestart, BUTTONWIDTH, BUTTONHEIGHT);
-    text("Retry", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 20);
-    text("Menu", BUTTONXRESTART - BUTTONWIDTH/4, BUTTONYRESTART + 120);
+    text("Retry", width/5, height/2+10);
+    text("Menu", width/5, height/2+110);
+    
+
     
   }
   

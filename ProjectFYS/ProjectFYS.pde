@@ -226,7 +226,6 @@ void keyPressed()
       menu.stage = 0;
       imageMode(CORNER);
       textAlign(CENTER);
-      textSize(20);
       Restart();
       menuTheme.play();
       menuTheme.rewind();

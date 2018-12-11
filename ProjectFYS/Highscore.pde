@@ -7,7 +7,7 @@ class Highscore
   {
     highScore = loadStrings("highScore.txt");
     textAlign(CENTER);
-    textSize(50);
+    
     for(int i = 0;highScore.length<5;i++)
     {
       //append = 1 toevoegen
@@ -47,6 +47,9 @@ void savescore()
   
   void draw()
   {
-    text("Score: " + spawner.score, 150, 60);
+    fill(0);
+    textSize(70);
+    textAlign(LEFT);
+    text("Score: " + spawner.score, 50, 60);
   }
 }
