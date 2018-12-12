@@ -63,10 +63,10 @@ void RoadPreloadImages()
   imgObstacleHoleSideways = loadImage("obstacle_hole_sideways.png");
   imgOilStraight1         = loadImage("oil_straight1.png");
   imgOilStraight2         = loadImage("oil_straight2.png");
-  imgOilLeft              = loadImage("oil_left");
-  imgOilRight             = loadImage("oil_right");
-  imgOilLeftSide          = loadImage("oil_left_side");
-  imgOilRightSide         = loadImage("oil_right_side");
+  imgOilLeft              = loadImage("oil_left.png");
+  imgOilRight             = loadImage("oil_right.png");
+  imgOilLeftSide          = loadImage("oil_left_side.png");
+  imgOilRightSide         = loadImage("oil_right_side.png");
   
 }
 
