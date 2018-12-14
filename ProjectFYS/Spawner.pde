@@ -1,7 +1,6 @@
 class Spawner
 {
-  int lifeSpanRoad = 550;
-  int spawnRoad = 0;
+  int lifeSpanRoad = 700;
   
   ArrayList<Road> roads = new ArrayList<Road>();
   Timer spawnTimer;
@@ -10,8 +9,7 @@ class Spawner
   float huidigeTijd; 
   
   boolean tutorial = true;
-  
-  int maxSize = 15;
+  boolean spawnRoad = false;
   
   Spawner()
   {
@@ -35,18 +33,10 @@ class Spawner
         
         tutorial = false;
       }
-      
-      if(score > 15)
-      {
-        maxSize = 10;
-      }
-       if(score < 70)
-      {
-        maxSize = 5;
-      }
           
       //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
-      if(startGame && spawnTimer.checkTime() && roads.size() < maxSize && car.alive)
+      //if(startGame && spawnTimer.checkTime() && roads.size() < maxSize && car.alive)
+      if(startGame && spawnRoad && car.alive)
       {
           RoadType vorigeRoadType = roads.get(roads.size()-1).type;
           //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
@@ -139,6 +129,25 @@ class Spawner
           RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
           
           roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
+          
+          
+          //maak het spel moeilijker door de tijd dat de roads worden delete te verhogen.
+          if(score > 20)
+          {
+            lifeSpanRoad = 650;
+          }
+          if(score > 50)
+          {
+            lifeSpanRoad = 650;
+          }
+          if(score > 75)
+          {
+            lifeSpanRoad = 575;
+          }
+          if(score > 100)
+          {
+            lifeSpanRoad = 500;
+          }
     }
   }
 
@@ -155,6 +164,8 @@ class Spawner
     for(Road road : roads)
     {
       road.Update();
+      //check of de car collision heeft met de road, zo ja spawn dan de road erna.
+      spawnRoad = collision.spawnRoad(road);
     }
   }
   
@@ -188,9 +199,8 @@ class Spawner
   { 
     roads.clear();
     roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT_TUTORIAL_START, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
-    lifeSpanRoad = 500;
+    lifeSpanRoad = 700;
     tutorial = true;
-    maxSize = 15;
   }
   
   void setTimer(int timeInMillis)
