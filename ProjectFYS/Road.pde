@@ -2,7 +2,7 @@
 //Enums zorgen voor duidelijkheid.
 enum RoadType
 {
-  STRAIGHT_TUTORIAL_START, 
+    STRAIGHT_TUTORIAL_START, 
     STRAIGHT_TUTORIAL_ROTATE, 
     STRAIGHT_TUTORIAL_WARNING, 
     STRAIGHT, 
@@ -25,6 +25,10 @@ enum RoadType
     OIL_STRAIGHT1_CRACK,
     OIL_STRAIGHT2,
     OIL_STRAIGHT2_CRACK,
+    OIL_LEFT,
+    OIL_RIGHT,
+    OIL_LEFT_SIDE,
+    OIL_RIGHT_SIDE
 }
 
 // Welke richting de nieuwe road moet spawnen. Bv: road left is STRAIGHT want die moet nog boven een straight weg spawnen (ook al gaat de bocht daarna na links).
@@ -58,30 +62,15 @@ PImage imgOilStraight1;
 PImage imgOilStraight1Crack;
 PImage imgOilStraight2;
 PImage imgOilStraight2Crack;
+PImage imgOilLeft;                    
+PImage imgOilRight;                   
+PImage imgOilLeftSide;              
+PImage imgOilRightSide;
 
 // Laad de plaatjes van tevoren meteen in, dan hoeft dit niet tijdens de game te gebeuren; want disk access is super sloom!
 void RoadPreloadImages()
-{
-<<<<<<< HEAD
-  imgRoadStraightStart    = loadImage("road_straight.start.png"); 
-  imgRoadStraightRotate   = loadImage("road_straight.Rotate.png");
-  imgRoadStraightWarning  = loadImage("road_straight.tutorial.warning.png");
-  imgRoadStraight         = loadImage("road_straight.png"); 
-  imgRoadSideways         = loadImage("road_straight_sideways.png"); 
-  imgRoadTurnLeft         = loadImage("road_turn_left.png");
-  imgRoadLeftSide         = loadImage("road_turn_left_side.png");
-  imgRoadRight            = loadImage("road_turn_right.png");
-  imgRoadRightSide        = loadImage("road_turn_right_side.png");
-  imgObstacleHole         = loadImage("obstacle_hole.png");
-  imgObstacleHoleSideways = loadImage("obstacle_hole_sideways.png");
-  imgOilStraight1         = loadImage("oil_straight1.png");
-  imgOilStraight2         = loadImage("oil_straight2.png");
-  imgOilLeft              = loadImage("oil_left.png");
-  imgOilRight             = loadImage("oil_right.png");
-  imgOilLeftSide          = loadImage("oil_left_side.png");
-  imgOilRightSide         = loadImage("oil_right_side.png");
-  
-=======
+{  
+
   imgRoadStraightStart          = loadImage("road_straight.start.png"); 
   imgRoadStraightRotate         = loadImage("road_straight.Rotate.png");
   imgRoadStraightWarning        = loadImage("road_straight.tutorial.warning.png");
@@ -105,7 +94,10 @@ void RoadPreloadImages()
   imgOilStraight1Crack          = loadImage("oil_straight1_crack.png");
   imgOilStraight2               = loadImage("oil_straight2.png");
   imgOilStraight2Crack          = loadImage("oil_straight2_crack.png");
->>>>>>> dc477d13de5ca237a320b74e89ce4ea04e6f0b44
+  imgOilLeft                    = loadImage("oil_left.png");
+  imgOilRight                   = loadImage("oil_right.png");
+  imgOilLeftSide                = loadImage("oil_left_side.png");
+  imgOilRightSide               = loadImage("oil_right_side.png");
 }
 
 class Road
@@ -125,9 +117,16 @@ class Road
   float holeHeight = 374;
   float oilWidth = 211;
   float oilHeight = 218;
-
+  float oilLeftSideWidth = 172;
+  float oilLeftSideHeight = 207;
+  float oilRightSideWidth = 244;
+  float oilRightSideHeight = 237;
+  float oilLeftWidth = 233;
+  float oilLeftHeight = 225;
+  float oilRightWidth = 233;
+  float oilRightHeight = 240;
+  
   int destroyTime;
-
   float timermilliSec = millis();
 
   // variabelen road declareren
@@ -153,32 +152,73 @@ class Road
     case STRAIGHT:
       image = imgRoadStraight;
       break;
+    case STRAIGHT_CRACK:
+      image = imgRoadStraightCrack;
+      break;
     case SIDEWAYS:
       image = imgRoadSideways;
+      break;
+    case SIDEWAYS_CRACK:
+      image = imgRoadSidewaysCrack;
       break;
     case LEFT:
       image = imgRoadTurnLeft;
       break;
+    case LEFT_CRACK:
+      image = imgRoadTurnLeftCrack;
+      break;
     case LEFT_SIDE:
       image = imgRoadLeftSide;
+      break;
+    case LEFT_SIDE_CRACK:
+      image = imgRoadLeftSideCrack;
       break;
     case RIGHT:
       image = imgRoadRight;
       break;
+    case RIGHT_CRACK:
+      image = imgRoadRightCrack;
+      break;
     case RIGHT_SIDE:
       image = imgRoadRightSide;
       break;
+    case RIGHT_SIDE_CRACK:
+      image = imgRoadRightCrack;
     case OBSTACLE_HOLE:
+      image = imgObstacleHole;
+      break;
+    case OBSTACLE_HOLE_CRACK:
       image = imgObstacleHole;
       break;
     case OBSTACLE_HOLE_SIDEWAYS:
       image = imgObstacleHoleSideways;
       break;
+    case OBSTACLE_HOLE_SIDEWAYS_CRACK:
+      image = imgObstacleHoleSidewaysCrack;
+      break;
     case OIL_STRAIGHT1:
       image = imgOilStraight1;
       break;
+    case OIL_STRAIGHT1_CRACK:
+      image = imgOilStraight1Crack;
+      break;
     case OIL_STRAIGHT2:
       image = imgOilStraight2;
+      break;
+    case OIL_STRAIGHT2_CRACK:
+      image = imgOilStraight2Crack;
+      break;
+    case OIL_LEFT:
+       image = imgOilLeft;
+       break;
+    case OIL_RIGHT:
+      image = imgOilRight;
+      break;
+    case OIL_LEFT_SIDE:
+      image = imgOilLeftSide;
+      break;
+    case OIL_RIGHT_SIDE:
+      image = imgOilRightSide;
       break;
     } 
 

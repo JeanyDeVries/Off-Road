@@ -309,7 +309,10 @@ class Collision
           bottomInRoad = true;
         }
 
-        if (car.x >= road.x - road.oilWidth  && car.x <= road.x && car.y >= road.y - road.oilHeight/2 && car.y <= road.y + road.oilHeight/2)
+        if (car.x >= road.x - road.oilWidth  
+            && car.x <= road.x 
+            && car.y >= road.y - road.oilHeight/2 
+            && car.y <= road.y + road.oilHeight/2)
         {
           collisionOil = true;
         }  
@@ -346,6 +349,118 @@ class Collision
         }
         break;
      
+     case OIL_LEFT:
+       if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+        {
+          leftInRoad = true;
+        }
+    
+        if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
+        {
+          rightInRoad = true;
+        }
+        if (car.y > road.y - road.roadHeight / 2 + road.barrierWidth)
+        {
+          topInRoad = true;
+        }
+    
+        if (car.y < road.y + road.roadHeight / 2)
+        {
+          bottomInRoad = true;
+        }
+        
+        if (car.x >= road.x - road.oilLeftWidth &&
+            car.x <= road.x - 7 &&
+            car.y >= road.y - road.oilLeftHeight &&
+            car.y >= road.y - 10)
+            {
+              collisionOil = true;
+            }
+        break;
+        
+     case OIL_RIGHT:
+       if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2 + road.barrierWidth)
+        {
+          leftInRoad = true;
+        }
+    
+        if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
+        {
+          rightInRoad = true;
+        }
+        if (car.y > road.y - road.roadHeight / 2 + road.barrierWidth)
+        {
+          topInRoad = true;
+          }
+      
+          if (car.y < road.y + road.roadHeight / 2)
+          {
+            bottomInRoad = true;
+          }
+          if(car.x > road.x && 
+              car.x < road.x + road.roadWidth/2 && 
+              car.y > road.y - road.roadHeight/2 && 
+              car.y < road.y)
+          {
+            collisionOil = true;
+          }
+          break;
+          
+     case OIL_LEFT_SIDE:
+       if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+          {
+            leftInRoad = true;
+          }
+      
+          if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
+          {
+            rightInRoad = true;
+          }
+          if (car.y > road.y - road.roadHeight / 2 - road.barrierWidth)
+          {
+            topInRoad = true;
+          }
+      
+          if (car.y < road.y + road.roadHeight / 2)
+          {
+            bottomInRoad = true;
+          }
+          if(car.x < road.x && 
+              car.x > road.x - road.roadWidth/2 && 
+              car.y > road.y - road.roadHeight/2 && 
+              car.y < road.y)
+          {
+            collisionOil = true;
+          }
+          break;
+        
+    case OIL_RIGHT_SIDE:
+      if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+          {
+            leftInRoad = true;
+          }
+      
+          if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
+          {
+            rightInRoad = true;
+          }
+          if (car.y > road.y - road.roadHeight / 2 - road.barrierWidth)
+          {
+            topInRoad = true;
+          }
+      
+          if (car.y < road.y + road.roadHeight / 2)
+          {
+            bottomInRoad = true;
+          }
+          if(car.x > road.x && 
+              car.x < road.x + road.roadWidth/2 && 
+              car.y > road.y - road.roadHeight/2 && 
+              car.y < road.y)
+          {
+            collisionOil = true;
+          }
+          break;
    }
 
        if(leftInRoad && rightInRoad && topInRoad && bottomInRoad)
