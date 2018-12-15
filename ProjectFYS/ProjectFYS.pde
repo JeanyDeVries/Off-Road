@@ -19,15 +19,17 @@ Highscore highscore;
 Spawner spawner;
 Menu menu;
 Collision collision;
-//boolean[] keysPressed = new boolean[256];
 boolean [] keys = new boolean[1024];
 
 ArrayList<PImage>spawn;
 int nieuweTijd;
+int tijd;
 
 boolean startGame = false;
 
 int i = 0;
+int p = 0;
+int frames = 0;
 
 void setup()
 {
@@ -56,10 +58,12 @@ void setup()
 } 
 
 void update()
-{
+{ 
   //Zorgt ervoor dat alle plaatjes vanuit het midden worden geladen.
   imageMode(CENTER);
   //Roept de verschilende de methodes aan.
+  
+  frames++;
   
   spawner.spawn();
   spawner.Update();
@@ -95,11 +99,19 @@ void update()
   
   if(collision.collisionOil)
   {
-    for(int i = 0; i < 10; i++)
+    if(p ==0)
     {
-      car.speed += 3;
+      tijd = millis();
+      p++;
     }
-    collision.collisionOil = false;
+    
+    car.speed *= 1.1;
+    println("millis: "+ millis() + "huidigeTijd: " + tijd);
+    if(millis() - tijd > 500)
+    {
+      collision.collisionOil = false;
+      p = 0;
+    }
   }
 }
 
@@ -113,6 +125,8 @@ void Restart()
   //Restart alles opnieuw door waardes uit de setup te resetten en de array met roads te legen.
   spawner.restart();
   spawner.lifeSpanRoad = 800;
+    
+  car.huidigeFrames = frames;
   
   car.carImage = loadImage("car_sprite_straight.png");
   
@@ -148,6 +162,7 @@ void Restart()
   car.j = 1;
   
   collision.tutorialFinished = false;
+  collision.collisionOil = false;
 }
 
 void keyPressed()
@@ -203,7 +218,7 @@ void keyPressed()
     if (menu.buttonSelectedY == 275 && (key == 'z' || key == 'Z')) { //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       menu.stage = 2;
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
-      spawner.setTimer(spawner.spawnRoad);
+      //spawner.setTimer(spawner.spawnRoad);
       nieuweTijd = millis();
       
       //Overgang van menu audio naar ingame audio
