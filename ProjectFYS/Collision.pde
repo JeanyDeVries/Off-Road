@@ -1,11 +1,12 @@
 class Collision
 {
+  boolean isTrue;
   boolean tutorialFinished = false;
   boolean collisionOil = false;
-
+  
   Collision()
   {
-
+    isTrue = false;
   }
   
   boolean collidesWithRoad()
@@ -345,8 +346,8 @@ class Collision
         }
         break;
      
-   }     
-       
+   }
+
        if(leftInRoad && rightInRoad && topInRoad && bottomInRoad)
        {
          return true;
@@ -354,65 +355,5 @@ class Collision
 
    }
     return false;
-   }
-   
-   boolean spawnRoad(Road road)
-   {
-     switch(road.type)
-     {
-       case LEFT_SIDE:
-         if(car.x < road.x + road.roadWidth/2 && car.x > road.x)
-         {
-           return true;
-         }
-         break;
-      
-       case RIGHT_SIDE:
-         if(car.x > road.x - road.roadWidth/2 && car.x < road.x)
-         {
-           return true;
-         }
-         break;
-         
-      case LEFT:
-        if(car.y < car.y + road.roadHeight/2 && car.y > road.y)
-         {
-           return true;
-         }
-        break;
-        
-     case RIGHT:
-         if(car.y < car.y + road.roadHeight/2 && car.y > road.y)
-         {
-           return true;
-         }
-         break;
-     }
-     
-     switch(road.direction)
-     {
-       case STRAIGHT:
-         if((car.y < road.y + road.roadHeight/4) && (car.y > road.y - road.roadHeight/4) && tutorialFinished)
-         {
-           return true;
-         }
-         break;
-         
-       case LEFT:
-         if((car.x < road.x + road.roadWidth/2) && (car.x > road.x) && tutorialFinished)
-         {
-           return true;
-         }
-         break;
-         
-       case RIGHT:
-         if((car.x > road.x - road.roadWidth/2) && (car.x < road.x) && tutorialFinished)
-         {
-           return true;
-         }
-         break;
-     }
- 
-     return false;
-   }
+  }
 }

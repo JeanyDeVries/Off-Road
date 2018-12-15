@@ -11,7 +11,8 @@ class Car
   float dy;
   float timer;
   
-  int huidigeFrames; 
+  //boolean [] keys = new boolean[1024];
+
   boolean alive;
   
   int j = 1;
@@ -36,12 +37,10 @@ class Car
     forwardCar = loadImage("car_sprite_straight.png");
     turnRightCar = loadImage("car_sprite_turnR.png");
     turnLeftCar = loadImage("car_sprite_turnL.png");
-    
-    huidigeFrames = frames;
   }
 
   void Draw()
-  { 
+  {
     //Tekent de auto en geeft het een positie volgens de variabelen.
     fill(150, 0, 0);
     stroke(0);
@@ -60,7 +59,7 @@ class Car
     float tijd = millis();
     //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
     highscore.finalscore = spawner.score;
-    highscore.savescore();
+      highscore.savescore();
 
     alive = false;
     if (tijd - millis() > 200)
@@ -80,7 +79,7 @@ class Car
   {   
     this.speed *= 0.98;
     //De input word alleen gelezen wanneer de speler nog 'alive' is.
-    if (alive && !collision.collisionOil)
+    if (alive)
     {
       //vooruit
       if (keys['w']  || keys['W'] || keys[UP])
@@ -110,11 +109,12 @@ class Car
         this.rotate += 2.5;
         carImage = turnRightCar;
       }
-    } 
-    if(!alive)
+    } else
     {
       //Death animatie.
-      size -= (frameCount - huidigeFrames)/50;
+      timer = 0;
+      timer = millis();
+      size -= timer/1000 * 1.1;
       rotate += 20;
       if (size <= 0)
       {
