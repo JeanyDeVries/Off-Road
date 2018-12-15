@@ -186,7 +186,7 @@ class Spawner
   boolean timerDelete()
   {
     //Na verloop van tijd delete je de roads.
-    if((millis() > nieuweTijd+ lifeSpanRoad) && startGame && collision.tutorialFinished)
+    if((millis() > nieuweTijd + lifeSpanRoad) && startGame && collision.tutorialFinished)
     {    
       score++;
       nieuweTijd = millis();

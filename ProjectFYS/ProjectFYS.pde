@@ -23,10 +23,12 @@ boolean [] keys = new boolean[1024];
 
 ArrayList<PImage>spawn;
 int nieuweTijd;
+int tijd;
 
 boolean startGame = false;
 
 int i = 0;
+int p = 0;
 int frames = 0;
 
 void setup()
@@ -56,7 +58,7 @@ void setup()
 } 
 
 void update()
-{
+{ 
   //Zorgt ervoor dat alle plaatjes vanuit het midden worden geladen.
   imageMode(CENTER);
   //Roept de verschilende de methodes aan.
@@ -97,16 +99,19 @@ void update()
   
   if(collision.collisionOil)
   {
-    frames = 100;
-    while(frames > 200)
+    if(p ==0)
     {
-      car.speed *= 0.9;
-      println("Oil");
-      frames--;
+      tijd = millis();
+      p++;
     }
     
-    collision.collisionOil = false;
-    car.speed = 10;
+    car.speed *= 1.1;
+    println("millis: "+ millis() + "huidigeTijd: " + tijd);
+    if(millis() - tijd > 500)
+    {
+      collision.collisionOil = false;
+      p = 0;
+    }
   }
 }
 
@@ -157,6 +162,7 @@ void Restart()
   car.j = 1;
   
   collision.tutorialFinished = false;
+  collision.collisionOil = false;
 }
 
 void keyPressed()

@@ -111,7 +111,7 @@ class Car
         carImage = turnRightCar;
       }
     } 
-    else
+    if(!alive)
     {
       //Death animatie.
       size -= (frameCount - huidigeFrames)/50;
