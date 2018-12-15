@@ -10,6 +10,7 @@ class Spawner
   float huidigeTijd; 
   
   boolean tutorial = true;
+  boolean disabledespawner = true;
   
   int maxSize = 15;
   
@@ -48,6 +49,7 @@ class Spawner
       //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
       if(startGame && spawnTimer.checkTime() && roads.size() < maxSize && car.alive)
       {
+          
           RoadType vorigeRoadType = roads.get(roads.size()-1).type;
           //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
           ArrayList<RoadType> possibleRoadTypes = new ArrayList<RoadType>();
@@ -55,82 +57,122 @@ class Spawner
           ArrayList<RoadDirection> possibleRoadDirections = new ArrayList<RoadDirection>();
           if (vorigeRoadType == RoadType.STRAIGHT)
           {
-              possibleRoadTypes.add(RoadType.STRAIGHT);     possibleRoadDirections.add(RoadDirection.STRAIGHT);    
-              possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
-              possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
-              possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
-              possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
-              possibleRoadTypes.add(RoadType.OIL_STRAIGHT2); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.STRAIGHT);              possibleRoadDirections.add(RoadDirection.STRAIGHT);    
+              //possibleRoadTypes.add(RoadType.STRAIGHT_CRACK);      possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.LEFT);                  possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              //possibleRoadTypes.add(RoadType.LEFT_CRACK);          possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.RIGHT);                 possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              //possibleRoadTypes.add(RoadType.RIGHT_CRACK);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OBSTACLE_HOLE);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_STRAIGHT1);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              //possibleRoadTypes.add(RoadType.OIL_STRAIGHT1_CRACK); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_STRAIGHT2);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              //possibleRoadTypes.add(RoadType.OIL_STRAIGHT2_CRACK); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              
           }
           if (vorigeRoadType == RoadType.SIDEWAYS)
           {
             RoadDirection vorigeRoadDirection = roads.get(roads.size()-1).direction;
-            possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(vorigeRoadDirection);
-            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS); possibleRoadDirections.add(vorigeRoadDirection);
+            possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(vorigeRoadDirection);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(vorigeRoadDirection);
             if(vorigeRoadDirection == RoadDirection.LEFT)
             {
-              possibleRoadTypes.add(RoadType.LEFT_SIDE);   possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.LEFT_SIDE);             possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.OIL_LEFT_SIDE);         possibleRoadDirections.add(vorigeRoadDirection);
             }
             else if (vorigeRoadDirection == RoadDirection.RIGHT)
             {
-              possibleRoadTypes.add(RoadType.RIGHT_SIDE);  possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.RIGHT_SIDE);            possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.OIL_RIGHT_SIDE);        possibleRoadDirections.add(vorigeRoadDirection);
             }
           }
           if (vorigeRoadType == RoadType.LEFT)
           {
-            possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(RoadDirection.LEFT);
-            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);    possibleRoadDirections.add(RoadDirection.LEFT);
+            possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(RoadDirection.LEFT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.LEFT);
           }
           if (vorigeRoadType == RoadType.RIGHT)
           {
-            possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(RoadDirection.RIGHT);
-            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);    possibleRoadDirections.add(RoadDirection.RIGHT);
+            possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(RoadDirection.RIGHT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.RIGHT);
           }
           if (vorigeRoadType == RoadType.LEFT_SIDE)
           {
-            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.RIGHT);       possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT);                   possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if (vorigeRoadType == RoadType.RIGHT_SIDE)
           {
-            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.LEFT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT1);           possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.LEFT);                    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT2);           possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if(vorigeRoadType == RoadType.OBSTACLE_HOLE)
           {
-            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OIL_STRAIGHT1); possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OIL_STRAIGHT2); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.LEFT);                    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT);                   possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT1);           possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_STRAIGHT2);           possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if (vorigeRoadType == RoadType.OBSTACLE_HOLE_SIDEWAYS)
           {
             RoadDirection vorigeRoadDirection = roads.get(roads.size()-1).direction;
-            possibleRoadTypes.add(RoadType.SIDEWAYS);    possibleRoadDirections.add(vorigeRoadDirection);
-            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);   possibleRoadDirections.add(vorigeRoadDirection);
+            possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(vorigeRoadDirection);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(vorigeRoadDirection);
             if(vorigeRoadDirection == RoadDirection.LEFT)
             {
-              possibleRoadTypes.add(RoadType.LEFT_SIDE);   possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.LEFT_SIDE);             possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.OIL_LEFT_SIDE);         possibleRoadDirections.add(vorigeRoadDirection);
             }
             else if (vorigeRoadDirection == RoadDirection.RIGHT)
             {
-              possibleRoadTypes.add(RoadType.RIGHT_SIDE);  possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.RIGHT_SIDE);            possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.OIL_RIGHT_SIDE);        possibleRoadDirections.add(vorigeRoadDirection);
             }
           }
           if (vorigeRoadType == RoadType.OIL_STRAIGHT1){
-            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.LEFT);                    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT);                   possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE);           possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if (vorigeRoadType == RoadType.OIL_STRAIGHT2){
-            possibleRoadTypes.add(RoadType.STRAIGHT);    possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.LEFT);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.RIGHT);        possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE); possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.LEFT);                    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT);                   possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE);           possibleRoadDirections.add(RoadDirection.STRAIGHT);
+          }
+          if (vorigeRoadType == RoadType.OIL_LEFT){
+            possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(RoadDirection.LEFT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.LEFT);
+            possibleRoadTypes.add(RoadType.OIL_LEFT_SIDE);           possibleRoadDirections.add(RoadDirection.LEFT);
+            possibleRoadTypes.add(RoadType.LEFT_SIDE);               possibleRoadDirections.add(RoadDirection.LEFT);
+          }
+          if (vorigeRoadType == RoadType.OIL_RIGHT){
+            possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(RoadDirection.RIGHT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.RIGHT);
+            possibleRoadTypes.add(RoadType.OIL_RIGHT_SIDE);          possibleRoadDirections.add(RoadDirection.RIGHT);
+            possibleRoadTypes.add(RoadType.RIGHT_SIDE);              possibleRoadDirections.add(RoadDirection.RIGHT);
+          }
+          if(vorigeRoadType == RoadType.OIL_LEFT_SIDE){
+            possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT); 
+            possibleRoadTypes.add(RoadType.RIGHT);                   possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
+          }
+          if(vorigeRoadType == RoadType.OIL_RIGHT_SIDE){
+            possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.LEFT);                    possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           
           //Hier wordt een random getal gemaakt, met dit getal wordt een 'random' weg geladen.
@@ -180,7 +222,7 @@ class Spawner
       score++;
       nieuweTijd = millis();
       return true; 
-     }
+    }
     return false;
   }
   
