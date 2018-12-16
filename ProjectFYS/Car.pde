@@ -80,7 +80,7 @@ class Car
   {   
     this.speed *= 0.98;
     //De input word alleen gelezen wanneer de speler nog 'alive' is.
-    if (alive)
+    if (alive && !collision.collisionOil)
     {
       //vooruit
       if (keys['w']  || keys['W'] || keys[UP])

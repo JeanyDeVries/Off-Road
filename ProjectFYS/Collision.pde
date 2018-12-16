@@ -2,6 +2,7 @@ class Collision
 {
   boolean tutorialFinished = false;
   boolean collisionOil = false;
+  boolean oilRoad = false;
 
   Collision()
   {
@@ -16,6 +17,7 @@ class Collision
     boolean rightInRoad = false;
     boolean topInRoad = false;
     boolean bottomInRoad = false;
+    oilRoad = false;
 
     //check of de auto op de auto staat
     switch(road.type)
@@ -306,6 +308,7 @@ class Collision
         if (car.y < road.y + road.roadHeight / 2)
         {
           bottomInRoad = true;
+          oilRoad = true;
         }
 
         if (car.x >= road.x - road.oilWidth  
@@ -338,6 +341,7 @@ class Collision
         if (car.y < road.y + road.roadHeight / 2)
         {
           bottomInRoad = true;
+          oilRoad = true;
         }
         if (car.x <= road.x + road.oilWidth  &&
           car.x >= road.x &&
@@ -366,6 +370,7 @@ class Collision
         if (car.y < road.y + road.roadHeight / 2)
         {
           bottomInRoad = true;
+          oilRoad = true;
         }
         
         if (car.x >= road.x - road.oilLeftWidth &&
@@ -390,20 +395,21 @@ class Collision
         if (car.y > road.y - road.roadHeight / 2 + road.barrierWidth)
         {
           topInRoad = true;
-          }
+        }
       
-          if (car.y < road.y + road.roadHeight / 2)
-          {
-            bottomInRoad = true;
-          }
-          if(car.x > road.x && 
-              car.x < road.x + road.roadWidth/2 && 
-              car.y > road.y - road.roadHeight/2 && 
-              car.y < road.y)
-          {
-            collisionOil = true;
-          }
-          break;
+        if (car.y < road.y + road.roadHeight / 2)
+       {
+         bottomInRoad = true;
+         oilRoad = true;
+       }
+       if(car.x > road.x && 
+           car.x < road.x + road.roadWidth/2 && 
+           car.y > road.y - road.roadHeight/2 && 
+           car.y < road.y)
+       {
+         collisionOil = true;
+       }
+       break;
           
      case OIL_LEFT_SIDE:
        if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
@@ -414,6 +420,7 @@ class Collision
           if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
           {
             rightInRoad = true;
+            oilRoad = true;
           }
           if (car.y > road.y - road.roadHeight / 2 - road.barrierWidth)
           {
@@ -434,9 +441,11 @@ class Collision
           break;
         
     case OIL_RIGHT_SIDE:
+    
       if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
           {
             leftInRoad = true;
+            oilRoad = true;
           }
       
           if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
