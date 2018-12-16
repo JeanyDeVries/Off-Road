@@ -11,8 +11,7 @@ class Car
   float dy;
   float timer;
   
-  //boolean [] keys = new boolean[1024];
-
+  int huidigeFrames; 
   boolean alive;
   
   int j = 1;
@@ -37,6 +36,8 @@ class Car
     forwardCar = loadImage("car_sprite_straight.png");
     turnRightCar = loadImage("car_sprite_turnR.png");
     turnLeftCar = loadImage("car_sprite_turnL.png");
+    
+    huidigeFrames = frames;
   }
 
   void Draw()
@@ -109,12 +110,11 @@ class Car
         this.rotate += 2.5;
         carImage = turnRightCar;
       }
-    } else
+    } 
+    if(!alive)
     {
       //Death animatie.
-      timer = 0;
-      timer = millis();
-      size -= timer/1000 * 1.1;
+      size -= (frameCount - huidigeFrames)/50;
       rotate += 20;
       if (size <= 0)
       {
