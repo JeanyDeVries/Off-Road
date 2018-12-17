@@ -117,7 +117,7 @@ class Spawner
             if(vorigeRoadDirection == RoadDirection.LEFT)
             {
               possibleRoadTypes.add(RoadType.LEFT_SIDE);             possibleRoadDirections.add(vorigeRoadDirection);
-              possibleRoadTypes.add(RoadType.OIL_LEFT_SIDE);         possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.OIL_LEFT_SIDE);         possibleRoadDirections.add(vorigeRoadDirection);  
             }
             else if (vorigeRoadDirection == RoadDirection.RIGHT)
             {
@@ -125,43 +125,67 @@ class Spawner
               possibleRoadTypes.add(RoadType.OIL_RIGHT_SIDE);        possibleRoadDirections.add(vorigeRoadDirection);
             }
           }
-          if (vorigeRoadType == RoadType.OIL_STRAIGHT1){
+          if (vorigeRoadType == RoadType.OIL_STRAIGHT1)
+          {
             possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.LEFT);                    possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.RIGHT);                   possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE);           possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            if(!collision.oilRoad)
+            {
+              possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            }
           }
-          if (vorigeRoadType == RoadType.OIL_STRAIGHT2){
+          if (vorigeRoadType == RoadType.OIL_STRAIGHT2)
+          {
             possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.LEFT);                    possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.RIGHT);                   possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE);           possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            if(!collision.oilRoad)
+            {
+              possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            }
           }
-          if (vorigeRoadType == RoadType.OIL_LEFT){
+          if (vorigeRoadType == RoadType.OIL_LEFT)
+          {
             possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(RoadDirection.LEFT);
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.LEFT);
-            possibleRoadTypes.add(RoadType.OIL_LEFT_SIDE);           possibleRoadDirections.add(RoadDirection.LEFT);
             possibleRoadTypes.add(RoadType.LEFT_SIDE);               possibleRoadDirections.add(RoadDirection.LEFT);
+            if(!collision.oilRoad)
+            {
+              possibleRoadTypes.add(RoadType.OIL_LEFT_SIDE);           possibleRoadDirections.add(RoadDirection.LEFT);
+            }
           }
-          if (vorigeRoadType == RoadType.OIL_RIGHT){
+          if (vorigeRoadType == RoadType.OIL_RIGHT)
+          {
             possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(RoadDirection.RIGHT);
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.RIGHT);
-            possibleRoadTypes.add(RoadType.OIL_RIGHT_SIDE);          possibleRoadDirections.add(RoadDirection.RIGHT);
             possibleRoadTypes.add(RoadType.RIGHT_SIDE);              possibleRoadDirections.add(RoadDirection.RIGHT);
+            if(!collision.oilRoad)
+            {
+              possibleRoadTypes.add(RoadType.OIL_RIGHT_SIDE);          possibleRoadDirections.add(RoadDirection.RIGHT);
+            }
           }
-          if(vorigeRoadType == RoadType.OIL_LEFT_SIDE){
+          if(vorigeRoadType == RoadType.OIL_LEFT_SIDE)
+          {
             possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT); 
             possibleRoadTypes.add(RoadType.RIGHT);                   possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            if(!collision.oilRoad)
+            {
+              possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            }
           }
-          if(vorigeRoadType == RoadType.OIL_RIGHT_SIDE){
+          if(vorigeRoadType == RoadType.OIL_RIGHT_SIDE)
+          {
             possibleRoadTypes.add(RoadType.STRAIGHT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
             possibleRoadTypes.add(RoadType.LEFT);                    possibleRoadDirections.add(RoadDirection.STRAIGHT);
-            possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            if(!collision.oilRoad)
+            {
+              possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+            }
           }
           
           //Hier wordt een random getal gemaakt, met dit getal wordt een 'random' weg geladen.

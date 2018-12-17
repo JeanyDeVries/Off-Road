@@ -120,7 +120,7 @@ void update()
     
     car.speed *= 1.1;
     println("millis: "+ millis() + "huidigeTijd: " + tijd);
-    if(millis() - tijd > 200)
+    if(millis() - tijd > 300)
     {
       collision.collisionOil = false;
       p = 0;
