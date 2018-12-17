@@ -95,10 +95,10 @@ class Menu
     image(selected, BUTTONXPOS, buttonSelectedY, 233, 91);
     fill(0);
     textFont(fontMenu);
-    text("Play",290,327
-    );
+    text("Play",290,327);
     text("Controls",290,427);
     text("Exit",290,527);
+    text("press 'z' to select a button", 1075, 35);
     
     //zorgt ervoor dat het geluid niet door blijft spelen
     youLose.pause();

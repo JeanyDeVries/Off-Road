@@ -133,8 +133,8 @@ class Spawner
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE);           possibleRoadDirections.add(RoadDirection.STRAIGHT);
             if(!collision.oilRoad)
             {
-              possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
-              possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_RIGHT);             possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_LEFT);              possibleRoadDirections.add(RoadDirection.STRAIGHT);
             }
           }
           if (vorigeRoadType == RoadType.OIL_STRAIGHT2)
@@ -145,8 +145,8 @@ class Spawner
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE);           possibleRoadDirections.add(RoadDirection.STRAIGHT);
             if(!collision.oilRoad)
             {
-              possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
-              possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_RIGHT);             possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_LEFT);              possibleRoadDirections.add(RoadDirection.STRAIGHT);
             }
           }
           if (vorigeRoadType == RoadType.OIL_LEFT)
@@ -156,7 +156,7 @@ class Spawner
             possibleRoadTypes.add(RoadType.LEFT_SIDE);               possibleRoadDirections.add(RoadDirection.LEFT);
             if(!collision.oilRoad)
             {
-              possibleRoadTypes.add(RoadType.OIL_LEFT_SIDE);           possibleRoadDirections.add(RoadDirection.LEFT);
+              possibleRoadTypes.add(RoadType.OIL_LEFT_SIDE);         possibleRoadDirections.add(RoadDirection.LEFT);
             }
           }
           if (vorigeRoadType == RoadType.OIL_RIGHT)
@@ -166,7 +166,7 @@ class Spawner
             possibleRoadTypes.add(RoadType.RIGHT_SIDE);              possibleRoadDirections.add(RoadDirection.RIGHT);
             if(!collision.oilRoad)
             {
-              possibleRoadTypes.add(RoadType.OIL_RIGHT_SIDE);          possibleRoadDirections.add(RoadDirection.RIGHT);
+              possibleRoadTypes.add(RoadType.OIL_RIGHT_SIDE);        possibleRoadDirections.add(RoadDirection.RIGHT);
             }
           }
           if(vorigeRoadType == RoadType.OIL_LEFT_SIDE)
@@ -175,7 +175,7 @@ class Spawner
             possibleRoadTypes.add(RoadType.RIGHT);                   possibleRoadDirections.add(RoadDirection.STRAIGHT);
             if(!collision.oilRoad)
             {
-              possibleRoadTypes.add(RoadType.OIL_RIGHT);               possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_RIGHT);             possibleRoadDirections.add(RoadDirection.STRAIGHT);
             }
           }
           if(vorigeRoadType == RoadType.OIL_RIGHT_SIDE)
@@ -184,7 +184,7 @@ class Spawner
             possibleRoadTypes.add(RoadType.LEFT);                    possibleRoadDirections.add(RoadDirection.STRAIGHT);
             if(!collision.oilRoad)
             {
-              possibleRoadTypes.add(RoadType.OIL_LEFT);                possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_LEFT);              possibleRoadDirections.add(RoadDirection.STRAIGHT);
             }
           }
           
