@@ -75,6 +75,18 @@ void update()
   highscore.setup();
   highscore.draw();
 
+  //rotation wordt opgeteld bij de collision met de road. Door deze if() 
+  //wordt de rotation niet teveel zodat je niet doodgaat na teveel draaien.
+  if(car.rotate > 280)
+  {
+    car.rotate = 280;
+  }
+  
+  if(car.rotate < -100)
+  {
+    car.rotate = -100;
+  }
+  
   //de auto gaat dood wanneer die levend is en NIET collision heeft met de weg.
   if (car.alive && !collision.collidesWithRoad())  
   {
@@ -108,7 +120,7 @@ void update()
     
     car.speed *= 1.1;
     println("millis: "+ millis() + "huidigeTijd: " + tijd);
-    if(millis() - tijd > 500)
+    if(millis() - tijd > 200)
     {
       collision.collisionOil = false;
       p = 0;

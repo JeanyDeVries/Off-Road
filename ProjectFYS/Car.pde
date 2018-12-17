@@ -111,7 +111,7 @@ class Car
         carImage = turnRightCar;
       }
     } 
-    if(!alive)
+    if(!alive && !collision.collisionOil)
     {
       //Death animatie.
       size -= (frameCount - huidigeFrames)/50;

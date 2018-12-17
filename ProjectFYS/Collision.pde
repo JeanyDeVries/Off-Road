@@ -473,6 +473,7 @@ class Collision
    
    boolean spawnRoad(Road road)
    {
+     
      switch(road.type)
      {
        case LEFT_SIDE:
@@ -497,6 +498,34 @@ class Collision
         break;
         
      case RIGHT:
+         if(car.y < car.y + road.roadHeight/2 && car.y > road.y)
+         {
+           return true;
+         }
+         break;
+         
+     case OIL_LEFT_SIDE:
+         if(car.x < road.x + road.roadWidth/2 && car.x > road.x)
+         {
+           return true;
+         }
+         break;
+      
+       case OIL_RIGHT_SIDE:
+         if(car.x > road.x - road.roadWidth/2 && car.x < road.x)
+         {
+           return true;
+         }
+         break;
+         
+      case OIL_LEFT:
+        if(car.y < car.y + road.roadHeight/2 && car.y > road.y)
+         {
+           return true;
+         }
+        break;
+        
+     case OIL_RIGHT:
          if(car.y < car.y + road.roadHeight/2 && car.y > road.y)
          {
            return true;
