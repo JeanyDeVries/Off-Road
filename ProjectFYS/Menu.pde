@@ -2,6 +2,7 @@ class Menu
 {
   int timer;
   int frame = 0;
+  int frameInGame = 0;
   int i = 0;
   
   final int MENU = 0;
@@ -12,8 +13,9 @@ class Menu
   int stage = MENU;
   
   PFont title, fontMenu;
-  PImage screen, selected, menu_control, j4, button1, button2, button3, button4, button5;
+  PImage screen, selected, menu_control, j4, button1, button2, button3, button4, button5, imageBackground;
   PImage [] menuSprites;
+  PImage [] backgroundSprites;
   int screenSizeX = 1280, screenSizeY = 720;
   final int BUTTONXPOS = 175;
   final int BUTTONYPOS = 275;
@@ -40,6 +42,15 @@ class Menu
     {
       menuSprites[i] = loadImage("menu_main (1)" + (i + 1) + ".png");
     }
+    
+    backgroundSprites = new PImage[15];
+    for(int i = 0; i < backgroundSprites.length; i++)
+    {
+      backgroundSprites[i] = loadImage("Achtergrond" + (i + 1) + ".png");
+    }
+    
+    imageBackground = backgroundSprites[0];
+    
     //screen is het scherm wat er nu op dat moment staat.
     screen = menuSprites[0];
     
@@ -115,7 +126,19 @@ class Menu
   
   void playGame()
   {
-    background(160, 200, 230);
+    frames++;
+    if(frames > 10)
+    {
+      i++;
+      frames = 0;
+      imageBackground = backgroundSprites[i];
+      //Als de i tot de max van de array gaat reset die het weer zodat het een loop wordt.
+      if(i == backgroundSprites.length - 1)
+        i = 0;
+    }
+
+    //gebruik background zodat 
+    background(imageBackground);
     
     //zorgt ervoor dat het geluid niet door blijft spelen
     youLose.pause();
