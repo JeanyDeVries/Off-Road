@@ -31,11 +31,14 @@ boolean startGame = false;
 int i = 0;
 int p = 0;
 int frames = 0;
+int test = 0;
 
 void setup()
-{
+{  
   //Geeft Classes een waarde.
   size(1280, 720, P2D);
+  background(54);
+  
   RoadPreloadImages();
   menu = new Menu();
   car = new Car();
@@ -58,8 +61,13 @@ void setup()
   menuTheme.play();
 } 
 
-void update()
+void draw()
 {
+  menu.draw();
+}
+
+void update()
+{ 
   //Zorgt ervoor dat alle plaatjes vanuit het midden worden geladen.
   imageMode(CENTER);
   //Roept de verschilende de methodes aan.
@@ -127,11 +135,6 @@ void update()
   }
 }
 
-void draw()
-{
-  menu.draw();
-}
-
 void Restart()
 {
   //Restart alles opnieuw door waardes uit de setup te resetten en de array met roads te legen.
@@ -162,7 +165,7 @@ void Restart()
 
   spawner.score = 0;
   car.x = width/2;
-  car.y = 400;
+  car.y = 450;
   car.size = 75;
   car.rotate = 90;
   car.speed = 0;
@@ -274,9 +277,8 @@ void keyPressed()
 }
 
 void keyReleased()
-{ 
-  
-    keys[keyCode] = false;
+{   
+  keys[keyCode] = false;
   
   //Zorgt ervoor dat ook wordt gelezen wanneer een toets wordt losgelaten.
   if (menu.stage == 2 || menu.stage == 4) {

@@ -30,7 +30,7 @@ class Spawner
         roads.add(new Road(car.x, car.y - 1000, RoadType.LEFT, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
         roads.add(new Road(car.x, car.y - 1500, RoadType.LEFT_SIDE, RoadDirection.LEFT, millis() + lifeSpanRoad));
         roads.add(new Road(car.x - 490, car.y - 1500, RoadType.STRAIGHT_TUTORIAL_WARNING, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
-        roads.add(new Road(car.x - 490, car.y - 2000, RoadType.OBSTACLE_HOLE, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
+        roads.add(new Road(car.x - 490, car.y - 2000, RoadType.OBSTACLE_HOLE_SIDES, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
         
         tutorial = false;
       }
@@ -64,6 +64,7 @@ class Spawner
             RoadDirection vorigeRoadDirection = roads.get(roads.size()-1).direction;
             possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(vorigeRoadDirection);
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(vorigeRoadDirection);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDES_SIDEWAYS);  possibleRoadDirections.add(vorigeRoadDirection);
             if(vorigeRoadDirection == RoadDirection.LEFT)
             {
               possibleRoadTypes.add(RoadType.LEFT_SIDE);             possibleRoadDirections.add(vorigeRoadDirection);
@@ -79,11 +80,13 @@ class Spawner
           {
             possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(RoadDirection.LEFT);
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.LEFT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDES_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.LEFT);
           }
           if (vorigeRoadType == RoadType.RIGHT)
           {
             possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(RoadDirection.RIGHT);
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.RIGHT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDES_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.RIGHT);
           }
           if (vorigeRoadType == RoadType.LEFT_SIDE)
           {
@@ -114,6 +117,7 @@ class Spawner
             RoadDirection vorigeRoadDirection = roads.get(roads.size()-1).direction;
             possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(vorigeRoadDirection);
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(vorigeRoadDirection);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDES_SIDEWAYS);  possibleRoadDirections.add(vorigeRoadDirection);
             if(vorigeRoadDirection == RoadDirection.LEFT)
             {
               possibleRoadTypes.add(RoadType.LEFT_SIDE);             possibleRoadDirections.add(vorigeRoadDirection);
@@ -124,6 +128,32 @@ class Spawner
               possibleRoadTypes.add(RoadType.RIGHT_SIDE);            possibleRoadDirections.add(vorigeRoadDirection);
               possibleRoadTypes.add(RoadType.OIL_RIGHT_SIDE);        possibleRoadDirections.add(vorigeRoadDirection);
             }
+          }
+          if (vorigeRoadType == RoadType.OBSTACLE_HOLE_SIDES_SIDEWAYS)
+          {
+            RoadDirection vorigeRoadDirection = roads.get(roads.size()-1).direction;
+            possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(vorigeRoadDirection);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(vorigeRoadDirection);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDES_SIDEWAYS);  possibleRoadDirections.add(vorigeRoadDirection);
+            if(vorigeRoadDirection == RoadDirection.LEFT)
+            {
+              possibleRoadTypes.add(RoadType.LEFT_SIDE);             possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.OIL_LEFT_SIDE);         possibleRoadDirections.add(vorigeRoadDirection);  
+            }
+            else if (vorigeRoadDirection == RoadDirection.RIGHT)
+            {
+              possibleRoadTypes.add(RoadType.RIGHT_SIDE);            possibleRoadDirections.add(vorigeRoadDirection);
+              possibleRoadTypes.add(RoadType.OIL_RIGHT_SIDE);        possibleRoadDirections.add(vorigeRoadDirection);
+            }
+          }
+          if (vorigeRoadType == RoadType.OBSTACLE_HOLE_SIDES)
+          {
+              possibleRoadTypes.add(RoadType.STRAIGHT);              possibleRoadDirections.add(RoadDirection.STRAIGHT);    
+              possibleRoadTypes.add(RoadType.LEFT);                  possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.RIGHT);                 possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OBSTACLE_HOLE);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_STRAIGHT1);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
+              possibleRoadTypes.add(RoadType.OIL_STRAIGHT2);         possibleRoadDirections.add(RoadDirection.STRAIGHT);
           }
           if (vorigeRoadType == RoadType.OIL_STRAIGHT1)
           {
@@ -153,6 +183,7 @@ class Spawner
           {
             possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(RoadDirection.LEFT);
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.LEFT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDES_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.LEFT);
             possibleRoadTypes.add(RoadType.LEFT_SIDE);               possibleRoadDirections.add(RoadDirection.LEFT);
             if(!collision.oilRoad)
             {
@@ -163,6 +194,7 @@ class Spawner
           {
             possibleRoadTypes.add(RoadType.SIDEWAYS);                possibleRoadDirections.add(RoadDirection.RIGHT);
             possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.RIGHT);
+            possibleRoadTypes.add(RoadType.OBSTACLE_HOLE_SIDES_SIDEWAYS);  possibleRoadDirections.add(RoadDirection.RIGHT);
             possibleRoadTypes.add(RoadType.RIGHT_SIDE);              possibleRoadDirections.add(RoadDirection.RIGHT);
             if(!collision.oilRoad)
             {
@@ -239,7 +271,8 @@ class Spawner
     ArrayList<Road> newRoads = new ArrayList<Road>();
     for(int i = 0; i < roads.size(); i++)
     {
-      if(!timerDelete())
+      //if(!timerDelete())
+      if(true)
       {
         newRoads.add(roads.get(i));     
       }
@@ -250,7 +283,7 @@ class Spawner
   boolean timerDelete()
   {
     //Na verloop van tijd delete je de roads.
-    if((millis() > nieuweTijd+ lifeSpanRoad) && startGame && collision.tutorialFinished)
+    if((millis() > nieuweTijd + lifeSpanRoad) && startGame && collision.tutorialFinished)
     {    
       score++;
       nieuweTijd = millis();

@@ -287,6 +287,87 @@ class Collision
           }
           break;
           
+        case OBSTACLE_HOLE_SIDES:
+        
+          if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+          {
+            leftInRoad = true;
+          }
+          
+          if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+          {
+            rightInRoad = true;
+          }
+          
+          if (car.y > road.y - road.roadHeight / 2)
+          {
+            topInRoad = true;
+          }
+    
+          if (car.y < road.y + road.roadHeight / 2)
+          {
+            bottomInRoad = true;
+          }
+          
+          //left hole collision
+          if (car.x <= road.x -  road.holeSidesWidth/2
+             && car.x >= road.x - road.roadWidth/2
+             && car.y >= road.y - (road.oilHeight/2 - road.holeSidesHeight/2)
+             && car.y <= road.y + (road.oilHeight/2 + road.holeSidesHeight/2))
+          {
+            car.alive = false;
+          }  
+          
+          //right hole collision
+          if (car.x >= road.x + road.holeSidesWidth/2
+             && car.x <= road.x + road.roadWidth/2
+             && car.y >= road.y - (road.oilHeight/2 - road.holeSidesHeight/2)
+             && car.y <= road.y + (road.oilHeight/2 + road.holeSidesHeight/2))
+          {
+            car.alive = false;
+          } 
+          break;
+        
+        case OBSTACLE_HOLE_SIDES_SIDEWAYS:
+        
+          if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+          {
+            leftInRoad = true;
+          }
+      
+          if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
+          {
+            rightInRoad = true;
+          }
+          if (car.y > road.y - road.roadHeight / 2 + road.barrierWidth)
+          {
+            topInRoad = true;
+          }
+      
+          if (car.y < road.y + road.roadHeight / 2 - road.barrierWidth)
+          {
+            bottomInRoad = true;
+          }
+          
+          //down hole collision
+          if (car.y >= road.y +  road.holeSidesWidth/2
+             && car.y <= road.y + road.roadHeight/2
+             && car.x >= road.x - (road.oilHeight/2 + road.holeSidesHeight/2)
+             && car.x <= road.x + (road.oilHeight/2 - road.holeSidesHeight/2))
+          {
+            car.alive = false;
+          }  
+          
+          //top hole collision
+          if (car.y <= road.y - road.holeSidesWidth/2
+             && car.y >= road.y - road.roadHeight/2
+             && car.x >= road.x - (road.oilHeight/2 + road.holeSidesHeight/2)
+             && car.x <= road.x + (road.oilHeight/2 - road.holeSidesHeight/2))
+          {
+            car.alive = false;
+          } 
+          break;
+        
         case OIL_STRAIGHT1:
 
 
