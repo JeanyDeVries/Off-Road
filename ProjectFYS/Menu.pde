@@ -129,12 +129,12 @@ class Menu
     frames++;
     if(frames > 10)
     {
-      i++;
       frames = 0;
-      imageBackground = backgroundSprites[i];
       //Als de i tot de max van de array gaat reset die het weer zodat het een loop wordt.
       if(i == backgroundSprites.length - 1)
         i = 0;
+      imageBackground = backgroundSprites[i];
+      i++;
     }
 
     //gebruik background zodat 
