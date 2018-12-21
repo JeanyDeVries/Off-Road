@@ -10,13 +10,13 @@ class Car
   final float MAXSPEED;
   float dy;
   float timer;
-  
+
   int huidigeFrames; 
   boolean alive;
   boolean track = false;
-  
+
   int j = 1;
-  
+
   AudioSnippet carNoise;
   PImage turnLeftCar, turnRightCar, forwardCar, tireTrack;
 
@@ -29,6 +29,8 @@ class Car
     rotate = 90;
     speed = 0;
     MAXSPEED = 15;
+    
+    huidigeFrames = frames;
 
     alive = true;
 
@@ -38,8 +40,6 @@ class Car
     turnRightCar = loadImage("car_sprite_turnR.png");
     turnLeftCar  = loadImage("car_sprite_turnL.png");
     tireTrack    = loadImage("tireTrack.png");
-    
-    huidigeFrames = frames;
   }
 
   void Draw()
@@ -52,10 +52,10 @@ class Car
     image(carImage, 0, 0, size * 2, size);
     rotate(radians(-rotate));
     translate(-x, -y);
-
+    
     dy = y + speed;
   }
-  
+
   void drawTrack()
   {
     //if(track)
@@ -70,15 +70,15 @@ class Car
     float tijd = millis();
     //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
     highscore.finalscore = spawner.score;
-      highscore.savescore();
+    highscore.savescore();
 
     alive = false;
     if (tijd - millis() > 200)
     {
       menu.stage = 3;
     }
-    
-    if(j == 1)
+
+    if (j == 1)
     {
       highscore.savescore();
       j++;
@@ -111,21 +111,21 @@ class Car
       //links
       if (keys['a']  || keys['A'] || keys[LEFT])
       {
-        this.rotate -= 2.5;
+        this.rotate -= 3.0;
         carImage = turnLeftCar;
       }
 
       //rechts
       if (keys['d']  || keys['D'] || keys[RIGHT])
       {
-        this.rotate += 2.5;
+        this.rotate += 3.0;
         carImage = turnRightCar;
       }
     } 
-    if(!alive)
+    if (!alive)
     {
       //Death animatie.
-      size -= (frameCount - huidigeFrames)/50;
+      size -= (frameCount - huidigeFrames)/75;
       rotate += 20;
       if (size <= 0)
       {
