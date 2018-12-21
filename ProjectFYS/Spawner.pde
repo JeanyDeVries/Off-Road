@@ -271,8 +271,7 @@ class Spawner
     ArrayList<Road> newRoads = new ArrayList<Road>();
     for(int i = 0; i < roads.size(); i++)
     {
-      //if(!timerDelete())
-      if(true)
+      if(!timerDelete())
       {
         newRoads.add(roads.get(i));     
       }

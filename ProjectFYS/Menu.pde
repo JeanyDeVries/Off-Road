@@ -4,6 +4,7 @@ class Menu
   int frame = 0;
   int frameInGame = 0;
   int i = 0;
+  int p = 0;
   
   final int MENU = 0;
   final int CONTROLS = 1;
@@ -131,10 +132,10 @@ class Menu
     {
       frames = 0;
       //Als de i tot de max van de array gaat reset die het weer zodat het een loop wordt.
-      if(i == backgroundSprites.length - 1)
-        i = 0;
-      imageBackground = backgroundSprites[i];
-      i++;
+      if(p == backgroundSprites.length)
+        p = 0;
+      imageBackground = backgroundSprites[p];
+      p++;
     }
 
     //gebruik background zodat het over de roads wordt geplaatst.

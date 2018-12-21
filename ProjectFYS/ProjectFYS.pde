@@ -1,5 +1,5 @@
 /* 
- Gemaakt door: Jeany de Vries, Kees van Heuven, Miquel Martherus, Casper Arends en Sam van Duin
+ Gemaakt door: Jeany de Vries, Miquel Martherus, Casper Arends en Sam van Duin
  Team: Tucan
  Game: Off Road
  Klas: iG103
@@ -80,6 +80,7 @@ void update()
   spawner.Delete();
   car.ProcessInput(keys);
   car.Draw();
+  car.drawTrack();
   highscore.setup();
   highscore.draw();
 
@@ -279,6 +280,7 @@ void keyPressed()
 void keyReleased()
 {   
   keys[keyCode] = false;
+  car.track = false;
   
   //Zorgt ervoor dat ook wordt gelezen wanneer een toets wordt losgelaten.
   if (menu.stage == 2 || menu.stage == 4) {

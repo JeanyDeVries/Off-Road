@@ -4,8 +4,7 @@ class Collision
   boolean collisionOil = false;
   boolean oilRoad = false;
 
-  Collision()
-  {
+  Collision()  {
 
   }
   

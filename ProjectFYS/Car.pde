@@ -13,11 +13,12 @@ class Car
   
   int huidigeFrames; 
   boolean alive;
+  boolean track = false;
   
   int j = 1;
   
   AudioSnippet carNoise;
-  PImage turnLeftCar, turnRightCar, forwardCar;
+  PImage turnLeftCar, turnRightCar, forwardCar, tireTrack;
 
   //Variabelen van de auto declareren.
   Car()
@@ -32,10 +33,11 @@ class Car
     alive = true;
 
     //Laad de image voor de update zodat het niet elk frame uit het geheugen gehaalt hoeft te worden.
-    carImage = loadImage("car_sprite_straight.png");
-    forwardCar = loadImage("car_sprite_straight.png");
+    carImage     = loadImage("car_sprite_straight.png");
+    forwardCar   = loadImage("car_sprite_straight.png");
     turnRightCar = loadImage("car_sprite_turnR.png");
-    turnLeftCar = loadImage("car_sprite_turnL.png");
+    turnLeftCar  = loadImage("car_sprite_turnL.png");
+    tireTrack    = loadImage("tireTrack.png");
     
     huidigeFrames = frames;
   }
@@ -52,6 +54,14 @@ class Car
     translate(-x, -y);
 
     dy = y + speed;
+  }
+  
+  void drawTrack()
+  {
+    //if(track)
+    //{
+    //  image(tireTrack, (car.x - car.size/2), (car.y + car.size*2));
+    //}
   }
 
 
@@ -88,6 +98,7 @@ class Car
         this.speed++;
         //laadt bij elke toets een andere image in voor een animatie.
         carImage = forwardCar;
+        track = true;
       }
 
       //Achteruit
@@ -111,7 +122,7 @@ class Car
         carImage = turnRightCar;
       }
     } 
-    if(!alive && !collision.collisionOil)
+    if(!alive)
     {
       //Death animatie.
       size -= (frameCount - huidigeFrames)/50;
