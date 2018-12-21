@@ -26,37 +26,57 @@ ArrayList<PImage>spawn;
 int nieuweTijd;
 int tijd;
 
+PImage loadingScreen;
+
 boolean startGame = false;
 
 int i = 0;
 int p = 0;
 int frames = 0;
+int loadingTest = 0;
 
 void setup()
 {
   //Geeft Classes een waarde.
   size(1280, 720, P2D);
+  loadingScreen = loadImage("loadScreen.png");
+  background(loadingScreen);
+  
+} 
+
+void draw()
+{
+  
+  if(loadingTest == 0){
+  
   RoadPreloadImages();
   menu = new Menu();
-  car = new Car();
+  car = new Car();  
   collision = new Collision();
   spawner = new Spawner();
   highscore = new Highscore();
-  minim = new Minim(this);
+  minim = new Minim(this); 
   surface.setTitle("OFF-ROAD");
   spawn = new ArrayList<PImage>();
   
+  
   //Audio bestanden initialiseren
-  menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3");
+  menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3");  
   file1 = minim.loadSnippet("sound_start.wav");
-  buttonPress = minim.loadSnippet("menu_button.wav");
-  menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3");
-  youLose = minim.loadSnippet("youLose2.mp3");
-  gameTheme = minim.loadSnippet("koopabeach.mp3");
-  car.carNoise = minim.loadSnippet("carNoise.mp3");
-
+  buttonPress = minim.loadSnippet("menu_button.wav"); 
+  menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3"); 
+  youLose = minim.loadSnippet("youLose2.mp3");  
+  gameTheme = minim.loadSnippet("koopabeach.mp3");  
+  car.carNoise = minim.loadSnippet("carNoise.mp3");  
   menuTheme.play();
-} 
+    
+  loadingTest = 1;
+  }
+  
+  menu.draw();
+}
+
+
 
 void update()
 {
@@ -127,10 +147,7 @@ void update()
   }
 }
 
-void draw()
-{
-  menu.draw();
-}
+
 
 void Restart()
 {
