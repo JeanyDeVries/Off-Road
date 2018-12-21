@@ -125,6 +125,7 @@ class Car
     if (!alive)
     {
       //Death animatie.
+      spawner.death = true;
       size -= (frameCount - huidigeFrames)/75;
       rotate += 20;
       if (size <= 0)

@@ -11,6 +11,7 @@ class Spawner
   boolean tutorial = true;
   boolean spawnRoad = false;
   boolean disabledespawner = true;
+  boolean death = false;
   
   Spawner()
   {
@@ -282,7 +283,7 @@ class Spawner
   boolean timerDelete()
   {
     //Na verloop van tijd delete je de roads.
-    if((millis() > nieuweTijd + lifeSpanRoad) && startGame && collision.tutorialFinished)
+    if((millis() > nieuweTijd + lifeSpanRoad) && startGame && collision.tutorialFinished && !death)
     {    
       score++;
       nieuweTijd = millis();
@@ -297,6 +298,7 @@ class Spawner
     roads.add(new Road(car.x, car.y + 500, RoadType.STRAIGHT_TUTORIAL_START, RoadDirection.STRAIGHT, millis() + lifeSpanRoad));
     lifeSpanRoad = 700;
     tutorial = true;
+    death = false;
   }
   
   void setTimer(int timeInMillis)

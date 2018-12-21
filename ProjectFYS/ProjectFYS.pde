@@ -126,7 +126,6 @@ void update()
     {
       car.rotate = -100;
     }
-    frameCount = 0;
   }
 
   if (!car.alive)
