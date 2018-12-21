@@ -21,6 +21,8 @@ enum RoadType
     OBSTACLE_HOLE_CRACK,
     OBSTACLE_HOLE_SIDEWAYS, 
     OBSTACLE_HOLE_SIDEWAYS_CRACK,
+    OBSTACLE_HOLE_SIDES,
+    OBSTACLE_HOLE_SIDES_SIDEWAYS,
     OIL_STRAIGHT1,
     OIL_STRAIGHT1_CRACK,
     OIL_STRAIGHT2,
@@ -58,6 +60,8 @@ PImage imgObstacleHole;
 PImage imgObstacleHoleCrack;
 PImage imgObstacleHoleSideways;
 PImage imgObstacleHoleSidewaysCrack;
+PImage imgObstacleHolesSide;
+PImage imgObstacleHolesSideSideways;
 PImage imgOilStraight1;
 PImage imgOilStraight1Crack;
 PImage imgOilStraight2;
@@ -98,6 +102,8 @@ void RoadPreloadImages()
   imgOilRight                   = loadImage("oil_right.png");
   imgOilLeftSide                = loadImage("oil_left_side.png");
   imgOilRightSide               = loadImage("oil_right_side.png");
+  imgObstacleHolesSide          = loadImage("Obstacle_hole_sides.png");
+  imgObstacleHolesSideSideways  = loadImage("Obstacle_hole_sides_Sideways.png");
 }
 
 class Road
@@ -125,6 +131,8 @@ class Road
   float oilLeftHeight = 225;
   float oilRightWidth = 233;
   float oilRightHeight = 240;
+  float holeSidesWidth = 150;
+  float holeSidesHeight = 91;
   
   int destroyTime;
   float timermilliSec = millis();
@@ -195,6 +203,12 @@ class Road
       break;
     case OBSTACLE_HOLE_SIDEWAYS_CRACK:
       image = imgObstacleHoleSidewaysCrack;
+      break;
+    case OBSTACLE_HOLE_SIDES:
+      image = imgObstacleHolesSide;
+      break;
+   case OBSTACLE_HOLE_SIDES_SIDEWAYS:
+      image = imgObstacleHolesSideSideways;
       break;
     case OIL_STRAIGHT1:
       image = imgOilStraight1;

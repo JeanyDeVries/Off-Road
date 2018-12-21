@@ -91,12 +91,12 @@ class Menu
     //Om de 5 frames wordt de volgende sprite geladen voor het menu, wat zorgt voor een animatie.
     if(frame > 5)
     {
-      i++;
-      frame = 0;
-      screen = menuSprites[i];
       //Als de i tot de max van de array gaat reset die het weer zodat het een loop wordt.
       if(i == menuSprites.length - 1)
         i = 0;
+      frame = 0;
+      screen = menuSprites[i];
+      i++;
     }
     screen = menuSprites[i];
     image(screen, 0,0, screenSizeX, screenSizeY);
@@ -129,15 +129,15 @@ class Menu
     frames++;
     if(frames > 10)
     {
-      i++;
       frames = 0;
-      imageBackground = backgroundSprites[i];
       //Als de i tot de max van de array gaat reset die het weer zodat het een loop wordt.
       if(i == backgroundSprites.length - 1)
         i = 0;
+      imageBackground = backgroundSprites[i];
+      i++;
     }
 
-    //gebruik background zodat 
+    //gebruik background zodat het over de roads wordt geplaatst.
     background(imageBackground);
     
     //zorgt ervoor dat het geluid niet door blijft spelen
