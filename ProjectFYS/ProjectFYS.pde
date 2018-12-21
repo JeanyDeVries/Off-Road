@@ -1,5 +1,5 @@
 /* 
- Gemaakt door: Jeany de Vries, Kees van Heuven, Miquel Martherus, Casper Arends en Sam van Duin
+ Gemaakt door: Jeany de Vries, Miquel Martherus, Casper Arends en Sam van Duin
  Team: Tucan
  Game: Off Road
  Klas: iG103
@@ -26,84 +26,109 @@ ArrayList<PImage>spawn;
 int nieuweTijd;
 int tijd;
 
+PImage loadingScreen;
+
 boolean startGame = false;
 
 int i = 0;
 int p = 0;
 int frames = 0;
-int test = 0;
+
+int loadingTest = 0;
+
 
 void setup()
 {  
   //Geeft Classes een waarde.
   size(1280, 720, P2D);
-  background(54);
-  
-  RoadPreloadImages();
-  menu = new Menu();
-  car = new Car();
-  collision = new Collision();
-  spawner = new Spawner();
-  highscore = new Highscore();
-  minim = new Minim(this);
-  surface.setTitle("OFF-ROAD");
-  spawn = new ArrayList<PImage>();
-  
-  //Audio bestanden initialiseren
-  menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3");
-  file1 = minim.loadSnippet("sound_start.wav");
-  buttonPress = minim.loadSnippet("menu_button.wav");
-  menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3");
-  youLose = minim.loadSnippet("youLose2.mp3");
-  gameTheme = minim.loadSnippet("koopabeach.mp3");
-  car.carNoise = minim.loadSnippet("carNoise.mp3");
-
-  menuTheme.play();
+  loadingScreen = loadImage("loadScreen.png");
+  background(loadingScreen);
 } 
 
 void draw()
 {
+
+  if (loadingTest == 0) {
+
+    RoadPreloadImages();
+    menu = new Menu();
+    car = new Car();  
+    collision = new Collision();
+    spawner = new Spawner();
+    highscore = new Highscore();
+    minim = new Minim(this); 
+    surface.setTitle("OFF-ROAD");
+    spawn = new ArrayList<PImage>();
+
+
+    //Audio bestanden initialiseren
+    menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3");  
+    file1 = minim.loadSnippet("sound_start.wav");
+    buttonPress = minim.loadSnippet("menu_button.wav"); 
+    menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3"); 
+    youLose = minim.loadSnippet("youLose2.mp3");  
+    gameTheme = minim.loadSnippet("koopabeach.mp3");  
+    car.carNoise = minim.loadSnippet("carNoise.mp3");  
+    menuTheme.play();
+
+    loadingTest = 1;
+  }
+
   menu.draw();
 }
+
 
 void update()
 { 
   //Zorgt ervoor dat alle plaatjes vanuit het midden worden geladen.
   imageMode(CENTER);
   //Roept de verschilende de methodes aan.
-  
+
   frames++;
-  
+
   spawner.spawn();
   spawner.Update();
   spawner.Render();
   spawner.Delete();
   car.ProcessInput(keys);
   car.Draw();
+  car.drawTrack();
   highscore.setup();
   highscore.draw();
 
-  //rotation wordt opgeteld bij de collision met de road. Door deze if() 
-  //wordt de rotation niet teveel zodat je niet doodgaat na teveel draaien.
-  if(car.rotate > 280)
-  {
-    car.rotate = 280;
-  }
-  
-  if(car.rotate < -100)
-  {
-    car.rotate = -100;
-  }
-  
+  ////rotation wordt opgeteld bij de collision met de road. Door deze if() 
+  ////wordt de rotation niet teveel zodat je niet doodgaat na teveel draaien.
+  //if(car.rotate > 280)
+  //{
+  //  car.rotate = 280;
+  //}
+
+  //if(car.rotate < -100)
+  //{
+  //  car.rotate = -100;
+  //}
+
   //de auto gaat dood wanneer die levend is en NIET collision heeft met de weg.
   if (car.alive && !collision.collidesWithRoad())  
   {
     car.Death();
     youLose.rewind();
     youLose.play();
+
+    //rotation wordt opgeteld bij de collision met de road. Door deze if() 
+    //wordt de rotation niet teveel zodat je niet doodgaat na teveel draaien.
+    if (car.rotate > 280)
+    {
+      car.rotate = 280;
+    }
+
+    if (car.rotate < -100)
+    {
+      car.rotate = -100;
+    }
   }
-  
-  if(!car.alive)
+
+  if (!car.alive)
   {
     youLose.rewind();
     car.Death();
@@ -117,17 +142,17 @@ void update()
     startGame = true;
     nieuweTijd = millis();
   }
-  
-  if(collision.collisionOil)
+
+  if (collision.collisionOil)
   {
-    if(p ==0)
+    if (p ==0)
     {
       tijd = millis();
       p++;
     }
-    
+
     car.speed *= 1.1;
-    if(millis() - tijd > 300)
+    if (millis() - tijd > 300)
     {
       collision.collisionOil = false;
       p = 0;
@@ -135,16 +160,17 @@ void update()
   }
 }
 
+
 void Restart()
 {
   //Restart alles opnieuw door waardes uit de setup te resetten en de array met roads te legen.
   spawner.restart();
   spawner.lifeSpanRoad = 800;
-  
+
   car.carImage = loadImage("car_sprite_straight.png");
-  
+
   car.huidigeFrames = frames;
-  
+
   //zet de keys op false zodat de auto niet blijft rijden na het restarten.
   //Up
   keys[119] = false;
@@ -173,16 +199,16 @@ void Restart()
 
   startGame = false;
   i = 0;
-  
+
   car.j = 1;
-  
+
   collision.tutorialFinished = false;
   collision.collisionOil = false;
 }
 
 void keyPressed()
 {  
-  
+
   keys[keyCode] = true;
 
   if (menu.stage == 0) { //Bevries het menu wanneer de besturing op het scherm staat.
@@ -235,7 +261,7 @@ void keyPressed()
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
       //spawner.setTimer(spawner.spawnRoad);
       nieuweTijd = millis();
-      
+
       //Overgang van menu audio naar ingame audio
       gameTheme.play();
       menuTheme.pause();
@@ -279,7 +305,8 @@ void keyPressed()
 void keyReleased()
 {   
   keys[keyCode] = false;
-  
+  car.track = false;
+
   //Zorgt ervoor dat ook wordt gelezen wanneer een toets wordt losgelaten.
   if (menu.stage == 2 || menu.stage == 4) {
     if (key < keys.length)

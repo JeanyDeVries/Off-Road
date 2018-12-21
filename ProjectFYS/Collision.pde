@@ -3,14 +3,16 @@ class Collision
   boolean tutorialFinished = false;
   boolean collisionOil = false;
   boolean oilRoad = false;
+  boolean deathObstacle = false;
 
-  Collision()
-  {
+  Collision()  {
 
   }
   
   boolean collidesWithRoad()
   {
+    frameCount = 0;
+    
     for (Road road : spawner.roads)
     {
     boolean leftInRoad = false;
