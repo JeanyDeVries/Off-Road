@@ -28,13 +28,13 @@ void savescore()
       //hier maak je van de string een int.
       highScoreNummer[i] = Integer.parseInt(highScore[i]);
     }
-
+    
     //sort zorgt ervoor dat het van klein naar groot gaat.
     highScoreNummer = sort(highScoreNummer);
 
      for (int i = 0; i < highScoreNummer.length; i++) 
      {
-     highScore[i] = "" + highScoreNummer[i];
+       highScore[i] = "" + highScoreNummer[i];
      }
      
      //de reverse is zodat het hoog naar laag gaat.

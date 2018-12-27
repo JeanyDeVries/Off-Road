@@ -96,13 +96,8 @@ void update()
   highscore.setup();
   highscore.draw();
 
-  //de auto gaat dood wanneer die levend is en NIET collision heeft met de weg.
-  if (car.alive && !collision.collidesWithRoad())  
-  {
-    car.Death();
-  }
-
-  if (!car.alive)
+  //de auto gaat dood wanneer die niet levend is of NIET collision heeft met de weg.
+  if (!car.alive || !collision.collidesWithRoad())
   {
     car.Death();
   }
@@ -183,11 +178,13 @@ void keyPressed()
 {  
   keys[keyCode] = true;
   
+  //schakel escape uit, zodat je niet de game kan afsluiten
   if(menu.stage != 2)
   {
     if(key == ESC)
       key=0;
   }
+  //Als de speler escape klikt wanneer de game runt gaat die naar de inGameMenu.
   else
   {
     if(key == ESC)
@@ -233,7 +230,7 @@ void keyPressed()
 
   if (menu.stage == 5)
   {
-    if ( menu.buttonSelectedYRestart!= menu.BUTTONYRESTART)
+    if ( menu.buttonSelectedYRestart != menu.BUTTONYRESTART)
     {
       if (key == 'w'|| key ==  'W' || keys[UP])  
       {
@@ -258,7 +255,6 @@ void keyPressed()
     if (menu.buttonSelectedY == 275 && (key == 'z' || key == 'Z')) { //verplaats de selected knop naar 'play', druk op 'a' om het spel te starten
       menu.stage = 2;
       //Geeft aan op welke tijd de nieuwe Roads moeten spawnen.
-      //spawner.setTimer(spawner.spawnRoad);
       nieuweTijd = millis();
 
       //Overgang van menu audio naar ingame audio

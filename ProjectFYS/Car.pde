@@ -16,6 +16,7 @@ class Car
   boolean track = false;
 
   int j = 1;
+  int saveScore = 0;
 
   AudioSnippet carNoise;
   PImage turnLeftCar, turnRightCar, forwardCar, tireTrack;
@@ -70,7 +71,11 @@ class Car
     float tijd = millis();
     //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
     highscore.finalscore = spawner.score;
-    highscore.savescore();
+    if(saveScore == 1)
+    {
+      highscore.savescore();
+      saveScore = 0;
+    }
 
     alive = false;
     if (tijd - millis() > 200)

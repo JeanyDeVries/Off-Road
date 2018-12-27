@@ -60,7 +60,7 @@ class Menu
     
     menu_control = loadImage("menu_controlUI.png");
     selected = loadImage("menu_buttonSelected.png");
-    selectedInGameMenu = loadImage("menu_buttonSelected.png");
+    selectedInGameMenu = loadImage("gameMenuButtonPressed.png");
     fontMenu = createFont("advanced_pixel-7.ttf",42);
     textAlign(CENTER);
     
