@@ -96,43 +96,15 @@ void update()
   highscore.setup();
   highscore.draw();
 
-  ////rotation wordt opgeteld bij de collision met de road. Door deze if() 
-  ////wordt de rotation niet teveel zodat je niet doodgaat na teveel draaien.
-  //if(car.rotate > 280)
-  //{
-  //  car.rotate = 280;
-  //}
-
-  //if(car.rotate < -100)
-  //{
-  //  car.rotate = -100;
-  //}
-
   //de auto gaat dood wanneer die levend is en NIET collision heeft met de weg.
   if (car.alive && !collision.collidesWithRoad())  
   {
     car.Death();
-    youLose.rewind();
-    youLose.play();
-
-    //rotation wordt opgeteld bij de collision met de road. Door deze if() 
-    //wordt de rotation niet teveel zodat je niet doodgaat na teveel draaien.
-    if (car.rotate > 280)
-    {
-      car.rotate = 280;
-    }
-
-    if (car.rotate < -100)
-    {
-      car.rotate = -100;
-    }
   }
 
   if (!car.alive)
   {
-    youLose.rewind();
     car.Death();
-    youLose.play();
   }
 
   //Begin pas de game als de speler naar voren of achteruit heeft gereden.
@@ -164,6 +136,7 @@ void update()
 void Restart()
 {
   //Restart alles opnieuw door waardes uit de setup te resetten en de array met roads te legen.
+  youLose.rewind();
   spawner.restart();
   spawner.lifeSpanRoad = 800;
 
@@ -208,8 +181,21 @@ void Restart()
 
 void keyPressed()
 {  
-
   keys[keyCode] = true;
+  
+  if(menu.stage != 2)
+  {
+    if(key == ESC)
+      key=0;
+  }
+  else
+  {
+    if(key == ESC)
+    {
+      key=0;
+      menu.stage = 5;
+    }
+  }
 
   if (menu.stage == 0) { //Bevries het menu wanneer de besturing op het scherm staat.
     //Deze if-statements zorgen ervoor dat de image van button-selected in de grenzen blijft
@@ -232,8 +218,20 @@ void keyPressed()
       }
     }
   }
+  
+  if(menu.stage == 3)
+  {
+    //als een (kan alle keys zijn) key wordt ingevoerd restart de game.
+    if(keyPressed)
+    {
+      Restart();
+      gameTheme.play();
+      gameTheme.rewind();
+      menu.stage = 2;
+    }
+  }
 
-  if (menu.stage == 3)
+  if (menu.stage == 5)
   {
     if ( menu.buttonSelectedYRestart!= menu.BUTTONYRESTART)
     {
@@ -244,7 +242,8 @@ void keyPressed()
         buttonPress.play();
       }
     }
-    if (menu.buttonSelectedYRestart != menu.BUTTONYRESTART + 100)
+    
+    if (menu.buttonSelectedYRestart != menu.BUTTONYRESTART + 200)
     {
       if (key == 's'|| key ==  'S' || keys[DOWN])  
       {
@@ -276,27 +275,36 @@ void keyPressed()
     }
   }
 
-  if (menu.stage == 3) { 
+  if (menu.stage == 5) 
+  {
+    //checkt of de speler de continue knop drukt
+    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART && (key == 'z' || key == 'Z')) 
+    { 
+      menu.stage = 2;
+    }
+
     //check of de speler de menu button klikt.
-    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && (key == 'z' || key == 'Z')) { 
+    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 100 && (key == 'z' || key == 'Z')) 
+    {
       menu.stage = 0;
       imageMode(CORNER);
       textAlign(CENTER);
       Restart();
+      gameTheme.pause();
+      gameTheme.rewind();
       menuTheme.play();
       menuTheme.rewind();
     }
-
-    //check of de speler de restart button klikt.
-    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART && (key == 'z' || key == 'Z')) {
-      menu.stage = 2;
-      Restart();
-      gameTheme.play();
-      gameTheme.loop();
+    
+    //check of de speler de quit button klikt.
+    if (menu.buttonSelectedYRestart == menu.BUTTONYRESTART + 200 && (key == 'z' || key == 'Z'))
+    { 
+      menu.stage = 4;
     }
   }
 
-  if (menu.stage == 2) {
+  if (menu.stage == 2) 
+  {
     if (key < keys.length)//Dit doen we zodat als je bijvoorbeeld alt F4 drukt het spel niet afsluit.
       keys[key] = true;
   }

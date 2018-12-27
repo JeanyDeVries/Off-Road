@@ -120,7 +120,7 @@ class Road
   float y;
   float rotationSpeed;
   float holeWidth = 150;
-  float holeHeight = 374;
+  float holeHeight = 300;
   float oilWidth = 211;
   float oilHeight = 218;
   float oilLeftSideWidth = 172;
@@ -131,8 +131,8 @@ class Road
   float oilLeftHeight = 225;
   float oilRightWidth = 233;
   float oilRightHeight = 240;
-  float holeSidesWidth = 150;
-  float holeSidesHeight = 91;
+  float holeSidesWidth = 120;
+  float holeSidesHeight = 150;
   
   int destroyTime;
   float timermilliSec = millis();

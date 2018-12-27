@@ -125,13 +125,14 @@ class Car
     if (!alive)
     {
       //Death animatie.
+      gameTheme.pause();
+      youLose.play();
       spawner.death = true;
       size -= (frameCount - huidigeFrames)/25;
       rotate += 20;
       if (size <= 0)
       {
         size = 0;
-        youLose.play();
         menu.stage = 3;
       }
     }

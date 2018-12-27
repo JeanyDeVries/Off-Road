@@ -26,12 +26,12 @@ class Collision
     {
       case STRAIGHT_TUTORIAL_START:
       
-        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        if(car.x> road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
         }
         
-        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x  < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -49,12 +49,12 @@ class Collision
        
      case STRAIGHT_TUTORIAL_ROTATE:
       
-        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        if(car.x > road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
         }
         
-        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -72,12 +72,12 @@ class Collision
      
      case STRAIGHT_TUTORIAL_WARNING:
       
-        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        if(car.x > road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
         }
         
-        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -97,12 +97,12 @@ class Collision
         
       case STRAIGHT:
       
-        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        if(car.x > road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
         }
         
-        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -120,12 +120,12 @@ class Collision
         
       case SIDEWAYS:
       
-        if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+        if(car.x > road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
         }
     
-        if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -143,12 +143,12 @@ class Collision
         
       case LEFT:
       
-        if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+        if(car.x > road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
         }
     
-        if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
+        if(car.x < road.x + road.roadWidth / 2 + road.barrierWidth)
         {
           rightInRoad = true;
         }
@@ -166,12 +166,12 @@ class Collision
       
       case LEFT_SIDE:
       
-        if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2 + road.barrierWidth)
+        if(car.x > road.x - road.roadWidth / 2 + road.barrierWidth)
         {
           leftInRoad = true;
         }
       
-        if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -188,12 +188,12 @@ class Collision
       
       case RIGHT:
       
-        if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2 + road.barrierWidth)
+        if(car.x > road.x - road.roadWidth / 2 + road.barrierWidth)
         {
           leftInRoad = true;
         }
     
-        if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -211,12 +211,12 @@ class Collision
         
         case RIGHT_SIDE:
         
-          if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+          if(car.x > road.x - road.roadWidth / 2)
           {
             leftInRoad = true;
           }
       
-          if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
+          if(car.x < road.x + road.roadWidth / 2 + road.barrierWidth)
           {
             rightInRoad = true;
           }
@@ -234,12 +234,12 @@ class Collision
         
         case OBSTACLE_HOLE:
         
-          if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+          if(car.x > road.x - road.roadWidth / 2)
           {
             leftInRoad = true;
           }
           
-          if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
+          if(car.x < road.x + road.roadWidth / 2)
           {
             rightInRoad = true;
           }
@@ -263,12 +263,12 @@ class Collision
         
         case OBSTACLE_HOLE_SIDEWAYS:
         
-          if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+          if(car.x > road.x - road.roadWidth / 2)
           {
             leftInRoad = true;
           }
       
-          if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
+          if(car.x < road.x + road.roadWidth / 2)
           {
             rightInRoad = true;
           }
@@ -291,12 +291,12 @@ class Collision
           
         case OBSTACLE_HOLE_SIDES:
         
-          if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+          if(car.x > road.x - road.roadWidth / 2)
           {
             leftInRoad = true;
           }
           
-          if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+          if(car.x < road.x + road.roadWidth / 2)
           {
             rightInRoad = true;
           }
@@ -312,19 +312,19 @@ class Collision
           }
           
           //left hole collision
-          if (car.x <= road.x -  road.holeSidesWidth/2
+          if (car.x <= road.x -  road.holeSidesWidth
              && car.x >= road.x - road.roadWidth/2
-             && car.y >= road.y - (road.oilHeight/2 - road.holeSidesHeight/2)
-             && car.y <= road.y + (road.oilHeight/2 + road.holeSidesHeight/2))
+             && car.y >= road.y - road.holeSidesHeight
+             && car.y <= road.y + road.holeSidesHeight)
           {
             car.alive = false;
           }  
           
           //right hole collision
-          if (car.x >= road.x + road.holeSidesWidth/2
+          if (car.x >= road.x + road.holeSidesWidth
              && car.x <= road.x + road.roadWidth/2
-             && car.y >= road.y - (road.oilHeight/2 - road.holeSidesHeight/2)
-             && car.y <= road.y + (road.oilHeight/2 + road.holeSidesHeight/2))
+             && car.y >= road.y - road.holeSidesHeight
+             && car.y <= road.y + road.holeSidesHeight)
           {
             car.alive = false;
           } 
@@ -332,12 +332,12 @@ class Collision
         
         case OBSTACLE_HOLE_SIDES_SIDEWAYS:
         
-          if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+          if(car.x > road.x - road.roadWidth / 2)
           {
             leftInRoad = true;
           }
       
-          if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
+          if(car.x < road.x + road.roadWidth / 2)
           {
             rightInRoad = true;
           }
@@ -352,19 +352,19 @@ class Collision
           }
           
           //down hole collision
-          if (car.y >= road.y +  road.holeSidesWidth/2
+          if (car.y >= road.y +  road.holeSidesWidth
              && car.y <= road.y + road.roadHeight/2
-             && car.x >= road.x - (road.oilHeight/2 + road.holeSidesHeight/2)
-             && car.x <= road.x + (road.oilHeight/2 - road.holeSidesHeight/2))
+             && car.x >= road.x - road.holeSidesHeight
+             && car.x <= road.x + road.holeSidesHeight)
           {
             car.alive = false;
           }  
           
           //top hole collision
-          if (car.y <= road.y - road.holeSidesWidth/2
+          if (car.y <= road.y - road.holeSidesWidth
              && car.y >= road.y - road.roadHeight/2
-             && car.x >= road.x - (road.oilHeight/2 + road.holeSidesHeight/2)
-             && car.x <= road.x + (road.oilHeight/2 - road.holeSidesHeight/2))
+             && car.x >= road.x - road.holeSidesHeight
+             && car.x <= road.x + road.holeSidesHeight)
           {
             car.alive = false;
           } 
@@ -373,12 +373,12 @@ class Collision
         case OIL_STRAIGHT1:
 
 
-        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        if(car.x > road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
         }
         
-        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -406,12 +406,12 @@ class Collision
 
       case OIL_STRAIGHT2:
 
-        if(car.x - car.size/2 + car.rotate > road.x - road.roadWidth / 2)
+        if(car.x > road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
         }
         
-        if(car.x - car.size*2 + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -436,12 +436,12 @@ class Collision
         break;
      
      case OIL_LEFT:
-       if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+       if(car.x > road.x - road.roadWidth / 2)
         {
           leftInRoad = true;
         }
     
-        if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
+        if(car.x < road.x + road.roadWidth / 2 + road.barrierWidth)
         {
           rightInRoad = true;
         }
@@ -466,12 +466,12 @@ class Collision
         break;
         
      case OIL_RIGHT:
-       if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2 + road.barrierWidth)
+       if(car.x > road.x - road.roadWidth / 2 + road.barrierWidth)
         {
           leftInRoad = true;
         }
     
-        if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2)
+        if(car.x < road.x + road.roadWidth / 2)
         {
           rightInRoad = true;
         }
@@ -495,12 +495,12 @@ class Collision
        break;
           
      case OIL_LEFT_SIDE:
-       if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+       if(car.x > road.x - road.roadWidth / 2)
           {
             leftInRoad = true;
           }
       
-          if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
+          if(car.x < road.x + road.roadWidth / 2 + road.barrierWidth)
           {
             rightInRoad = true;
             oilRoad = true;
@@ -525,13 +525,13 @@ class Collision
         
     case OIL_RIGHT_SIDE:
     
-      if(car.x - car.size + car.rotate > road.x - road.roadWidth / 2)
+      if(car.x > road.x - road.roadWidth / 2)
           {
             leftInRoad = true;
             oilRoad = true;
           }
       
-          if(car.x - car.size + car.rotate < road.x + road.roadWidth / 2 + road.barrierWidth)
+          if(car.x < road.x + road.roadWidth / 2 + road.barrierWidth)
           {
             rightInRoad = true;
           }
