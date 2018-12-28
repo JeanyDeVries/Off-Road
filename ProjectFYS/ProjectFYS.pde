@@ -47,7 +47,7 @@ void setup()
 
 void draw()
 {
-
+  //load de afbeeldingen etc maar 1 keer wanneer de loadingScreen aanstaat.
   if (loadingTest == 0) {
 
     RoadPreloadImages();
