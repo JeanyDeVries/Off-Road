@@ -19,7 +19,6 @@ Highscore highscore;
 Spawner spawner;
 Menu menu;
 Collision collision;
-//boolean[] keysPressed = new boolean[256];
 boolean [] keys = new boolean[1024];
 
 ArrayList<PImage>spawn;
@@ -35,6 +34,8 @@ int p = 0;
 int frames = 0;
 
 int loadingTest = 0;
+
+ArrayList<Track> tracks = new ArrayList<Track>();
 
 
 void setup()
@@ -91,7 +92,6 @@ void update()
   spawner.Render();
   spawner.Delete();
   car.ProcessInput(keys);
-  car.Draw();
   car.drawTrack();
   highscore.setup();
   highscore.draw();
@@ -112,6 +112,8 @@ void update()
 
   if (collision.collisionOil)
   {
+    car.spawnTrack = true;
+    
     if (p ==0)
     {
       tijd = millis();
@@ -125,6 +127,15 @@ void update()
       p = 0;
     }
   }
+  
+  for (Track t : tracks) 
+  {
+    t.update();
+    t.show();
+  }
+  
+  //doe car,craw als laatste zodat je de tracks die net boven de car zit niet ziet
+  car.Draw();
 }
 
 
@@ -309,7 +320,8 @@ void keyPressed()
 void keyReleased()
 {   
   keys[keyCode] = false;
-  car.track = false;
+  car.spawnTrack = false;
+  car.showGas = false;
 
   //Zorgt ervoor dat ook wordt gelezen wanneer een toets wordt losgelaten.
   if (menu.stage == 2 || menu.stage == 4) {

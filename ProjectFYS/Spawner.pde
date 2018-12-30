@@ -3,8 +3,6 @@ class Spawner
   int lifeSpanRoad = 550;
   
   ArrayList<Road> roads = new ArrayList<Road>();
-  Timer spawnTimer;
-  Timer deleteRoad;
   int score;
   float huidigeTijd; 
   
@@ -262,7 +260,7 @@ class Spawner
     {
       road.Update();
       //check of de car collision heeft met de road, zo ja spawn dan de road erna.
-      spawnRoad = collision.spawnRoad(road);
+      spawnRoad = collision.spawnRoad(road); 
     }
   }
   
@@ -299,10 +297,5 @@ class Spawner
     lifeSpanRoad = 700;
     tutorial = true;
     death = false;
-  }
-  
-  void setTimer(int timeInMillis)
-  {
-    spawnTimer = new Timer(timeInMillis);
   }
 }

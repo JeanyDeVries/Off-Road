@@ -13,7 +13,8 @@ class Car
 
   int huidigeFrames; 
   boolean alive;
-  boolean track = false;
+  boolean spawnTrack = false;
+  boolean showGas = false;
 
   int j = 1;
   int saveScore = 0;
@@ -59,10 +60,18 @@ class Car
 
   void drawTrack()
   {
-    //if(track)
-    //{
-    //  image(tireTrack, (car.x - car.size/2), (car.y + car.size*2));
-    //}
+    if(car.spawnTrack || showGas)
+    {
+      tracks.add(new Track(car.x, car.y));
+      //if(tracks.size() > 50)
+      //{
+      //  tracks.remove(0);
+      //}
+    }
+    else
+    {
+      tracks.clear();
+    }
   }
 
 
@@ -103,7 +112,8 @@ class Car
         this.speed++;
         //laadt bij elke toets een andere image in voor een animatie.
         carImage = forwardCar;
-        track = true;
+        showGas = true;
+        //car.spawnTrack = true;
       }
 
       //Achteruit
