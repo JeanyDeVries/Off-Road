@@ -81,6 +81,9 @@ void draw()
 
 void update()
 { 
+  println("spawnTrack: " + car.spawnTrack);
+  println("showGas : " + car.showGas);
+  
   //Zorgt ervoor dat alle plaatjes vanuit het midden worden geladen.
   imageMode(CENTER);
   //Roept de verschilende de methodes aan.
@@ -112,6 +115,11 @@ void update()
 
   if (collision.collisionOil)
   {
+    //keys op false zetten zodat de boolean showGas niet ook aan kan gaan.
+    keys[119] = false;
+    keys[87] = false;
+    keys[UP] = false;
+    
     car.spawnTrack = true;
     
     if (p ==0)
@@ -126,6 +134,11 @@ void update()
       collision.collisionOil = false;
       p = 0;
     }
+  }
+  else
+  {
+    //een else statement, zodat de boolean niet true blijft en constant een track nog laat zien.
+    car.spawnTrack = false;
   }
   
   for (Track t : tracks) 
@@ -320,7 +333,7 @@ void keyPressed()
 void keyReleased()
 {   
   keys[keyCode] = false;
-  car.spawnTrack = false;
+  //car.spawnTrack = false;
   car.showGas = false;
 
   //Zorgt ervoor dat ook wordt gelezen wanneer een toets wordt losgelaten.

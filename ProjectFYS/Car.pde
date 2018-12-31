@@ -63,10 +63,13 @@ class Car
     if(car.spawnTrack || showGas)
     {
       tracks.add(new Track(car.x, car.y));
-      //if(tracks.size() > 50)
-      //{
-      //  tracks.remove(0);
-      //}
+      if(spawnTrack)
+      {
+        if(tracks.size() > 20)
+        {
+          tracks.remove(0);
+        }
+      }
     }
     else
     {
@@ -113,7 +116,6 @@ class Car
         //laadt bij elke toets een andere image in voor een animatie.
         carImage = forwardCar;
         showGas = true;
-        //car.spawnTrack = true;
       }
 
       //Achteruit

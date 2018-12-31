@@ -155,6 +155,7 @@ class Menu
     //speelt daadwerkelijk het spel
     update();
     
+    fill(0);
     textSize(40);
     text("Press esc for menu", 50, 100);
   }

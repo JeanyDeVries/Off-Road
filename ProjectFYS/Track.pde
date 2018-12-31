@@ -1,7 +1,5 @@
 class Track
-{ 
-  PImage track = loadImage("tireTrack.png");
-  
+{   
   float x;
   float y;
   ArrayList<PVector> history;
