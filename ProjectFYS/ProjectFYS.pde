@@ -81,9 +81,6 @@ void draw()
 
 void update()
 { 
-  println("spawnTrack: " + car.spawnTrack);
-  println("showGas : " + car.showGas);
-  
   //Zorgt ervoor dat alle plaatjes vanuit het midden worden geladen.
   imageMode(CENTER);
   //Roept de verschilende de methodes aan.
@@ -115,11 +112,8 @@ void update()
 
   if (collision.collisionOil)
   {
-    //keys op false zetten zodat de boolean showGas niet ook aan kan gaan.
-    keys[119] = false;
-    keys[87] = false;
-    keys[UP] = false;
-    
+    //zet het hier op false zodat als je W indrukt je alsnog de track ziet.
+    car.showGas = false;;
     car.spawnTrack = true;
     
     if (p ==0)
@@ -158,6 +152,8 @@ void Restart()
   youLose.rewind();
   spawner.restart();
   spawner.lifeSpanRoad = 800;
+  
+  tracks.clear();
 
   car.carImage = loadImage("car_sprite_straight.png");
 
@@ -333,7 +329,6 @@ void keyPressed()
 void keyReleased()
 {   
   keys[keyCode] = false;
-  //car.spawnTrack = false;
   car.showGas = false;
 
   //Zorgt ervoor dat ook wordt gelezen wanneer een toets wordt losgelaten.
