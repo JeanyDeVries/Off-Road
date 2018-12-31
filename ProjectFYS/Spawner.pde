@@ -11,6 +11,8 @@ class Spawner
   boolean disabledespawner = true;
   boolean death = false;
   
+  float alpha;
+  
   Spawner()
   {
     //Laad de eerste weg.
@@ -245,11 +247,21 @@ class Spawner
           }
     }
   }
-
-  void Render()
+  
+  
+    void Render()
   {
-    for(Road road : roads)
+    boolean first = true;
+    for (Road road : roads)
     {
+      noTint();
+      if (first && startGame && collision.tutorialFinished && !death)
+      { 
+
+        alpha = map(lifeSpanRoad, 0, 700, 0, 255);
+        tint(255, alpha);
+        first = false;
+      }
       road.Render();
     }
   }
