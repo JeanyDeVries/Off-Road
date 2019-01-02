@@ -258,7 +258,7 @@ class Spawner
       if (first && startGame && collision.tutorialFinished && !death)
       { 
 
-        alpha = map(lifeSpanRoad, 0, 700, 0, 255);
+        alpha = map(lifeSpanRoad/2, 0, 700, 0, 255);
         tint(255, alpha);
         first = false;
       }
