@@ -6,27 +6,17 @@ enum RoadType
     STRAIGHT_TUTORIAL_ROTATE, 
     STRAIGHT_TUTORIAL_WARNING, 
     STRAIGHT, 
-    STRAIGHT_CRACK, 
     SIDEWAYS, 
-    SIDEWAYS_CRACK, 
     LEFT, 
-    LEFT_CRACK, 
     LEFT_SIDE, 
-    LEFT_SIDE_CRACK, 
     RIGHT,
-    RIGHT_CRACK,
     RIGHT_SIDE,
-    RIGHT_SIDE_CRACK,
     OBSTACLE_HOLE,
-    OBSTACLE_HOLE_CRACK,
     OBSTACLE_HOLE_SIDEWAYS, 
-    OBSTACLE_HOLE_SIDEWAYS_CRACK,
     OBSTACLE_HOLE_SIDES,
     OBSTACLE_HOLE_SIDES_SIDEWAYS,
     OIL_STRAIGHT1,
-    OIL_STRAIGHT1_CRACK,
     OIL_STRAIGHT2,
-    OIL_STRAIGHT2_CRACK,
     OIL_LEFT,
     OIL_RIGHT,
     OIL_LEFT_SIDE,
@@ -45,27 +35,17 @@ PImage imgRoadStraightStart;
 PImage imgRoadStraightRotate;
 PImage imgRoadStraightWarning;
 PImage imgRoadStraight;
-PImage imgRoadStraightCrack;
 PImage imgRoadSideways;
-PImage imgRoadSidewaysCrack;
 PImage imgRoadTurnLeft;
-PImage imgRoadTurnLeftCrack;
 PImage imgRoadLeftSide;
-PImage imgRoadLeftSideCrack;
 PImage imgRoadRight;
-PImage imgRoadRightCrack;
 PImage imgRoadRightSide;
-PImage imgRoadRightSideCrack;
 PImage imgObstacleHole;
-PImage imgObstacleHoleCrack;
 PImage imgObstacleHoleSideways;
-PImage imgObstacleHoleSidewaysCrack;
 PImage imgObstacleHolesSide;
 PImage imgObstacleHolesSideSideways;
 PImage imgOilStraight1;
-PImage imgOilStraight1Crack;
 PImage imgOilStraight2;
-PImage imgOilStraight2Crack;
 PImage imgOilLeft;                    
 PImage imgOilRight;                   
 PImage imgOilLeftSide;              
@@ -79,25 +59,15 @@ void RoadPreloadImages()
   imgRoadStraightRotate         = loadImage("road_straight.Rotate.png");
   imgRoadStraightWarning        = loadImage("road_straight.tutorial.warning.png");
   imgRoadStraight               = loadImage("road_straight.png");
-  imgRoadStraightCrack          = loadImage("road_straight_crack.png");
   imgRoadSideways               = loadImage("road_straight_sideways.png");
-  imgRoadSidewaysCrack          = loadImage("road_straight_sideways_crack.png");
   imgRoadTurnLeft               = loadImage("road_turn_left.png");
-  imgRoadTurnLeftCrack          = loadImage("road_turn_left_crack.png");
   imgRoadLeftSide               = loadImage("road_turn_left_side.png");
-  imgRoadLeftSideCrack          = loadImage("road_turn_left_side_crack.png");
   imgRoadRight                  = loadImage("road_turn_right.png");
-  imgRoadRightCrack             = loadImage("road_turn_right_crack.png");
   imgRoadRightSide              = loadImage("road_turn_right_side.png");
-  imgRoadRightSideCrack         = loadImage("road_turn_right_side_crack.png");
   imgObstacleHole               = loadImage("obstacle_hole.png");
-  imgObstacleHoleCrack          = loadImage("obstacle_hole_crack.png");
   imgObstacleHoleSideways       = loadImage("obstacle_hole_sideways.png");
-  imgObstacleHoleSidewaysCrack  = loadImage("obstacle_hole_sideways_crack.png");
   imgOilStraight1               = loadImage("oil_straight1.png");
-  imgOilStraight1Crack          = loadImage("oil_straight1_crack.png");
   imgOilStraight2               = loadImage("oil_straight2.png");
-  imgOilStraight2Crack          = loadImage("oil_straight2_crack.png");
   imgOilLeft                    = loadImage("oil_left.png");
   imgOilRight                   = loadImage("oil_right.png");
   imgOilLeftSide                = loadImage("oil_left_side.png");
@@ -160,49 +130,26 @@ class Road
     case STRAIGHT:
       image = imgRoadStraight;
       break;
-    case STRAIGHT_CRACK:
-      image = imgRoadStraightCrack;
-      break;
     case SIDEWAYS:
       image = imgRoadSideways;
-      break;
-    case SIDEWAYS_CRACK:
-      image = imgRoadSidewaysCrack;
       break;
     case LEFT:
       image = imgRoadTurnLeft;
       break;
-    case LEFT_CRACK:
-      image = imgRoadTurnLeftCrack;
-      break;
     case LEFT_SIDE:
       image = imgRoadLeftSide;
-      break;
-    case LEFT_SIDE_CRACK:
-      image = imgRoadLeftSideCrack;
       break;
     case RIGHT:
       image = imgRoadRight;
       break;
-    case RIGHT_CRACK:
-      image = imgRoadRightCrack;
-      break;
     case RIGHT_SIDE:
       image = imgRoadRightSide;
       break;
-    case RIGHT_SIDE_CRACK:
-      image = imgRoadRightCrack;
     case OBSTACLE_HOLE:
-      image = imgObstacleHole;
-      break;
-    case OBSTACLE_HOLE_CRACK:
       image = imgObstacleHole;
       break;
     case OBSTACLE_HOLE_SIDEWAYS:
       image = imgObstacleHoleSideways;
-      break;
-    case OBSTACLE_HOLE_SIDEWAYS_CRACK:
-      image = imgObstacleHoleSidewaysCrack;
       break;
     case OBSTACLE_HOLE_SIDES:
       image = imgObstacleHolesSide;
@@ -213,14 +160,8 @@ class Road
     case OIL_STRAIGHT1:
       image = imgOilStraight1;
       break;
-    case OIL_STRAIGHT1_CRACK:
-      image = imgOilStraight1Crack;
-      break;
     case OIL_STRAIGHT2:
       image = imgOilStraight2;
-      break;
-    case OIL_STRAIGHT2_CRACK:
-      image = imgOilStraight2Crack;
       break;
     case OIL_LEFT:
        image = imgOilLeft;
