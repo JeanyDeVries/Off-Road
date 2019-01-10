@@ -66,11 +66,11 @@ void draw()
     menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3");  
     file1 = minim.loadSnippet("sound_start.wav");
     buttonPress = minim.loadSnippet("menu_button.wav"); 
-    menuTheme = minim.loadSnippet("Come and Find Me - B mix.mp3"); 
     youLose = minim.loadSnippet("youLose2.mp3");  
     gameTheme = minim.loadSnippet("koopabeach.mp3");  
     car.carNoise = minim.loadSnippet("carNoise.mp3");  
     menuTheme.play();
+    menuTheme.loop();
 
     loadingTest = 1;
   }
@@ -243,6 +243,7 @@ void keyPressed()
     {
       Restart();
       gameTheme.play();
+      gameTheme.loop();
       gameTheme.rewind();
       menu.stage = 2;
     }
@@ -309,6 +310,7 @@ void keyPressed()
       gameTheme.pause();
       gameTheme.rewind();
       menuTheme.play();
+      menuTheme.loop();
       menuTheme.rewind();
     }
     
