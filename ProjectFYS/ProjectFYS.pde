@@ -280,6 +280,7 @@ void keyPressed()
 
       //Overgang van menu audio naar ingame audio
       gameTheme.play();
+      gameTheme.loop();
       menuTheme.pause();
       menuTheme.rewind();
     }
