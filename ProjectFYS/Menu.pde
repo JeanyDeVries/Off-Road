@@ -128,7 +128,7 @@ class Menu
   void showControls()
   {
     //laat de controls zien, druk 'b' om het spel te verlaten
-    image(menu_control, 400, 180, 480, 360); 
+    image(menu_control, 440, 180, 480, 360); 
     if(key == 'x')
       stage = 0;
   }
