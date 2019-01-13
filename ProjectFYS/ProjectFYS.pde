@@ -33,7 +33,7 @@ int i = 0;
 int p = 0;
 int frames = 0;
 
-int loadingTest = 0;
+int loadingTime = 0;
 
 ArrayList<Track> tracks = new ArrayList<Track>();
 
@@ -49,7 +49,7 @@ void setup()
 void draw()
 {
   //load de afbeeldingen etc maar 1 keer wanneer de loadingScreen aanstaat.
-  if (loadingTest == 0) {
+  if (loadingTime == 0) {
 
     RoadPreloadImages();
     menu = new Menu();
@@ -72,7 +72,7 @@ void draw()
     menuTheme.play();
     menuTheme.loop();
 
-    loadingTest = 1;
+    loadingTime = 1;
   }
 
   menu.draw();
@@ -83,10 +83,10 @@ void update()
 { 
   //Zorgt ervoor dat alle plaatjes vanuit het midden worden geladen.
   imageMode(CENTER);
-  //Roept de verschilende de methodes aan.
 
   frames++;
-
+  
+  //Roept de verschilende de methodes aan.
   spawner.spawn();
   spawner.Update();
   spawner.Render();
@@ -141,7 +141,7 @@ void update()
     t.show();
   }
   
-  //doe car,craw als laatste zodat je de tracks die net boven de car zit niet ziet
+  //doe car,draw als laatste zodat je de tracks die net boven de car zit niet ziet
   car.Draw();
 }
 
@@ -151,11 +151,13 @@ void Restart()
   //Restart alles opnieuw door waardes uit de setup te resetten en de array met roads te legen.
   youLose.rewind();
   spawner.restart();
-  spawner.lifeSpanRoad = 800;
   
+  int lifeSpanRoad = 700;
+  
+  //dit verwijderd alle roads die in de array zitten. Hierdoor zie je niet meer de roads van de vorige game.
   tracks.clear();
 
-  car.carImage = loadImage("car_sprite_straight.png");
+  car.carImage = car.forwardCar;
 
   car.huidigeFrames = frames;
 

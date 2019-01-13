@@ -62,17 +62,12 @@ class Car
   {
     if(car.spawnTrack || showGas)
     {
+      //Voeg een track toe in de arraylist op de positie van de auto.
       tracks.add(new Track(car.x, car.y));
-      if(spawnTrack)
-      {
-        if(tracks.size() > 20)
-        {
-          tracks.remove(0);
-        }
-      }
     }
     else
     {
+      //verwijderd alle tracks die in de array zaten.
       tracks.clear();
     }
   }
@@ -81,15 +76,17 @@ class Car
   void Death()
   {
     float tijd = millis();
-    //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
     highscore.finalscore = spawner.score;
     if(saveScore == 1)
     {
       highscore.savescore();
       saveScore = 0;
     }
-
+    
+    //Geeft de boolean 'alive' de waarde 'false' aan zodat we weten dat de speler dood is.
     alive = false;
+    
+    //pas na zoveel tijd gaat die naar het highscore menu.
     if (tijd - millis() > 200)
     {
       menu.stage = 3;
@@ -106,7 +103,10 @@ class Car
   void ProcessInput(boolean[] keys)
   {   
     this.speed *= 0.98;
+    
     //De input word alleen gelezen wanneer de speler nog 'alive' is.
+    //Ook wordt de input pas gelezen als die geen collision heeft met een olievlek.
+    //hierdoor krijg je een effect dat je niet kan bewegen als je over olie rijdt.
     if (alive && !collision.collisionOil)
     {
       //vooruit
@@ -141,10 +141,11 @@ class Car
     } 
     if (!alive)
     {
-      //Death animatie.
       gameTheme.pause();
       youLose.play();
       spawner.death = true;
+      
+      //Death animatie.
       size -= (frameCount - huidigeFrames)/25;
       rotate += 20;
       if (size <= 0)

@@ -9,6 +9,7 @@ class Collision
 
   }
   
+  //Return een boolean die aangeeft of de auto binnen of buiten de weg zit.
   boolean collidesWithRoad()
   {
     frameCount = 0;
@@ -21,7 +22,7 @@ class Collision
     boolean bottomInRoad = false;
     oilRoad = false;
 
-    //check of de auto op de auto staat
+    //check of de auto op de weg staat
     switch(road.type)
     {
       case STRAIGHT_TUTORIAL_START:
@@ -565,7 +566,8 @@ class Collision
    
    boolean spawnRoad(Road road)
    {
-     
+     //Als de auto collided met het begin gedeelte van de road, wordt de boolean true.
+     //Hiermee wordt later een weg gespawned.
      switch(road.type)
      {
        case LEFT_SIDE:

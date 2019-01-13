@@ -1,6 +1,6 @@
 class Spawner
 {
-  int lifeSpanRoad = 550;
+  int lifeSpanRoad = 700;
   
   ArrayList<Road> roads = new ArrayList<Road>();
   int score;
@@ -39,6 +39,23 @@ class Spawner
       //Spawnt een nieuw wegddeel om de 'zoveel' tijd en doet dit alleen wanneer de speler 'alive' is.
       if(startGame && spawnRoad && car.alive)
       {
+          //maak het spel moeilijker door de tijd dat de roads worden delete te verhogen.
+          if(score < 20)
+          {
+            lifeSpanRoad = 700;
+          }
+          if(score >= 20 && score < 50)
+          {
+            lifeSpanRoad = 650;
+          }
+          if(score >= 50 && score < 75)
+          {
+            lifeSpanRoad = 600;
+          }
+          if(score >= 75 && score < 100)
+          {
+            lifeSpanRoad = 550;
+          }
           
           RoadType vorigeRoadType = roads.get(roads.size()-1).type;
           //Hier wordt rekening gehouden met welk wegdeel geladen kan worden.
@@ -227,29 +244,11 @@ class Spawner
           RoadDirection newRoadDirection = possibleRoadDirections.get(randomTypeIndex);
           
           roads.add(new Road(roads.get(roads.size()-1).x, roads.get(roads.size()-1).y, newRoadType, newRoadDirection, millis() + lifeSpanRoad));
-          
-          //maak het spel moeilijker door de tijd dat de roads worden delete te verhogen.
-          if(score > 20)
-          {
-            lifeSpanRoad = 650;
-          }
-          if(score > 50)
-          {
-            lifeSpanRoad = 650;
-          }
-          if(score > 75)
-          {
-            lifeSpanRoad = 575;
-          }
-          if(score > 100)
-          {
-            lifeSpanRoad = 500;
-          }
     }
   }
   
   
-    void Render()
+  void Render()
   {
     boolean first = true;
     for (Road road : roads)
@@ -257,7 +256,6 @@ class Spawner
       noTint();
       if (first && startGame && collision.tutorialFinished && !death)
       { 
-
         alpha = map(lifeSpanRoad/2, 0, 700, 0, 255);
         tint(255, alpha);
         first = false;

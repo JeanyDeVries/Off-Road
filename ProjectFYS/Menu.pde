@@ -40,7 +40,7 @@ class Menu
     buttonGameMenu_MENU = loadImage("gameMenuButton.png");
     buttonGameMenu_QUIT = loadImage("gameMenuButton.png");
   
-    //Afbeelding laden voor de animatie bij het menu
+    //Afbeelding laden voor de animatie bij het menu en in game.
     menuSprites = new PImage[20];
     for(int i = 0; i < menuSprites.length; i++)
     {
@@ -176,6 +176,7 @@ class Menu
     text("4......................." + highscore.highScore[3], width/3 * 2, 525);
     text("5......................." + highscore.highScore[4], width/3 * 2, 600);
     
+    //Doet de tekst 2 keer, maar dan met een verschillende kleur en grootte voor een 3D/rand effect.
     textSize(95);
     textAlign(CENTER);
     fill(245, 203, 26);
@@ -186,7 +187,6 @@ class Menu
     text("3......................." + highscore.highScore[2], width/3 * 2, 450);
     text("4......................." + highscore.highScore[3], width/3 * 2, 525);
     text("5......................." + highscore.highScore[4], width/3 * 2, 600);
-    
     
     
     gameTheme.pause();

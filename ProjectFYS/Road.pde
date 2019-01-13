@@ -107,7 +107,7 @@ class Road
   int destroyTime;
   float timermilliSec = millis();
 
-  // variabelen road declareren
+  //De gegevens die nodig zijn in de constructer worden aangegeven in spawner. 
   Road(float x, float y, RoadType roadType, RoadDirection direction, int destroyTime)
   {
     this.type       = roadType;
