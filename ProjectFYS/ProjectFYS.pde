@@ -113,7 +113,7 @@ void update()
   if (collision.collisionOil)
   {
     //zet het hier op false zodat als je W indrukt je alsnog de track ziet.
-    car.showGas = false;;
+    car.showGas = false;
     car.spawnTrack = true;
     
     if (p ==0)
