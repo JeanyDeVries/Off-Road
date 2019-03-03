@@ -3,10 +3,8 @@ class Collision
   boolean tutorialFinished = false;
   boolean collisionOil = false;
   boolean oilRoad = false;
-  boolean deathObstacle = false;
 
   Collision()  {
-
   }
   
   //Return een boolean die aangeeft of de auto binnen of buiten de weg zit.
